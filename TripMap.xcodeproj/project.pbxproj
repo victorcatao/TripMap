@@ -14,6 +14,7 @@
 		FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC90742728328E9200951CFA /* TripMap.xcdatamodeld */; };
 		FC90742B28328E9700951CFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC90742A28328E9700951CFA /* Assets.xcassets */; };
 		FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC90742C28328E9700951CFA /* LaunchScreen.storyboard */; };
+		FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7C29636034003CD6AE /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		FC90742A28328E9700951CFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC90742D28328E9700951CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC90742F28328E9700951CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCEADF7C29636034003CD6AE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				FC90742C28328E9700951CFA /* LaunchScreen.storyboard */,
 				FC90742F28328E9700951CFA /* Info.plist */,
 				FC90742728328E9200951CFA /* TripMap.xcdatamodeld */,
+				FCEADF7C29636034003CD6AE /* MapViewModel.swift */,
 			);
 			path = TripMap;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC90742328328E9200951CFA /* ViewController.swift in Sources */,
+				FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */,
 				FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */,
 				FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */,
 				FC90742128328E9200951CFA /* SceneDelegate.swift in Sources */,

@@ -12,15 +12,11 @@ import CoreData
 
 final class ViewController: UIViewController {
     
+    private let viewModel = MapViewModel()
+    
     @IBOutlet weak var mapView: MKMapView!
     
     private var didUpdateLocation = false
-    private var pinObjects: [MapPin] = []
-    
-    private lazy var managedContext: NSManagedObjectContext = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +27,12 @@ final class ViewController: UIViewController {
     private func setupMapView() {
         mapView.showsUserLocation = true
         mapView.delegate = self
+    
+        let saoPauloCoordinates = CLLocationCoordinate2D(latitude: -23.5989, longitude: -46.6388)
+        let region = MKCoordinateRegion(center: saoPauloCoordinates,
+                                        latitudinalMeters: 6000,
+                                        longitudinalMeters: 6000)
+        mapView.setRegion(region, animated: true)
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
         longPress.minimumPressDuration = 1.0
@@ -47,7 +49,7 @@ final class ViewController: UIViewController {
         
         let saveAction = UIAlertAction(title: "Salvar", style: .default) { [weak self] _ in
             guard let textField = alert.textFields!.first else { return }
-            self?.savePin(
+            self?.viewModel.savePin(
                 name: textField.text!,
                 latitude: newCoordinates.latitude,
                 longitude: newCoordinates.longitude
@@ -67,78 +69,21 @@ final class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    private func savePin(
-        name: String,
-        latitude: Double,
-        longitude: Double
-    ) {
-        let entity = NSEntityDescription.entity(forEntityName: "Pin", in: managedContext)
-        
-        let pin = NSManagedObject(entity: entity!, insertInto: managedContext)
-        pin.setValue(name, forKey: "name")
-        pin.setValue(longitude, forKey: "lng")
-        pin.setValue(latitude, forKey: "lat")
-        pin.setValue(false, forKey: "visited")
-        
-        do {
-            try managedContext.save()
-            let pin = MapPin(
-                lat: latitude,
-                lng: longitude,
-                name: name,
-                visited: false
-            )
-            self.pinObjects.append(pin)
-        } catch {
-            print("opa nao salvou")
-        }
-    }
-    
     private func reloadData() {
-        let fetchRequest: NSFetchRequest<Pin> = NSFetchRequest(entityName: "Pin")
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            self.pinObjects = results.map {
-                MapPin(
-                    lat: $0.lat,
-                    lng: $0.lng,
-                    name: $0.name ?? "",
-                    visited: $0.visited
-                )
-            }
-            setupPinMaps()
-        } catch {
-            
-        }
+        viewModel.reloadData()
+        setupPinMaps()
     }
     
     private func setupPinMaps() {
         mapView.removeAnnotations(mapView.annotations)
         
-        for pin in pinObjects {
+        for pin in viewModel.pinObjects {
             let annotation = MyPointAnnotation()
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
             annotation.title = pin.name
             annotation.subtitle = pin.visited ? "Visitado" : "Não visitado"
             annotation.pinTintColor = pin.visited ? .lightGray : .red
             mapView.addAnnotation(annotation)
-        }
-    }
-
-    func updateStatus(for coordinate: CLLocationCoordinate2D) {
-        let fetchRequest: NSFetchRequest<Pin> = NSFetchRequest(entityName: "Pin")
-        // todo: improve with predicate
-        // fetchRequest.predicate = NSPRedicate(format: "lat == %@", coordinate.latitude)
-
-        do {
-            let fetchResponse = try managedContext.fetch(fetchRequest)
-            guard let pin = fetchResponse.first(where: { obj in
-                obj.lat == coordinate.latitude && obj.lng == coordinate.longitude
-            }) else { return }
-            pin.setValue(!pin.visited, forKey: "visited")
-            try managedContext.save()
-        } catch {
-
         }
     }
 
@@ -184,17 +129,19 @@ extension ViewController: MKMapViewDelegate {
         
         alert.addAction(UIAlertAction(title: "Alterar visitado", style: .default, handler: { _ in
             guard let coordinate = view.annotation?.coordinate else { return }
-            self.updateStatus(for: coordinate)
+            self.viewModel.updateStatus(for: coordinate)
             self.reloadData()
         }))
         
-        alert.addAction(UIAlertAction(title: "Deletar", style: .destructive, handler: { _ in
-            
+        alert.addAction(UIAlertAction(title: "Deletar", style: .destructive, handler: { [weak self] _ in
+            guard let self,
+            let latitude = view.annotation?.coordinate.latitude,
+            let longitude = view.annotation?.coordinate.longitude else { return }
+            self.viewModel.deletePin(latitude: latitude, longitude: longitude)
+            self.reloadData()
         }))
-        
-        alert.addAction(UIAlertAction(title: "Deletar", style: .cancel, handler: { _ in
-            
-        }))
+    
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in }))
         
         self.present(alert, animated: true)
     }
@@ -202,11 +149,4 @@ extension ViewController: MKMapViewDelegate {
 
 class MyPointAnnotation: MKPointAnnotation {
     var pinTintColor: UIColor?
-}
-
-struct MapPin {
-    let lat: Double
-    let lng: Double
-    let name: String
-    let visited: Bool
 }
