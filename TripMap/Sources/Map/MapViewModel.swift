@@ -11,59 +11,63 @@ import CoreData
 
 final class MapViewModel {
     
-    private(set) var pinObjects: [MapPin] = []
+    // MARK: - Private Properties
     
+    private(set) var pinObjects: [Pin] = []
+    private let trip: Trip
+
     private lazy var managedContext: NSManagedObjectContext = {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }()
     
+    // MARK: - LifeCycle
+
+    init(trip: Trip) {
+        self.trip = trip
+        loadPins()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func loadPins() {
+        let request = Pin.fetchRequest()
+        request.predicate = NSPredicate(format: "trip = %@", trip)
+
+        var fetchedSongs: [Pin] = []
+        do {
+            fetchedSongs = try managedContext.fetch(request)
+        } catch let error {
+            print("Error fetching songs \(error)")
+        }
+        pinObjects = fetchedSongs
+    }
+    
+    // MARK: - Public Methods
+
     func savePin(
         name: String,
         latitude: Double,
         longitude: Double
     ) {
-        let entity = NSEntityDescription.entity(forEntityName: "Pin", in: managedContext)
+        let pin = Pin(context: managedContext)
+        pin.name = name
+        pin.lng = longitude
+        pin.lat = latitude
         
-        let pin = NSManagedObject(entity: entity!, insertInto: managedContext)
-        pin.setValue(name, forKey: "name")
-        pin.setValue(longitude, forKey: "lng")
-        pin.setValue(latitude, forKey: "lat")
-        pin.setValue(false, forKey: "visited")
+        trip.addToPins(pin)
         
         do {
             try managedContext.save()
-            let pin = MapPin(
-                lat: latitude,
-                lng: longitude,
-                name: name,
-                visited: false
-            )
-            self.pinObjects.append(pin)
-        } catch {
-            print("opa nao salvou")
-        }
-    }
-    
-    func reloadData() {
-        let fetchRequest: NSFetchRequest<Pin> = NSFetchRequest(entityName: "Pin")
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            self.pinObjects = results.map {
-                MapPin(
-                    lat: $0.lat,
-                    lng: $0.lng,
-                    name: $0.name ?? "",
-                    visited: $0.visited
-                )
-            }
         } catch {
             
         }
+        
+        loadPins()
     }
     
     func updateStatus(for coordinate: CLLocationCoordinate2D) {
-        let fetchRequest: NSFetchRequest<Pin> = NSFetchRequest(entityName: "Pin")
+        let fetchRequest = Pin.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "lat == %lf AND lng == %lf", coordinate.latitude, coordinate.longitude)
         
         do {
@@ -77,7 +81,7 @@ final class MapViewModel {
     }
     
     func deletePin(latitude: Double, longitude: Double) {
-        let fetchRequest: NSFetchRequest<Pin> = NSFetchRequest(entityName: "Pin")
+        let fetchRequest = Pin.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "lat == %lf AND lng == %lf", latitude, longitude)
         
         do {
@@ -89,11 +93,4 @@ final class MapViewModel {
 
         }
     }
-}
-
-struct MapPin {
-    let lat: Double
-    let lng: Double
-    let name: String
-    let visited: Bool
 }

@@ -10,21 +10,52 @@ import UIKit
 import MapKit
 import CoreData
 
-final class ViewController: UIViewController {
+final class MapViewController: UIViewController {
     
-    private let viewModel = MapViewModel()
+    // MARK: - Private Properties
+
+    private let viewModel: MapViewModel
     
-    @IBOutlet weak var mapView: MKMapView!
+    private lazy var mapView: MKMapView = {
+        let view = MKMapView(frame: .zero)
+        return view
+    }()
     
     private var didUpdateLocation = false
     
+    private class MyPointAnnotation: MKPointAnnotation {
+        var pinTintColor: UIColor?
+    }
+
+    // MARK: - LifeCycle
+
+    init(viewModel: MapViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupMapView()
         reloadData()
     }
     
+    // MARK: - Private Methods
+
     private func setupMapView() {
+        view.addSubview(mapView)
+
+        mapView
+            .pin(.top, to: view.topAnchor)
+            .pin(.leading, to: view.leadingAnchor)
+            .pin(.trailing, to: view.trailingAnchor)
+            .pin(.bottom, to: view.bottomAnchor)
+        
         mapView.showsUserLocation = true
         mapView.delegate = self
     
@@ -70,7 +101,6 @@ final class ViewController: UIViewController {
     }
     
     private func reloadData() {
-        viewModel.reloadData()
         setupPinMaps()
     }
     
@@ -89,7 +119,9 @@ final class ViewController: UIViewController {
 
 }
 
-extension ViewController: MKMapViewDelegate {
+// MARK: - MKMapViewDelegate
+
+extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         guard !didUpdateLocation else { return }
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
@@ -145,8 +177,4 @@ extension ViewController: MKMapViewDelegate {
         
         self.present(alert, animated: true)
     }
-}
-
-class MyPointAnnotation: MKPointAnnotation {
-    var pinTintColor: UIColor?
 }

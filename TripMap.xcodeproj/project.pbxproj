@@ -7,27 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B629639AE400A16EE5 /* TripsListViewController.swift */; };
+		FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */; };
+		FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */; };
+		FC2423C92964789A00A16EE5 /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423C52964789A00A16EE5 /* Pin+CoreDataClass.swift */; };
+		FC2423CA2964789A00A16EE5 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423C62964789A00A16EE5 /* Pin+CoreDataProperties.swift */; };
+		FC2423CB2964789A00A16EE5 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423C72964789A00A16EE5 /* Trip+CoreDataClass.swift */; };
+		FC2423CC2964789A00A16EE5 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423C82964789A00A16EE5 /* Trip+CoreDataProperties.swift */; };
+		FC2423CE2964860B00A16EE5 /* OutlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423CD2964860B00A16EE5 /* OutlinedLabel.swift */; };
 		FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90741E28328E9200951CFA /* AppDelegate.swift */; };
 		FC90742128328E9200951CFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90742028328E9200951CFA /* SceneDelegate.swift */; };
-		FC90742328328E9200951CFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90742228328E9200951CFA /* ViewController.swift */; };
-		FC90742628328E9200951CFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC90742428328E9200951CFA /* Main.storyboard */; };
+		FC90742328328E9200951CFA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90742228328E9200951CFA /* MapViewController.swift */; };
 		FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC90742728328E9200951CFA /* TripMap.xcdatamodeld */; };
 		FC90742B28328E9700951CFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC90742A28328E9700951CFA /* Assets.xcassets */; };
 		FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC90742C28328E9700951CFA /* LaunchScreen.storyboard */; };
 		FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7C29636034003CD6AE /* MapViewModel.swift */; };
+		FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC2423B629639AE400A16EE5 /* TripsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewController.swift; sourceTree = "<group>"; };
+		FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewModel.swift; sourceTree = "<group>"; };
+		FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListTableViewCell.swift; sourceTree = "<group>"; };
+		FC2423C52964789A00A16EE5 /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataClass.swift"; path = "TripMap/Sources/Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC2423C62964789A00A16EE5 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "TripMap/Sources/Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FC2423C72964789A00A16EE5 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataClass.swift"; path = "TripMap/Sources/Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC2423C82964789A00A16EE5 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataProperties.swift"; path = "TripMap/Sources/Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FC2423CD2964860B00A16EE5 /* OutlinedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedLabel.swift; sourceTree = "<group>"; };
 		FC90741B28328E9200951CFA /* TripMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC90741E28328E9200951CFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC90742028328E9200951CFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FC90742228328E9200951CFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FC90742528328E9200951CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FC90742228328E9200951CFA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FC90742828328E9200951CFA /* TripMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripMap.xcdatamodel; sourceTree = "<group>"; };
 		FC90742A28328E9700951CFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC90742D28328E9700951CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC90742F28328E9700951CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCEADF7C29636034003CD6AE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,9 +57,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC2423B429639A8500A16EE5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */,
+				FC2423CD2964860B00A16EE5 /* OutlinedLabel.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FC2423B529639AAF00A16EE5 /* TripsList */ = {
+			isa = PBXGroup;
+			children = (
+				FC2423BA29639C7E00A16EE5 /* Cells */,
+				FC2423B629639AE400A16EE5 /* TripsListViewController.swift */,
+				FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */,
+			);
+			path = TripsList;
+			sourceTree = "<group>";
+		};
+		FC2423BA29639C7E00A16EE5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		FC90741228328E9100951CFA = {
 			isa = PBXGroup;
 			children = (
+				FC2423C52964789A00A16EE5 /* Pin+CoreDataClass.swift */,
+				FC2423C62964789A00A16EE5 /* Pin+CoreDataProperties.swift */,
+				FC2423C72964789A00A16EE5 /* Trip+CoreDataClass.swift */,
+				FC2423C82964789A00A16EE5 /* Trip+CoreDataProperties.swift */,
 				FC90741D28328E9200951CFA /* TripMap */,
 				FC90741C28328E9200951CFA /* Products */,
 			);
@@ -62,15 +109,32 @@
 			children = (
 				FC90741E28328E9200951CFA /* AppDelegate.swift */,
 				FC90742028328E9200951CFA /* SceneDelegate.swift */,
-				FC90742228328E9200951CFA /* ViewController.swift */,
-				FC90742428328E9200951CFA /* Main.storyboard */,
 				FC90742A28328E9700951CFA /* Assets.xcassets */,
 				FC90742C28328E9700951CFA /* LaunchScreen.storyboard */,
 				FC90742F28328E9700951CFA /* Info.plist */,
 				FC90742728328E9200951CFA /* TripMap.xcdatamodeld */,
-				FCEADF7C29636034003CD6AE /* MapViewModel.swift */,
+				FCEADF8029639A0B003CD6AE /* Sources */,
 			);
 			path = TripMap;
+			sourceTree = "<group>";
+		};
+		FCEADF8029639A0B003CD6AE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FC2423B429639A8500A16EE5 /* Extensions */,
+				FC2423B529639AAF00A16EE5 /* TripsList */,
+				FCEADF8129639A23003CD6AE /* Map */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		FCEADF8129639A23003CD6AE /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				FC90742228328E9200951CFA /* MapViewController.swift */,
+				FCEADF7C29636034003CD6AE /* MapViewModel.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +197,6 @@
 			files = (
 				FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */,
 				FC90742B28328E9700951CFA /* Assets.xcassets in Resources */,
-				FC90742628328E9200951CFA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,10 +207,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC90742328328E9200951CFA /* ViewController.swift in Sources */,
+				FC90742328328E9200951CFA /* MapViewController.swift in Sources */,
+				FC2423C92964789A00A16EE5 /* Pin+CoreDataClass.swift in Sources */,
+				FC2423CE2964860B00A16EE5 /* OutlinedLabel.swift in Sources */,
 				FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */,
+				FC2423CA2964789A00A16EE5 /* Pin+CoreDataProperties.swift in Sources */,
 				FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */,
+				FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */,
+				FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */,
+				FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */,
+				FC2423CC2964789A00A16EE5 /* Trip+CoreDataProperties.swift in Sources */,
 				FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */,
+				FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */,
+				FC2423CB2964789A00A16EE5 /* Trip+CoreDataClass.swift in Sources */,
 				FC90742128328E9200951CFA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,14 +227,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FC90742428328E9200951CFA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC90742528328E9200951CFA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FC90742C28328E9700951CFA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -300,7 +364,6 @@
 				INFOPLIST_FILE = TripMap/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -328,7 +391,6 @@
 				INFOPLIST_FILE = TripMap/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
