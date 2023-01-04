@@ -15,13 +15,10 @@ final class MapViewController: UIViewController {
     // MARK: - Private Properties
 
     private let viewModel: MapViewModel
-    
-    private lazy var mapView: MKMapView = {
-        let view = MKMapView(frame: .zero)
-        return view
-    }()
-    
     private var didUpdateLocation = false
+    private var didShowAnnotations = false
+    private lazy var locationManager = CLLocationManager()
+    private lazy var mapView = MKMapView(frame: .zero)
     
     private class MyPointAnnotation: MKPointAnnotation {
         var pinTintColor: UIColor?
@@ -42,11 +39,19 @@ final class MapViewController: UIViewController {
         super.viewDidLoad()
         
         setupMapView()
+        setupLocationManager()
         reloadData()
     }
     
     // MARK: - Private Methods
 
+    private func setupLocationManager() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
     private func setupMapView() {
         view.addSubview(mapView)
 
@@ -56,25 +61,13 @@ final class MapViewController: UIViewController {
             .pin(.trailing, to: view.trailingAnchor)
             .pin(.bottom, to: view.bottomAnchor)
         
-        mapView.showsUserLocation = true
         mapView.delegate = self
+        mapView.showsUserLocation = true
     
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
         longPress.minimumPressDuration = 1.0
         
         mapView.addGestureRecognizer(longPress)
-        
-        guard let latitude = viewModel.pinObjects.first?.lat,
-              let longitude = viewModel.pinObjects.first?.lng else { return }
-        
-        let pinCoordinates = CLLocationCoordinate2D(
-            latitude: latitude,
-            longitude: longitude
-        )
-        let region = MKCoordinateRegion(center: pinCoordinates,
-                                        latitudinalMeters: 6000,
-                                        longitudinalMeters: 6000)
-        mapView.setRegion(region, animated: true)
     }
     
     @objc private func didLongPress(_ gestureRecognizer: UIGestureRecognizer) {
@@ -121,6 +114,11 @@ final class MapViewController: UIViewController {
             annotation.pinTintColor = pin.visited ? .lightGray : .red
             mapView.addAnnotation(annotation)
         }
+        
+        if didShowAnnotations == false {
+            mapView.showAnnotations(mapView.annotations, animated: true)
+            didShowAnnotations = true
+        }
     }
 
 }
@@ -129,7 +127,7 @@ final class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        guard !didUpdateLocation else { return }
+        guard !didUpdateLocation, viewModel.pinObjects.isEmpty else { return }
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: userLocation.coordinate, span: span)
         mapView.setRegion(region, animated: true)
