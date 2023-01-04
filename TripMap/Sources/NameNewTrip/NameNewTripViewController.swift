@@ -79,6 +79,13 @@ final class NameNewTripViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupView() {
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(didTapDismiss))
+        barButton.tintColor = .white
+        navigationItem.rightBarButtonItem = barButton
+        
         view.backgroundColor = .systemBlue
         
         view.addSubview(questionLabel)
@@ -86,7 +93,7 @@ final class NameNewTripViewController: UIViewController {
         view.addSubview(nextButton)
         
         questionLabel
-            .pin(.top, to: view.topAnchor, constant: 100)
+            .pin(.top, to: view.topAnchor, constant: 70)
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
         
@@ -114,6 +121,11 @@ final class NameNewTripViewController: UIViewController {
     @objc
     private func didTapNext() {
         goToNextStep()
+    }
+    
+    @objc
+    private func didTapDismiss() {
+        dismiss(animated: true)
     }
     
     // MARK: - Keyboard Functions

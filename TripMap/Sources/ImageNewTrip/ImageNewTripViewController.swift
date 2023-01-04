@@ -66,13 +66,20 @@ final class ImageNewTripViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupView() {
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(didTapDismiss))
+        barButton.tintColor = .white
+        navigationItem.rightBarButtonItem = barButton
+
         view.backgroundColor = .systemBlue
         
         view.addSubview(questionLabel)
         view.addSubview(collectionView)
         
         questionLabel
-            .pin(.top, to: view.topAnchor, constant: 100)
+            .pin(.top, to: view.topAnchor, constant: 70)
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
         
@@ -81,6 +88,11 @@ final class ImageNewTripViewController: UIViewController {
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
             .pin(.bottom, to: view.bottomAnchor)
+    }
+    
+    @objc
+    private func didTapDismiss() {
+        dismiss(animated: true)
     }
     
 }
