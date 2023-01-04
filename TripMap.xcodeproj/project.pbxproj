@@ -23,6 +23,7 @@
 		FC2423E82964D18300A16EE5 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423E42964D18300A16EE5 /* Pin+CoreDataProperties.swift */; };
 		FC2423E92964D18300A16EE5 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423E52964D18300A16EE5 /* Trip+CoreDataClass.swift */; };
 		FC2423EA2964D18300A16EE5 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423E62964D18300A16EE5 /* Trip+CoreDataProperties.swift */; };
+		FC7E48FA2965C7EA0088131A /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E48F92965C7EA0088131A /* TripView.swift */; };
 		FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90741E28328E9200951CFA /* AppDelegate.swift */; };
 		FC90742128328E9200951CFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90742028328E9200951CFA /* SceneDelegate.swift */; };
 		FC90742328328E9200951CFA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90742228328E9200951CFA /* MapViewController.swift */; };
@@ -50,6 +51,7 @@
 		FC2423E42964D18300A16EE5 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FC2423E52964D18300A16EE5 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FC2423E62964D18300A16EE5 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FC7E48F92965C7EA0088131A /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		FC90741B28328E9200951CFA /* TripMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC90741E28328E9200951CFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC90742028328E9200951CFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				FC2423B529639AAF00A16EE5 /* TripsList */,
 				FCEADF8129639A23003CD6AE /* Map */,
 				FC2423D42964A98500A16EE5 /* DataManager.swift */,
+				FC7E48F92965C7EA0088131A /* TripView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */,
 				FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */,
 				FC2423DA2964B0A400A16EE5 /* ImageNewTripViewModel.swift in Sources */,
+				FC7E48FA2965C7EA0088131A /* TripView.swift in Sources */,
 				FC2423DD2964C89C00A16EE5 /* ImageNewTripCollectionViewCell.swift in Sources */,
 				FC2423E02964CFF400A16EE5 /* SuccessNewTripViewController.swift in Sources */,
 				FC90742128328E9200951CFA /* SceneDelegate.swift in Sources */,

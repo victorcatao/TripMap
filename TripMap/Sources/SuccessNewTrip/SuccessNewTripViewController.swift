@@ -11,6 +11,8 @@ final class SuccessNewTripViewController: UIViewController {
     
     // MARK: - Views
     
+    private lazy var tripView = TripView()
+    
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -18,27 +20,6 @@ final class SuccessNewTripViewController: UIViewController {
         label.font = .systemFont(ofSize: 36, weight: .medium)
         label.textColor = .white
         
-        return label
-    }()
-    
-    private lazy var tripImageView: UIImageView = {
-        let image = UIImageView()
-        image.layer.cornerRadius = 4
-        image.contentMode = .scaleAspectFill
-        image.layer.masksToBounds = true
-        
-        return image
-    }()
-    
-    private lazy var tripNameLabel: OutlinedLabel = {
-        let label = OutlinedLabel()
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50.0, weight: .heavy)
-        label.textColor = .white
-        label.outlineColor = .black
-        label.outlineWidth = 5
-
         return label
     }()
     
@@ -81,8 +62,7 @@ final class SuccessNewTripViewController: UIViewController {
         view.backgroundColor = .systemBlue
         
         view.addSubview(questionLabel)
-        view.addSubview(tripImageView)
-        view.addSubview(tripNameLabel)
+        view.addSubview(tripView)
         view.addSubview(closeButton)
 
         questionLabel
@@ -90,26 +70,20 @@ final class SuccessNewTripViewController: UIViewController {
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
         
-        tripImageView
+        tripView
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.top, to: questionLabel.bottomAnchor, constant: 32)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
             .pin(.height, relation: .equalToConstant, constant: 150)
         
-        tripNameLabel
-            .pin(.centerY, to: tripImageView.centerYAnchor)
-            .pin(.centerX, to: tripImageView.centerXAnchor)
-            .pin(.leading, to: view.leadingAnchor, constant: 16)
-            .pin(.trailing, to: view.trailingAnchor, constant: -16)
-        
         closeButton
             .pin(.leading, to: view.leadingAnchor, constant: 16)
-            .pin(.top, to: tripImageView.bottomAnchor, constant: 32)
+            .pin(.top, to: tripView.bottomAnchor, constant: 32)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
             .pin(.height, relation: .equalToConstant, constant: 44)
         
-        tripImageView.image = UIImage(named: viewModel.tripImage ?? "1")
-        tripNameLabel.text = viewModel.tripName
+        tripView.setupTrip(name: viewModel.tripName,
+                           image: UIImage(named: viewModel.tripImage ?? "1"))
     }
     
     @objc

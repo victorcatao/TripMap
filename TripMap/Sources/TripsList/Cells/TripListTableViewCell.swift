@@ -10,28 +10,9 @@ import UIKit
 final class TripListTableViewCell: UITableViewCell {
     
     // MARK: - Views
-
-    private lazy var tripImageView: UIImageView = {
-        let image = UIImageView()
-        image.layer.cornerRadius = 4
-        image.contentMode = .scaleAspectFill
-        image.layer.masksToBounds = true
-        
-        return image
-    }()
     
-    private lazy var tripNameLabel: OutlinedLabel = {
-        let label = OutlinedLabel()
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50.0, weight: .heavy)
-        label.textColor = .white
-        label.outlineColor = .black
-        label.outlineWidth = 5
+    private lazy var tripView = TripView()
 
-        return label
-    }()
-    
     // MARK: - LifeCycle
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -39,20 +20,14 @@ final class TripListTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        contentView.addSubview(tripImageView)
-        contentView.addSubview(tripNameLabel)
+        contentView.addSubview(tripView)
         
-        tripImageView
+        tripView
             .pin(.leading, to: contentView.leadingAnchor, constant: 8)
             .pin(.top, to: contentView.topAnchor, constant: 8)
             .pin(.trailing, to: contentView.trailingAnchor, constant: -8)
             .pin(.bottom, to: contentView.bottomAnchor, constant: -8)
             .pin(.height, relation: .equalToConstant, constant: 150)
-        
-        tripNameLabel
-            .pin(.centerY, to: contentView.centerYAnchor)
-            .pin(.leading, to: contentView.leadingAnchor, constant: 16)
-            .pin(.trailing, to: contentView.trailingAnchor, constant: -16)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,7 +37,7 @@ final class TripListTableViewCell: UITableViewCell {
     // MARK: - Public Methods
 
     func setupWith(trip: Trip) {
-        tripNameLabel.text = trip.name?.uppercased()
-        tripImageView.image = UIImage(named: trip.imageName ?? "1")
+        tripView.setupTrip(name: trip.name?.uppercased(),
+                           image: UIImage(named: trip.imageName ?? "1"))
     }
 }
