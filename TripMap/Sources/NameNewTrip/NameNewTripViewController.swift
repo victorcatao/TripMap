@@ -30,8 +30,19 @@ final class NameNewTripViewController: UIViewController {
         textField.textColor = .white.withAlphaComponent(0.8)
         textField.returnKeyType = .next
         textField.delegate = self
-
+        
         return textField
+    }()
+    
+    private lazy var nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(.init(systemName: "chevron.right"), for: .normal)
+        button.tintColor = .black
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 22
+        button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
+
+        return button
     }()
     
     // MARK: - Private Properties
@@ -53,6 +64,9 @@ final class NameNewTripViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,13 +74,16 @@ final class NameNewTripViewController: UIViewController {
         textField.becomeFirstResponder()
     }
     
+    private var composeViewBottomConstraint: NSLayoutConstraint?
+    
     // MARK: - Private Methods
-
+    
     private func setupView() {
         view.backgroundColor = .systemBlue
         
         view.addSubview(questionLabel)
         view.addSubview(textField)
+        view.addSubview(nextButton)
         
         questionLabel
             .pin(.top, to: view.topAnchor, constant: 100)
@@ -77,6 +94,47 @@ final class NameNewTripViewController: UIViewController {
             .pin(.top, to: questionLabel.bottomAnchor, constant: 16)
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
+        
+        nextButton
+            .pin(.trailing, to: view.trailingAnchor, constant: -16)
+            .pin(.height, relation: .equalToConstant, constant: 44)
+            .pin(.width, relation: .equalToConstant, constant: 44)
+        
+        composeViewBottomConstraint = NSLayoutConstraint(item: nextButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -16)
+        composeViewBottomConstraint?.isActive = true
+    }
+    
+    private func goToNextStep() {
+        guard let tripName = textField.text, !tripName.isEmpty else { return }
+        
+        let viewController = ImageNewTripViewController(viewModel: ImageNewTripViewModel(tripName: tripName))
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc
+    private func didTapNext() {
+        goToNextStep()
+    }
+    
+    // MARK: - Keyboard Functions
+
+    @objc
+    private func keyboardWillShow(notification: Notification) {
+        let keyboardSize = (notification.userInfo?  [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        let keyboardHeight = keyboardSize?.height
+        composeViewBottomConstraint?.constant = -(keyboardHeight! - view.safeAreaInsets.bottom + 44)
+        
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(notification: Notification){
+        composeViewBottomConstraint?.constant = -16
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
     }
     
 }
@@ -85,10 +143,7 @@ final class NameNewTripViewController: UIViewController {
 
 extension NameNewTripViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let tripName = textField.text else { return true }
-        
-        let vc = ImageNewTripViewController(viewModel: ImageNewTripViewModel(tripName: tripName))
-        navigationController?.pushViewController(vc, animated: true)
+        goToNextStep()
         return true
     }
 }
