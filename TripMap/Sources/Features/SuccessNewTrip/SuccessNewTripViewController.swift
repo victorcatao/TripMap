@@ -83,7 +83,8 @@ final class SuccessNewTripViewController: UIViewController {
             .pin(.height, relation: .equalToConstant, constant: 44)
         
         tripView.setupTrip(name: viewModel.tripName,
-                           image: UIImage(named: viewModel.tripImage ?? "1"))
+                           image: UIImage(named: viewModel.tripImage ?? "1"),
+                           pinQuantity: 0)
     }
     
     @objc

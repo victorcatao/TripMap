@@ -38,6 +38,7 @@ final class TripListTableViewCell: UITableViewCell {
 
     func setupWith(trip: Trip) {
         tripView.setupTrip(name: trip.name?.uppercased(),
-                           image: UIImage(named: trip.imageName ?? "1"))
+                           image: UIImage(named: trip.imageName ?? "1"),
+                           pinQuantity: trip.pins?.count ?? 0)
     }
 }
