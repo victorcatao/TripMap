@@ -138,13 +138,67 @@
 			path = SuccessNewTrip;
 			sourceTree = "<group>";
 		};
-		FC90741228328E9100951CFA = {
+		FC7E48FB29660A5C0088131A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC90742A28328E9700951CFA /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FC7E48FC29660A760088131A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FC90742C28328E9700951CFA /* LaunchScreen.storyboard */,
+				FC90742F28328E9700951CFA /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FC7E48FD29660A9C0088131A /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				FC90741E28328E9200951CFA /* AppDelegate.swift */,
+				FC90742028328E9200951CFA /* SceneDelegate.swift */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
+		FC7E48FE29660AA50088131A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FC2423D42964A98500A16EE5 /* DataManager.swift */,
 				FC2423E32964D18300A16EE5 /* Pin+CoreDataClass.swift */,
 				FC2423E42964D18300A16EE5 /* Pin+CoreDataProperties.swift */,
 				FC2423E52964D18300A16EE5 /* Trip+CoreDataClass.swift */,
 				FC2423E62964D18300A16EE5 /* Trip+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FC7E490029660B320088131A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FC2423DE2964CFEA00A16EE5 /* SuccessNewTrip */,
+				FC2423D62964B08400A16EE5 /* ImageNewTrip */,
+				FC2423CF2964A65500A16EE5 /* NameNewTrip */,
+				FC2423B529639AAF00A16EE5 /* TripsList */,
+				FCEADF8129639A23003CD6AE /* Map */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		FC7E490129660BC30088131A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FC7E48F92965C7EA0088131A /* TripView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FC90741228328E9100951CFA = {
+			isa = PBXGroup;
+			children = (
 				FC90741D28328E9200951CFA /* TripMap */,
 				FC90741C28328E9200951CFA /* Products */,
 			);
@@ -161,11 +215,6 @@
 		FC90741D28328E9200951CFA /* TripMap */ = {
 			isa = PBXGroup;
 			children = (
-				FC90741E28328E9200951CFA /* AppDelegate.swift */,
-				FC90742028328E9200951CFA /* SceneDelegate.swift */,
-				FC90742A28328E9700951CFA /* Assets.xcassets */,
-				FC90742C28328E9700951CFA /* LaunchScreen.storyboard */,
-				FC90742F28328E9700951CFA /* Info.plist */,
 				FC90742728328E9200951CFA /* TripMap.xcdatamodeld */,
 				FCEADF8029639A0B003CD6AE /* Sources */,
 			);
@@ -175,14 +224,13 @@
 		FCEADF8029639A0B003CD6AE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				FC2423DE2964CFEA00A16EE5 /* SuccessNewTrip */,
-				FC2423D62964B08400A16EE5 /* ImageNewTrip */,
-				FC2423CF2964A65500A16EE5 /* NameNewTrip */,
+				FC7E490129660BC30088131A /* Components */,
+				FC7E48FE29660AA50088131A /* CoreData */,
 				FC2423B429639A8500A16EE5 /* Extensions */,
-				FC2423B529639AAF00A16EE5 /* TripsList */,
-				FCEADF8129639A23003CD6AE /* Map */,
-				FC2423D42964A98500A16EE5 /* DataManager.swift */,
-				FC7E48F92965C7EA0088131A /* TripView.swift */,
+				FC7E490029660B320088131A /* Features */,
+				FC7E48FB29660A5C0088131A /* Resources */,
+				FC7E48FD29660A9C0088131A /* Startup */,
+				FC7E48FC29660A760088131A /* Supporting Files */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -429,7 +477,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49SCADTRG8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TripMap/Info.plist;
+				INFOPLIST_FILE = "TripMap/Sources/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -456,7 +504,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49SCADTRG8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TripMap/Info.plist;
+				INFOPLIST_FILE = "TripMap/Sources/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
