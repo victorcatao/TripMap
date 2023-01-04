@@ -16,9 +16,8 @@ final class MapViewModel {
     private(set) var pinObjects: [Pin] = []
     private let trip: Trip
 
-    private lazy var managedContext: NSManagedObjectContext = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
+    private var managedContext: NSManagedObjectContext = {
+        DataManager.shared.context
     }()
     
     // MARK: - LifeCycle
@@ -74,7 +73,7 @@ final class MapViewModel {
             let fetchResponse = try managedContext.fetch(fetchRequest)
             guard let pin = fetchResponse.first else { return }
             pin.setValue(!pin.visited, forKey: "visited")
-            try managedContext.save()
+            DataManager.shared.save()
         } catch {
 
         }
@@ -88,7 +87,7 @@ final class MapViewModel {
             let fetchResponse = try managedContext.fetch(fetchRequest)
             guard let pin = fetchResponse.first else { return }
             managedContext.delete(pin)
-            try managedContext.save()
+            DataManager.shared.save()
         } catch {
 
         }

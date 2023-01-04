@@ -13,9 +13,7 @@ final class TripListTableViewCell: UITableViewCell {
 
     private lazy var tripImageView: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .blue
         image.layer.cornerRadius = 4
-        image.image = UIImage(named: "2")
         image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = true
         
@@ -65,5 +63,6 @@ final class TripListTableViewCell: UITableViewCell {
 
     func setupWith(trip: Trip) {
         tripNameLabel.text = trip.name?.uppercased()
+        tripImageView.image = UIImage(named: trip.imageName ?? "1")
     }
 }

@@ -59,16 +59,22 @@ final class MapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.delegate = self
     
-        let saoPauloCoordinates = CLLocationCoordinate2D(latitude: -23.5989, longitude: -46.6388)
-        let region = MKCoordinateRegion(center: saoPauloCoordinates,
-                                        latitudinalMeters: 6000,
-                                        longitudinalMeters: 6000)
-        mapView.setRegion(region, animated: true)
-        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
         longPress.minimumPressDuration = 1.0
         
         mapView.addGestureRecognizer(longPress)
+        
+        guard let latitude = viewModel.pinObjects.first?.lat,
+              let longitude = viewModel.pinObjects.first?.lng else { return }
+        
+        let pinCoordinates = CLLocationCoordinate2D(
+            latitude: latitude,
+            longitude: longitude
+        )
+        let region = MKCoordinateRegion(center: pinCoordinates,
+                                        latitudinalMeters: 6000,
+                                        longitudinalMeters: 6000)
+        mapView.setRegion(region, animated: true)
     }
     
     @objc private func didLongPress(_ gestureRecognizer: UIGestureRecognizer) {

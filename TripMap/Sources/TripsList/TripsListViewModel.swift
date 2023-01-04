@@ -11,57 +11,29 @@ import CoreData
 final class TripsListViewModel {
     
     // MARK: - Private Properties
-
-    private let spLat: Double = -23.5989
-    private let spLng: Double = -46.6388
     
-    private lazy var managedContext: NSManagedObjectContext = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }()
+    private var managedContext: NSManagedObjectContext {
+        DataManager.shared.context
+    }
     
     // MARK: - Public Properties
 
-    lazy var trips: [Trip] = {
-        let requestTrips: NSFetchRequest<Trip> = Trip.fetchRequest()
-        var fetchedTrips: [Trip] = []
-        do {
-            fetchedTrips = try managedContext.fetch(requestTrips)
-        } catch let error {
-            print("Error fetching singers \(error)")
-        }
-        return fetchedTrips
-    }()
+    private(set) var trips: [Trip] = []
     
     // MARK: - Public Methods
-
-    func createData() {
-        let pin = Pin(context: managedContext)
-        pin.name = "Pin \(Int.random(in: 0..<100))"
-        pin.lat = spLat
-        pin.lng = spLng
-        
-        let trip = Trip(context: managedContext)
-        trip.name = "Trip \(Int.random(in: 0..<100))"
-        trip.pins = [pin]
-
-        do {
-            try managedContext.save()
-        } catch {
-            print("erro ao salvar")
-        }
-        
-        
-        let request: NSFetchRequest<Pin> = Pin.fetchRequest()
-        var fetchedSingers: [Pin] = []
-        do {
-            fetchedSingers = try managedContext.fetch(request)
-        } catch let error {
-            print("Error fetching singers \(error)")
-        }
-        print("numberOfPins = \(fetchedSingers.count)")
-        
-        
+    
+    func viewWillAppear() {
+        reloadTrips()
+    }
+    
+    func deleteTrip(at index: Int) {
+        let trip = trips[index]
+        DataManager.shared.context.delete(trip)
+        DataManager.shared.save()
+        reloadTrips()
+    }
+    
+    private func reloadTrips() {
         let requestTrips: NSFetchRequest<Trip> = Trip.fetchRequest()
         var fetchedTrips: [Trip] = []
         do {
@@ -69,7 +41,7 @@ final class TripsListViewModel {
         } catch let error {
             print("Error fetching singers \(error)")
         }
-        print("numberOfTrips = \(fetchedTrips.count)")
+        trips = fetchedTrips.reversed()
     }
     
 }
