@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Lottie
 
 final class SuccessNewTripViewController: UIViewController {
     
     // MARK: - Views
     
-    private lazy var tripView = TripView()
+    private lazy var lottieAnimationView = LottieAnimationView()
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
@@ -56,41 +57,50 @@ final class SuccessNewTripViewController: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        startLottieAnimation()
+    }
+    
     // MARK: - Private Methods
     
     private func setupView() {
         view.backgroundColor = .systemBlue
         
         view.addSubview(questionLabel)
-        view.addSubview(tripView)
+        view.addSubview(lottieAnimationView)
         view.addSubview(closeButton)
-
+        
         questionLabel
-            .pin(.top, to: view.topAnchor, constant: 100)
+            .pin(.top, to: view.topAnchor, constant: 70)
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
         
-        tripView
+        lottieAnimationView
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.top, to: questionLabel.bottomAnchor, constant: 32)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
-            .pin(.height, relation: .equalToConstant, constant: 150)
+            .pin(.height, relation: .equalToConstant, constant: 200)
         
         closeButton
             .pin(.leading, to: view.leadingAnchor, constant: 16)
-            .pin(.top, to: tripView.bottomAnchor, constant: 32)
+            .pin(.top, to: lottieAnimationView.bottomAnchor, constant: 32)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
             .pin(.height, relation: .equalToConstant, constant: 44)
-        
-        tripView.setupTrip(name: viewModel.tripName,
-                           image: UIImage(named: viewModel.tripImage ?? "1"),
-                           pinQuantity: 0)
     }
     
     @objc
     private func didTapFinishButton() {
         presentingViewController?.viewWillAppear(true)
         dismiss(animated: true)
+    }
+    
+    private func startLottieAnimation() {
+        let animation = LottieAnimation.named("trip-lottie-animation")
+        lottieAnimationView.animation = animation
+        lottieAnimationView.loopMode = .loop
+        lottieAnimationView.play()
     }
     
 }

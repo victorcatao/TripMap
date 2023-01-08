@@ -29,7 +29,7 @@ final class TripsListViewController: UIViewController {
         )
         configuration.contentInsets = NSDirectionalEdgeInsets(
             top: 8,
-            leading: 3,
+            leading: 0,
             bottom: 13,
             trailing: 0
         )

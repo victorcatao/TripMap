@@ -70,11 +70,6 @@ final class NoteViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
-//        let barButton = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"),
-//                                        style: .plain,
-//                                        target: self,
-//                                        action: #selector(didTapDismiss))
-//        barButton.tintColor = .white
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSave))
         navigationItem.rightBarButtonItem = saveButton
         
@@ -103,33 +98,6 @@ final class NoteViewController: UIViewController {
             .pin(.top, to: noteLabel.bottomAnchor, constant: 8)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
             .pin(.bottom, to: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
-        
-//        view.backgroundColor = .systemBlue
-//
-//        view.addSubview(questionLabel)
-//        view.addSubview(tripView)
-//        view.addSubview(closeButton)
-//
-//        questionLabel
-//            .pin(.top, to: view.topAnchor, constant: 100)
-//            .pin(.leading, to: view.leadingAnchor, constant: 16)
-//            .pin(.trailing, to: view.trailingAnchor, constant: -16)
-//
-//        tripView
-//            .pin(.leading, to: view.leadingAnchor, constant: 16)
-//            .pin(.top, to: questionLabel.bottomAnchor, constant: 32)
-//            .pin(.trailing, to: view.trailingAnchor, constant: -16)
-//            .pin(.height, relation: .equalToConstant, constant: 150)
-//
-//        closeButton
-//            .pin(.leading, to: view.leadingAnchor, constant: 16)
-//            .pin(.top, to: tripView.bottomAnchor, constant: 32)
-//            .pin(.trailing, to: view.trailingAnchor, constant: -16)
-//            .pin(.height, relation: .equalToConstant, constant: 44)
-//
-//        tripView.setupTrip(name: viewModel.tripName,
-//                           image: UIImage(named: viewModel.tripImage ?? "1"),
-//                           pinQuantity: 0)
     }
     
     private func fillData() {
