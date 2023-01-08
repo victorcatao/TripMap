@@ -10,7 +10,7 @@ import UIKit
 final class TripsListViewController: UIViewController {
     
     // MARK: - Views
-
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsMultipleSelection = false
@@ -28,10 +28,10 @@ final class TripsListViewController: UIViewController {
             ])
         )
         configuration.contentInsets = NSDirectionalEdgeInsets(
-          top: 8,
-          leading: 3,
-          bottom: 13,
-          trailing: 0
+            top: 8,
+            leading: 3,
+            bottom: 13,
+            trailing: 0
         )
         configuration.cornerStyle = .capsule
         
@@ -43,14 +43,14 @@ final class TripsListViewController: UIViewController {
     }()
     
     // MARK: - Private Properties
-
+    
     private let viewModel = TripsListViewModel()
-
+    
     // MARK: - LifeCycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
     }
     
@@ -62,14 +62,14 @@ final class TripsListViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-
+    
     private func setupView() {
         title = "Minhas viagens"
-
+        
         buildView()
         setupTableView()
     }
-
+    
     private func buildView() {
         view.addSubview(tableView)
         view.addSubview(newTripButton)
@@ -101,6 +101,19 @@ final class TripsListViewController: UIViewController {
         present(navigation, animated: true)
     }
     
+    private func deleteTrip(at indexPath: IndexPath) {
+        viewModel.deleteTrip(at: indexPath.row)
+        UIView.transition(with: tableView,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          animations: { self.tableView.reloadData() })
+    }
+    
+    private func openNotesforTrip(at indexPath: IndexPath) {
+        let trip = viewModel.trips[indexPath.row]
+        let viewController = NoteViewController(viewModel: NoteViewModel(trip: trip))
+        present(UINavigationController(rootViewController: viewController), animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -127,13 +140,21 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            viewModel.deleteTrip(at: indexPath.row)
-            UIView.transition(with: tableView,
-                              duration: 0.5,
-                              options: .transitionCrossDissolve,
-                              animations: { self.tableView.reloadData() })
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, _ in
+            self?.deleteTrip(at: indexPath)
         }
+        deleteAction.backgroundColor = .red
+        deleteAction.image = .init(systemName: "trash")
+
+        let notesAction = UIContextualAction(style: .normal, title: "Notes") { [weak self] _, _, _ in
+            self?.openNotesforTrip(at: indexPath)
+        }
+        notesAction.backgroundColor = .systemOrange
+        notesAction.image = .init(systemName: "pencil")
+
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, notesAction])
+        
+        return config
     }
 }

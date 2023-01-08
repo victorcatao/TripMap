@@ -2,7 +2,7 @@
 //  Pin+CoreDataClass.swift
 //  TripMap
 //
-//  Created by Victor Catão on 03/01/23.
+//  Created by Victor Catão on 08/01/23.
 //
 //
 
