@@ -80,16 +80,20 @@ final class MapViewModel {
     }
     
     func deletePin(latitude: Double, longitude: Double) {
+        guard let pin = getPinWith(latitude: latitude, longitude: longitude) else { return }
+        managedContext.delete(pin)
+        DataManager.shared.save()
+    }
+    
+    func getPinWith(latitude: Double, longitude: Double) -> Pin? {
         let fetchRequest = Pin.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "lat == %lf AND lng == %lf", latitude, longitude)
         
         do {
             let fetchResponse = try managedContext.fetch(fetchRequest)
-            guard let pin = fetchResponse.first else { return }
-            managedContext.delete(pin)
-            DataManager.shared.save()
+            return fetchResponse.first
         } catch {
-
+            return nil
         }
     }
 }

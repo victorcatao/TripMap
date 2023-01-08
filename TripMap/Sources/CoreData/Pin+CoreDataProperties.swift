@@ -21,6 +21,7 @@ extension Pin {
     @NSManaged public var name: String?
     @NSManaged public var visited: Bool
     @NSManaged public var trip: Trip?
+    @NSManaged public var note: Note?
 
 }
 

@@ -19,6 +19,7 @@ extension Trip {
     @NSManaged public var imageName: String?
     @NSManaged public var name: String?
     @NSManaged public var pins: NSSet?
+    @NSManaged public var note: Note?
 
 }
 

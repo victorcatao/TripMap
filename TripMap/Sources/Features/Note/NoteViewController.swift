@@ -63,6 +63,7 @@ final class NoteViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        fillData()
     }
     
     // MARK: - Private Methods
@@ -74,7 +75,8 @@ final class NoteViewController: UIViewController {
 //                                        target: self,
 //                                        action: #selector(didTapDismiss))
 //        barButton.tintColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .save)
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSave))
+        navigationItem.rightBarButtonItem = saveButton
         
         view.addSubview(titleLabel)
         view.addSubview(titleTextField)
@@ -128,5 +130,18 @@ final class NoteViewController: UIViewController {
 //        tripView.setupTrip(name: viewModel.tripName,
 //                           image: UIImage(named: viewModel.tripImage ?? "1"),
 //                           pinQuantity: 0)
+    }
+    
+    private func fillData() {
+        let (title, text) = viewModel.getTitleAndText()
+        titleTextField.text = title
+        noteTextView.text = text
+    }
+    
+    @objc
+    private func didTapSave() {
+        guard let title = titleTextField.text else { return }
+        viewModel.saveNote(title: title, text: noteTextView.text)
+        self.dismiss(animated: true)
     }
 }

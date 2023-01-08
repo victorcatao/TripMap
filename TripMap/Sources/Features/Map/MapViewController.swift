@@ -163,6 +163,16 @@ extension MapViewController: MKMapViewDelegate {
             UIApplication.shared.open(URL(string: urlStr)!)
         }))
         
+        alert.addAction(UIAlertAction(title: "Ver nota", style: .default, handler: { [weak self] _ in
+            guard let self,
+                  let latitude = view.annotation?.coordinate.latitude,
+                  let longitude = view.annotation?.coordinate.longitude,
+                  let pin = self.viewModel.getPinWith(latitude: latitude, longitude: longitude) else { return }
+            
+            let viewController = NoteViewController(viewModel: NoteViewModel(pin: pin))
+            self.present(UINavigationController(rootViewController: viewController), animated: true)
+        }))
+        
         alert.addAction(UIAlertAction(title: "Alterar visitado", style: .default, handler: { _ in
             guard let coordinate = view.annotation?.coordinate else { return }
             self.viewModel.updateStatus(for: coordinate)
