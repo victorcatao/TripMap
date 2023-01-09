@@ -14,7 +14,7 @@ final class MapViewModel {
     // MARK: - Private Properties
     
     private(set) var pinObjects: [Pin] = []
-    private let trip: Trip
+    private let trip: Trip?
 
     private var managedContext: NSManagedObjectContext = {
         DataManager.shared.context
@@ -22,7 +22,7 @@ final class MapViewModel {
     
     // MARK: - LifeCycle
 
-    init(trip: Trip) {
+    init(trip: Trip?) {
         self.trip = trip
         loadPins()
     }
@@ -31,7 +31,9 @@ final class MapViewModel {
     
     private func loadPins() {
         let request = Pin.fetchRequest()
-        request.predicate = NSPredicate(format: "trip = %@", trip)
+        if let trip = trip {
+            request.predicate = NSPredicate(format: "trip = %@", trip)
+        }
 
         var fetechedPins: [Pin] = []
         do {
@@ -54,8 +56,10 @@ final class MapViewModel {
         pin.lng = longitude
         pin.lat = latitude
         
-        trip.addToPins(pin)
-        
+        if let trip = trip {
+            trip.addToPins(pin)
+        }
+
         do {
             try managedContext.save()
         } catch {
