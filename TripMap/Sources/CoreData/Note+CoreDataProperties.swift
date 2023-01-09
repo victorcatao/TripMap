@@ -2,7 +2,7 @@
 //  Note+CoreDataProperties.swift
 //  TripMap
 //
-//  Created by Victor Catão on 08/01/23.
+//  Created by Victor Catão on 09/01/23.
 //
 //
 
@@ -16,8 +16,8 @@ extension Note {
         return NSFetchRequest<Note>(entityName: "Note")
     }
 
-    @NSManaged public var title: String?
     @NSManaged public var text: String?
+    @NSManaged public var title: String?
 
 }
 

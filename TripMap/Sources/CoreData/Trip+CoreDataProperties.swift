@@ -2,7 +2,7 @@
 //  Trip+CoreDataProperties.swift
 //  TripMap
 //
-//  Created by Victor Catão on 08/01/23.
+//  Created by Victor Catão on 09/01/23.
 //
 //
 
@@ -18,8 +18,9 @@ extension Trip {
 
     @NSManaged public var imageName: String?
     @NSManaged public var name: String?
-    @NSManaged public var pins: NSSet?
+    @NSManaged public var finished: Bool
     @NSManaged public var note: Note?
+    @NSManaged public var pins: NSSet?
 
 }
 

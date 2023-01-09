@@ -43,6 +43,7 @@ final class ImageNewTripViewModel {
         let trip = Trip(context: managedContext)
         trip.name = tripName
         trip.imageName = image
+        trip.finished = false
 
         do {
             try managedContext.save()

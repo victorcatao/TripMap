@@ -101,37 +101,76 @@ final class TripsListViewController: UIViewController {
         present(navigation, animated: true)
     }
     
-    private func deleteTrip(at indexPath: IndexPath) {
-        viewModel.deleteTrip(at: indexPath.row)
+    private func didTapDeleteTrip(at indexPath: IndexPath) {
+        viewModel.deleteTrip(at: indexPath.row, section: indexPath.section)
         UIView.transition(with: tableView,
                           duration: 0.5,
                           options: .transitionCrossDissolve,
                           animations: { self.tableView.reloadData() })
     }
     
-    private func openNotesforTrip(at indexPath: IndexPath) {
-        let trip = viewModel.trips[indexPath.row]
+    private func didTapNotesforTrip(at indexPath: IndexPath) {
+        let trip = viewModel.getTrip(for: indexPath.row, section: indexPath.section)
         let viewController = NoteViewController(viewModel: NoteViewModel(trip: trip))
         present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+    
+    private func didTapFinishTrip(at indexPath: IndexPath) {
+        viewModel.finishTrip(index: indexPath.row, section: indexPath.section)
+        tableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.getNumberOfSections()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.trips.count
+        return viewModel.getNumberOfRows(for: section)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if viewModel.getNumberOfSections() <= 1 { return nil }
+
+        let view = UIView()
+        view.backgroundColor = .white
+
+        let label = UILabel()
+        label.text = section == 0 ? "Próximas viagens" : "Viagens finalizadas"
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .systemGray2
+        label.textAlignment = .center
+        
+        view.addSubview(label)
+        
+        label
+            .pin(.leading, to: view.leadingAnchor, constant: 8)
+            .pin(.top, to: view.topAnchor, constant: 8)
+            .pin(.trailing, to: view.trailingAnchor, constant: -8)
+            .pin(.bottom, to: view.bottomAnchor)
+        
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if viewModel.getNumberOfSections() <= 1 { return 0 }
+        return 30
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TripListTableViewCell", for: indexPath) as! TripListTableViewCell
-        cell.setupWith(trip: viewModel.trips[indexPath.row])
+        let trip = viewModel.getTrip(for: indexPath.row, section: indexPath.section)
+        cell.setupWith(trip: trip)
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let trip = viewModel.trips[indexPath.row]
+        let trip = viewModel.getTrip(for: indexPath.row, section: indexPath.section)
         let mapViewController = MapViewController(viewModel: MapViewModel(trip: trip))
         navigationController?.pushViewController(mapViewController, animated: true)
     }
@@ -142,18 +181,24 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, _ in
-            self?.deleteTrip(at: indexPath)
+            self?.didTapDeleteTrip(at: indexPath)
         }
         deleteAction.backgroundColor = .red
         deleteAction.image = .init(systemName: "trash")
 
-        let notesAction = UIContextualAction(style: .normal, title: "Notes") { [weak self] _, _, _ in
-            self?.openNotesforTrip(at: indexPath)
+        let notesAction = UIContextualAction(style: .normal, title: "Notas") { [weak self] _, _, _ in
+            self?.didTapNotesforTrip(at: indexPath)
         }
         notesAction.backgroundColor = .systemOrange
         notesAction.image = .init(systemName: "pencil")
-
-        let config = UISwipeActionsConfiguration(actions: [deleteAction, notesAction])
+        
+        let finished = UIContextualAction(style: .normal, title: "Finalizar") { [weak self] _, _, _ in
+            self?.didTapFinishTrip(at: indexPath)
+        }
+        finished.backgroundColor = .systemBlue
+        finished.image = .init(systemName: "folder")
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, notesAction, finished])
         
         return config
     }
