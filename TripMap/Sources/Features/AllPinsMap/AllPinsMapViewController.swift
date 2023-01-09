@@ -1,18 +1,18 @@
 //
-//  ViewController.swift
+//  AllPinsMapViewController.swift
 //  TripMap
 //
-//  Created by Victor Catão on 16/05/22.
+//  Created by Victor Catão on 09/01/23.
 //
 
 import UIKit
 import MapKit
 
-final class MapViewController: UIViewController {
+final class AllPinsMapViewController: UIViewController {
     
     // MARK: - Private Properties
 
-    private let viewModel: MapViewModel
+    private let viewModel: AllPinsMapViewModel
     private var didUpdateLocation = false
     private var didShowAnnotations = false
     private lazy var locationManager = CLLocationManager()
@@ -24,7 +24,7 @@ final class MapViewController: UIViewController {
 
     // MARK: - LifeCycle
 
-    init(viewModel: MapViewModel) {
+    init(viewModel: AllPinsMapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -123,7 +123,7 @@ final class MapViewController: UIViewController {
 
 // MARK: - MKMapViewDelegate
 
-extension MapViewController: MKMapViewDelegate {
+extension AllPinsMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         guard !didUpdateLocation, viewModel.pinObjects.isEmpty else { return }
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)

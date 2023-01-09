@@ -1,20 +1,19 @@
 //
-//  MapViewModel.swift
+//  AllPinsMapViewModel.swift
 //  TripMap
 //
-//  Created by Victor Catão on 02/01/23.
+//  Created by Victor Catão on 09/01/23.
 //
 
 import Foundation
 import CoreLocation
 import CoreData
 
-final class MapViewModel {
+final class AllPinsMapViewModel {
     
     // MARK: - Private Properties
     
     private(set) var pinObjects: [Pin] = []
-    private let trip: Trip
 
     private var managedContext: NSManagedObjectContext = {
         DataManager.shared.context
@@ -22,24 +21,8 @@ final class MapViewModel {
     
     // MARK: - LifeCycle
 
-    init(trip: Trip) {
-        self.trip = trip
+    init() {
         loadPins()
-    }
-    
-    // MARK: - Private Methods
-    
-    private func loadPins() {
-        let request = Pin.fetchRequest()
-        request.predicate = NSPredicate(format: "trip = %@", trip)
-
-        var fetechedPins: [Pin] = []
-        do {
-            fetechedPins = try managedContext.fetch(request)
-        } catch let error {
-            print("Error fetching songs \(error)")
-        }
-        pinObjects = fetechedPins
     }
     
     // MARK: - Public Methods
@@ -53,8 +36,6 @@ final class MapViewModel {
         pin.name = name
         pin.lng = longitude
         pin.lat = latitude
-        
-        trip.addToPins(pin)
         
         do {
             try managedContext.save()
@@ -95,5 +76,19 @@ final class MapViewModel {
         } catch {
             return nil
         }
+    }
+    
+    // MARK: - Private Methods
+    
+    private func loadPins() {
+        let request = Pin.fetchRequest()
+
+        var fetechedPins: [Pin] = []
+        do {
+            fetechedPins = try managedContext.fetch(request)
+        } catch let error {
+            print("Error fetching songs \(error)")
+        }
+        pinObjects = fetechedPins
     }
 }

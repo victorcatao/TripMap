@@ -158,7 +158,7 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if viewModel.getNumberOfSections() <= 1 { return 0 }
-        return 30
+        return 24
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
