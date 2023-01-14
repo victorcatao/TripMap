@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FC23F8682973323A00A451D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC23F86A2973323A00A451D9 /* Localizable.strings */; };
 		FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F86C2973336F00A451D9 /* String+Extensions.swift */; };
+		FC23F86F29733E9000A451D9 /* loading-pins.json in Resources */ = {isa = PBXBuildFile; fileRef = FC23F86E29733E9000A451D9 /* loading-pins.json */; };
 		FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B629639AE400A16EE5 /* TripsListViewController.swift */; };
 		FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */; };
 		FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */; };
@@ -46,6 +47,7 @@
 		FC23F8692973323A00A451D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FC23F86B2973325800A451D9 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC23F86C2973336F00A451D9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		FC23F86E29733E9000A451D9 /* loading-pins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-pins.json"; sourceTree = "<group>"; };
 		FC2423B629639AE400A16EE5 /* TripsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewController.swift; sourceTree = "<group>"; };
 		FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewModel.swift; sourceTree = "<group>"; };
 		FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListTableViewCell.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		FC7E48FB29660A5C0088131A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC23F86E29733E9000A451D9 /* loading-pins.json */,
 				FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */,
 				FC90742A28328E9700951CFA /* Assets.xcassets */,
 			);
@@ -341,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC23F86F29733E9000A451D9 /* loading-pins.json in Resources */,
 				FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */,
 				FC23F8682973323A00A451D9 /* Localizable.strings in Resources */,
 				FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */,

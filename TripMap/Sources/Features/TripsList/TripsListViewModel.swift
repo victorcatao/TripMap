@@ -91,12 +91,13 @@ final class TripsListViewModel {
         var fetchedTrips: [Trip] = []
         do {
             fetchedTrips = try managedContext.fetch(requestTrips)
+            fetchedTrips.reverse()
         } catch let error {
             print("Error fetching trips \(error)")
         }
 
         fetchedTrips.forEach { trip in
-            trip.finished ? finishedTrips.append(trip) : notFinishedTrips.append(trip)
+            trip.finished ? finishedTrips.append(trip): notFinishedTrips.append(trip)
         }
     }
     

@@ -7,23 +7,25 @@
 
 import UIKit
 import MapKit
+import Lottie
 
 final class MapViewController: UIViewController {
     
     // MARK: - Private Properties
-
+    
     private let viewModel: MapViewModel
     private var didUpdateLocation = false
     private var didShowAnnotations = false
     private lazy var locationManager = CLLocationManager()
     private lazy var mapView = MKMapView(frame: .zero)
+    private lazy var fakeLoadingView = UIView()
     
     private class MyPointAnnotation: MKPointAnnotation {
         var pinTintColor: UIColor?
     }
-
+    
     // MARK: - LifeCycle
-
+    
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -36,13 +38,13 @@ final class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupMapView()
+        setupView()
         setupLocationManager()
         reloadData()
     }
     
     // MARK: - Private Methods
-
+    
     private func setupLocationManager() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
@@ -50,9 +52,14 @@ final class MapViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
-    private func setupMapView() {
+    private func setupView() {
+        setUpMapView()
+        setUpFakeLoadingView()
+    }
+    
+    private func setUpMapView() {
         view.addSubview(mapView)
-
+        
         mapView
             .pin(.top, to: view.topAnchor)
             .pin(.leading, to: view.leadingAnchor)
@@ -61,11 +68,45 @@ final class MapViewController: UIViewController {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
-    
+        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
         longPress.minimumPressDuration = 1.0
         
         mapView.addGestureRecognizer(longPress)
+    }
+    
+    private func setUpFakeLoadingView() {
+        view.addSubview(fakeLoadingView)
+        fakeLoadingView.backgroundColor = .white
+        
+        let lottieAnimationView = LottieAnimationView()
+        let animation = LottieAnimation.named("loading-pins")
+        lottieAnimationView.animation = animation
+        lottieAnimationView.loopMode = .loop
+        lottieAnimationView.play()
+        
+        fakeLoadingView.addSubview(lottieAnimationView)
+        
+        lottieAnimationView
+            .pin(.leading, to: fakeLoadingView.leadingAnchor, constant: 16)
+            .pin(.centerY, to: fakeLoadingView.centerYAnchor)
+            .pin(.trailing, to: fakeLoadingView.trailingAnchor, constant: -16)
+            .pin(.height, relation: .equalToConstant, constant: 200)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+            UIView.animate(withDuration: 0.5) {
+                self?.fakeLoadingView.alpha = 0
+            } completion: { complete in
+                if complete { self?.fakeLoadingView.removeFromSuperview() }
+            }
+            
+        }
+        
+        fakeLoadingView
+            .pin(.leading, to: view.leadingAnchor)
+            .pin(.top, to: view.topAnchor)
+            .pin(.trailing, to: view.trailingAnchor)
+            .pin(.bottom, to: view.bottomAnchor)
     }
     
     @objc private func didLongPress(_ gestureRecognizer: UIGestureRecognizer) {
@@ -118,7 +159,7 @@ final class MapViewController: UIViewController {
             didShowAnnotations = true
         }
     }
-
+    
 }
 
 // MARK: - MKMapViewDelegate
@@ -179,12 +220,12 @@ extension MapViewController: MKMapViewDelegate {
         
         alert.addAction(UIAlertAction(title: "delete".localized, style: .destructive, handler: { [weak self] _ in
             guard let self,
-            let latitude = view.annotation?.coordinate.latitude,
-            let longitude = view.annotation?.coordinate.longitude else { return }
+                  let latitude = view.annotation?.coordinate.latitude,
+                  let longitude = view.annotation?.coordinate.longitude else { return }
             self.viewModel.deletePin(latitude: latitude, longitude: longitude)
             self.reloadData()
         }))
-    
+        
         alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in }))
         
         self.present(alert, animated: true)
