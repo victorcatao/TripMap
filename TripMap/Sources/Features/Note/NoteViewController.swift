@@ -13,7 +13,7 @@ final class NoteViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Título"
+        label.text = "title".localized
         label.textColor = .black
         label.font = .systemFont(ofSize: 14, weight: .light)
         return label
@@ -21,14 +21,14 @@ final class NoteViewController: UIViewController {
     
     private lazy var titleTextField: UITextField = {
         let textField = UITextField(frame: .zero)
-        textField.placeholder = "Título da sua nota"
+        textField.placeholder = "note_title".localized
         textField.borderStyle = .roundedRect
         return textField
     }()
     
     private lazy var noteLabel: UILabel = {
         let label = UILabel()
-        label.text = "Nota"
+        label.text = "note".localized
         label.textColor = .black
         label.font = .systemFont(ofSize: 14, weight: .light)
         return label

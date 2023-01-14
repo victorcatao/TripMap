@@ -17,7 +17,7 @@ final class SuccessNewTripViewController: UIViewController {
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Viagem criada com sucesso!"
+        label.text = "success_trip_creation".localized
         label.font = .systemFont(ofSize: 36, weight: .medium)
         label.textColor = .white
         
@@ -26,7 +26,7 @@ final class SuccessNewTripViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
-        configuration.title = "Finalizar"
+        configuration.title = "finish".localized
         configuration.baseBackgroundColor = .white
         configuration.baseForegroundColor = .black
         

@@ -14,7 +14,7 @@ final class NameNewTripViewController: UIViewController {
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Para onde você vai?"
+        label.text = "where_are_you_going".localized
         label.font = .systemFont(ofSize: 36, weight: .medium)
         label.textColor = .white
         

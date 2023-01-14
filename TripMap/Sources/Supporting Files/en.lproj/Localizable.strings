@@ -1,0 +1,32 @@
+/* 
+  Localizable.string.strings
+  TripMap
+
+  Created by Victor Catão on 14/01/23.
+  
+*/
+
+"my_trips" = "My trips";
+"next_trips" = "Next trips";
+"finished_trips" = "Finished trips";
+"delete" = "Delete";
+"notes" = "Notes";
+"finish" = "Finish";
+"new_pin" = "New pin";
+"what_name" = "What is the name?";
+"save" = "Save";
+"cancel" = "Cancel";
+"tour_eiffel" = "Tour Eiffel";
+"visited" = "Visited";
+"not_visited" = "Not visited";
+"select_an_option" = "Select an option";
+"map_route" = "Map route";
+"see_note" = "Check note";
+"change_visited" = "Change visited";
+"cancel" = "Cancel";
+"where_are_you_going" = "Where are you going?";
+"success_trip_creation" = "Trip created successfully!";
+"title" = "Title";
+"note_title" = "Note title";
+"note" = "Note";
+"which_image_represents_your_trip" = "Which image best represents your trip?";

@@ -92,8 +92,9 @@ final class TripsListViewModel {
         do {
             fetchedTrips = try managedContext.fetch(requestTrips)
         } catch let error {
-            print("Error fetching singers \(error)")
+            print("Error fetching trips \(error)")
         }
+
         fetchedTrips.forEach { trip in
             trip.finished ? finishedTrips.append(trip) : notFinishedTrips.append(trip)
         }

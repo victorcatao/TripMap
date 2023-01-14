@@ -50,7 +50,6 @@ final class ImageNewTripViewModel {
             completion(trip)
         } catch {
             completion(nil)
-            print("erro ao salvar")
         }
     }
 }

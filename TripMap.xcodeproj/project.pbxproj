@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC23F8682973323A00A451D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC23F86A2973323A00A451D9 /* Localizable.strings */; };
+		FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F86C2973336F00A451D9 /* String+Extensions.swift */; };
 		FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B629639AE400A16EE5 /* TripsListViewController.swift */; };
 		FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */; };
 		FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */; };
@@ -41,6 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC23F8692973323A00A451D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FC23F86B2973325800A451D9 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		FC23F86C2973336F00A451D9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		FC2423B629639AE400A16EE5 /* TripsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewController.swift; sourceTree = "<group>"; };
 		FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewModel.swift; sourceTree = "<group>"; };
 		FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */,
-				FC2423CD2964860B00A16EE5 /* OutlinedLabel.swift */,
+				FC23F86C2973336F00A451D9 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 			children = (
 				FC90742C28328E9700951CFA /* LaunchScreen.storyboard */,
 				FC90742F28328E9700951CFA /* Info.plist */,
+				FC23F86A2973323A00A451D9 /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -216,6 +222,7 @@
 		FC7E490129660BC30088131A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FC2423CD2964860B00A16EE5 /* OutlinedLabel.swift */,
 				FC7E48F92965C7EA0088131A /* TripView.swift */,
 			);
 			path = Components;
@@ -314,6 +321,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = FC90741228328E9100951CFA;
 			packageReferences = (
@@ -334,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */,
+				FC23F8682973323A00A451D9 /* Localizable.strings in Resources */,
 				FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */,
 				FC90742B28328E9700951CFA /* Assets.xcassets in Resources */,
 			);
@@ -354,6 +363,7 @@
 				FC2423CE2964860B00A16EE5 /* OutlinedLabel.swift in Sources */,
 				FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */,
 				FC9089D7296C4C3C005EF42C /* Note+CoreDataClass.swift in Sources */,
+				FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */,
 				FC9089D8296C4C3C005EF42C /* Note+CoreDataProperties.swift in Sources */,
 				FC2423D32964A69500A16EE5 /* NameNewTripViewModel.swift in Sources */,
 				FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */,
@@ -379,6 +389,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		FC23F86A2973323A00A451D9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC23F8692973323A00A451D9 /* en */,
+				FC23F86B2973325800A451D9 /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		FC90742C28328E9700951CFA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -394,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -454,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

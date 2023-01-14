@@ -14,7 +14,7 @@ final class ImageNewTripViewController: UIViewController {
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Qual imagem melhor representa essa sua viagem?"
+        label.text = "which_image_represents_your_trip".localized
         label.font = .systemFont(ofSize: 36, weight: .medium)
         label.textColor = .white
         

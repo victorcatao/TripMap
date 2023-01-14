@@ -73,9 +73,9 @@ final class MapViewController: UIViewController {
         let touchPoint = gestureRecognizer.location(in: mapView)
         let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
-        let alert = UIAlertController(title: "Novo pin", message: "Qual o nome?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "new_pin".localized, message: "what_name".localized, preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: "Salvar", style: .default) { [weak self] _ in
+        let saveAction = UIAlertAction(title: "save".localized, style: .default) { [weak self] _ in
             guard let textField = alert.textFields!.first else { return }
             self?.viewModel.savePin(
                 name: textField.text!,
@@ -85,10 +85,10 @@ final class MapViewController: UIViewController {
             self?.reloadData()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel)
         
         alert.addTextField { textField in
-            textField.placeholder = "Ex.: Torre Eiffel"
+            textField.placeholder = "tour_eiffel".localized
         }
         
         alert.addAction(saveAction)
@@ -108,7 +108,7 @@ final class MapViewController: UIViewController {
             let annotation = MyPointAnnotation()
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
             annotation.title = pin.name
-            annotation.subtitle = pin.visited ? "Visitado" : "Não visitado"
+            annotation.subtitle = pin.visited ? "visited".localized : "not_visited".localized
             annotation.pinTintColor = pin.visited ? .lightGray : .red
             mapView.addAnnotation(annotation)
         }
@@ -153,15 +153,15 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let myAnnotation = view.annotation as? MyPointAnnotation else { return }
-        let alert = UIAlertController(title: myAnnotation.title, message: "Selecione uma opção", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: myAnnotation.title, message: "select_an_option".localized, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Traçar rota", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "map_route".localized, style: .default, handler: { _ in
             guard let coordinate = view.annotation?.coordinate else { return }
             let urlStr = "waze://?ll=\(coordinate.latitude),\(coordinate.longitude)&navigate=yes"
             UIApplication.shared.open(URL(string: urlStr)!)
         }))
         
-        alert.addAction(UIAlertAction(title: "Ver nota", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "see_note".localized, style: .default, handler: { [weak self] _ in
             guard let self,
                   let latitude = view.annotation?.coordinate.latitude,
                   let longitude = view.annotation?.coordinate.longitude,
@@ -171,13 +171,13 @@ extension MapViewController: MKMapViewDelegate {
             self.present(UINavigationController(rootViewController: viewController), animated: true)
         }))
         
-        alert.addAction(UIAlertAction(title: "Alterar visitado", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "change_visited".localized, style: .default, handler: { _ in
             guard let coordinate = view.annotation?.coordinate else { return }
             self.viewModel.updateStatus(for: coordinate)
             self.reloadData()
         }))
         
-        alert.addAction(UIAlertAction(title: "Deletar", style: .destructive, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "delete".localized, style: .destructive, handler: { [weak self] _ in
             guard let self,
             let latitude = view.annotation?.coordinate.latitude,
             let longitude = view.annotation?.coordinate.longitude else { return }
@@ -185,7 +185,7 @@ extension MapViewController: MKMapViewDelegate {
             self.reloadData()
         }))
     
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in }))
+        alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in }))
         
         self.present(alert, animated: true)
     }

@@ -75,7 +75,7 @@ final class TripsListViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupView() {
-        title = "Minhas viagens"
+        title = "my_trips".localized
         
         buildView()
         setupTableView()
@@ -164,7 +164,7 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = .white
 
         let label = UILabel()
-        label.text = section == 0 ? "Próximas viagens" : "Viagens finalizadas"
+        label.text = section == 0 ? "next_trips".localized : "finished_trips".localized
         label.font = .systemFont(ofSize: 14, weight: .light)
         label.textColor = .systemGray2
         label.textAlignment = .center
@@ -204,19 +204,19 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, _ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "delete".localized) { [weak self] _, _, _ in
             self?.didTapDeleteTrip(at: indexPath)
         }
         deleteAction.backgroundColor = .red
         deleteAction.image = .init(systemName: "trash")
 
-        let notesAction = UIContextualAction(style: .normal, title: "Notas") { [weak self] _, _, _ in
+        let notesAction = UIContextualAction(style: .normal, title: "notes".localized) { [weak self] _, _, _ in
             self?.didTapNotesforTrip(at: indexPath)
         }
         notesAction.backgroundColor = .systemOrange
         notesAction.image = .init(systemName: "pencil")
         
-        let finished = UIContextualAction(style: .normal, title: "Finalizar") { [weak self] _, _, _ in
+        let finished = UIContextualAction(style: .normal, title: "finish".localized) { [weak self] _, _, _ in
             self?.didTapFinishTrip(at: indexPath)
         }
         finished.backgroundColor = .systemBlue
