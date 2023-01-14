@@ -11,6 +11,18 @@ final class TripsListViewController: UIViewController {
     
     // MARK: - Views
     
+    private lazy var segmentedControl: UISegmentedControl = {
+        let nextTrispAction = UIAction(title: "next_trips".localized) { [weak self] _ in
+            self?.didTapNextTrips()
+        }
+        let finishedTripsAction = UIAction(title: "finished_trips".localized) { [weak self] _ in
+            self?.didTapFinishedTrips()
+        }
+        let segmentedControl = UISegmentedControl(frame: .zero, actions: [nextTrispAction, finishedTripsAction])
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsMultipleSelection = false
@@ -82,13 +94,21 @@ final class TripsListViewController: UIViewController {
     }
     
     private func buildView() {
+        view.backgroundColor = .white
+
+        view.addSubview(segmentedControl)
         view.addSubview(tableView)
         view.addSubview(newTripButton)
         view.addSubview(allTripsButton)
         
+        segmentedControl
+            .pin(.leading, to: view.leadingAnchor, constant: 16)
+            .pin(.top, to: view.safeAreaLayoutGuide.topAnchor)
+            .pin(.trailing, to: view.trailingAnchor, constant: -16)
+
         tableView
             .pin(.leading, to: view.leadingAnchor)
-            .pin(.top, to: view.topAnchor)
+            .pin(.top, to: segmentedControl.bottomAnchor, constant: 8)
             .pin(.trailing, to: view.trailingAnchor)
             .pin(.bottom, to: view.bottomAnchor)
         
@@ -126,7 +146,7 @@ final class TripsListViewController: UIViewController {
     }
     
     private func didTapDeleteTrip(at indexPath: IndexPath) {
-        viewModel.deleteTrip(at: indexPath.row, section: indexPath.section)
+        viewModel.deleteTrip(at: indexPath.row)
         UIView.transition(with: tableView,
                           duration: 0.5,
                           options: .transitionCrossDissolve,
@@ -134,7 +154,7 @@ final class TripsListViewController: UIViewController {
     }
     
     private func didTapNotesforTrip(at indexPath: IndexPath) {
-        let trip = viewModel.getTrip(for: indexPath.row, section: indexPath.section)
+        let trip = viewModel.getTrip(at: indexPath.row)
         let viewController = NoteViewController(viewModel: NoteViewModel(trip: trip))
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
@@ -143,58 +163,37 @@ final class TripsListViewController: UIViewController {
         viewModel.finishTrip(index: indexPath.row, section: indexPath.section)
         tableView.reloadData()
     }
+    
+    private func didTapNextTrips(){
+        viewModel.updateSelection(.notFinished)
+        tableView.reloadData()
+    }
+    
+    private func didTapFinishedTrips(){
+        viewModel.updateSelection(.finished)
+        tableView.reloadData()
+    }
+
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.getNumberOfSections()
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getNumberOfRows(for: section)
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if viewModel.getNumberOfSections() <= 1 { return nil }
-
-        let view = UIView()
-        view.backgroundColor = .white
-
-        let label = UILabel()
-        label.text = section == 0 ? "next_trips".localized : "finished_trips".localized
-        label.font = .systemFont(ofSize: 14, weight: .light)
-        label.textColor = .systemGray2
-        label.textAlignment = .center
-        
-        view.addSubview(label)
-        
-        label
-            .pin(.leading, to: view.leadingAnchor, constant: 8)
-            .pin(.top, to: view.topAnchor, constant: 8)
-            .pin(.trailing, to: view.trailingAnchor, constant: -8)
-            .pin(.bottom, to: view.bottomAnchor)
-        
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if viewModel.getNumberOfSections() <= 1 { return 0 }
-        return 24
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TripListTableViewCell", for: indexPath) as! TripListTableViewCell
-        let trip = viewModel.getTrip(for: indexPath.row, section: indexPath.section)
+        let trip = viewModel.getTrip(at: indexPath.row)
         cell.setupWith(trip: trip)
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let trip = viewModel.getTrip(for: indexPath.row, section: indexPath.section)
+        let trip = viewModel.getTrip(at: indexPath.row)
         let mapViewController = MapViewController(viewModel: MapViewModel(trip: trip))
         navigationController?.pushViewController(mapViewController, animated: true)
     }

@@ -23,9 +23,9 @@ final class TripListTableViewCell: UITableViewCell {
         contentView.addSubview(tripView)
         
         tripView
-            .pin(.leading, to: contentView.leadingAnchor, constant: 8)
+            .pin(.leading, to: contentView.leadingAnchor, constant: 16)
             .pin(.top, to: contentView.topAnchor, constant: 8)
-            .pin(.trailing, to: contentView.trailingAnchor, constant: -8)
+            .pin(.trailing, to: contentView.trailingAnchor, constant: -16)
             .pin(.bottom, to: contentView.bottomAnchor, constant: -8)
             .pin(.height, relation: .equalToConstant, constant: 150)
     }

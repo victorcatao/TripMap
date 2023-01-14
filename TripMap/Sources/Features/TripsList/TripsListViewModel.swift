@@ -10,21 +10,19 @@ import CoreData
 
 final class TripsListViewModel {
     
+    // MARK: - Public Properties
+
+    enum Selection: Int {
+        case notFinished, finished
+    }
+
     // MARK: - Private Properties
     
-    private enum Section: Int {
-        case notFinished, finished
-        init(section: Int) {
-            if section == 0 {
-                self = .notFinished
-            } else {
-                self = .finished
-            }
-        }
-    }
+    
     
     private var notFinishedTrips: [Trip] = []
     private var finishedTrips: [Trip] = []
+    private var currentSelection: Selection = .notFinished
     private var managedContext: NSManagedObjectContext {
         DataManager.shared.context
     }
@@ -35,34 +33,22 @@ final class TripsListViewModel {
         reloadTrips()
     }
     
-    func deleteTrip(at index: Int, section: Int) {
-        let trip = getTrip(for: index, section: section)
+    func deleteTrip(at index: Int) {
+        let trip = getTrip(at: index)
         DataManager.shared.context.delete(trip)
         DataManager.shared.save()
         reloadTrips()
     }
     
     func finishTrip(index: Int, section: Int) {
-        let trip = getTrip(for: index, section: section)
+        let trip = getTrip(at: index)
         trip.finished = !trip.finished
         DataManager.shared.save()
         reloadTrips()
     }
     
-    func getNumberOfSections() -> Int {
-        if finishedTrips.isEmpty && notFinishedTrips.isEmpty {
-            return 0
-        }
-        if finishedTrips.isEmpty {
-            return 1
-        }
-        return 2
-    }
-    
     func getNumberOfRows(for section: Int) -> Int {
-        let section = Section(section: section)
-        
-        switch section {
+        switch currentSelection {
         case .notFinished:
             return notFinishedTrips.count
         case .finished:
@@ -70,10 +56,8 @@ final class TripsListViewModel {
         }
     }
     
-    func getTrip(for index: Int, section: Int) -> Trip {
-        let section = Section(section: section)
-        
-        switch section {
+    func getTrip(at index: Int) -> Trip {
+        switch currentSelection {
         case .notFinished:
             return notFinishedTrips[index]
         case .finished:
@@ -99,6 +83,10 @@ final class TripsListViewModel {
         fetchedTrips.forEach { trip in
             trip.finished ? finishedTrips.append(trip): notFinishedTrips.append(trip)
         }
+    }
+    
+    func updateSelection(_ selection: Selection) {
+        currentSelection = selection
     }
     
 }
