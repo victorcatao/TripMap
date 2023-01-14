@@ -42,6 +42,17 @@ final class TripsListViewController: UIViewController {
         return button
     }()
     
+    private lazy var allTripsButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.addTarget(self, action: #selector(didTapAllTripsButton), for: .touchUpInside)
+        button.setImage(UIImage(named: "logo"), for: .normal)
+        button.imageEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
+        button.backgroundColor = .systemOrange
+        button.layer.cornerRadius = 30
+        
+        return button
+    }()
+    
     // MARK: - Private Properties
     
     private let viewModel = TripsListViewModel()
@@ -73,6 +84,7 @@ final class TripsListViewController: UIViewController {
     private func buildView() {
         view.addSubview(tableView)
         view.addSubview(newTripButton)
+        view.addSubview(allTripsButton)
         
         tableView
             .pin(.leading, to: view.leadingAnchor)
@@ -83,6 +95,12 @@ final class TripsListViewController: UIViewController {
         newTripButton
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
             .pin(.bottom, to: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+            .pin(.height, relation: .equalToConstant, constant: 60)
+            .pin(.width, relation: .equalToConstant, constant: 60)
+
+        allTripsButton
+            .pin(.trailing, to: view.trailingAnchor, constant: -16)
+            .pin(.bottom, to: newTripButton.topAnchor, constant: -8)
             .pin(.height, relation: .equalToConstant, constant: 60)
             .pin(.width, relation: .equalToConstant, constant: 60)
     }
@@ -99,6 +117,12 @@ final class TripsListViewController: UIViewController {
         let newTripViewController = NameNewTripViewController(viewModel: NameNewTripViewModel())
         let navigation = UINavigationController(rootViewController: newTripViewController)
         present(navigation, animated: true)
+    }
+    
+    @objc
+    private func didTapAllTripsButton() {
+        let mapViewController = MapViewController(viewModel: MapViewModel(trip: nil))
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
     
     private func didTapDeleteTrip(at indexPath: IndexPath) {
