@@ -135,7 +135,7 @@ final class MapViewController: UIViewController {
         mapView.removeAnnotations(mapView.annotations)
         
         for pin in viewModel.pinObjects {
-            let annotation = PinAnnotationView.Annotation(emoji: pin.icon ?? "", name: pin.name ?? "")
+            let annotation = PinAnnotationView.Annotation(emoji: pin.icon ?? "", name: pin.name ?? "", visited: pin.visited)
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
             mapView.addAnnotation(annotation)
         }

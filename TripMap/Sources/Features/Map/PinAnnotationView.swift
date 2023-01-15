@@ -15,10 +15,12 @@ final class PinAnnotationView: MKAnnotationView {
     class Annotation: MKPointAnnotation {
         let emoji: String
         let name: String
+        let visited: Bool
         
-        init(emoji: String, name: String) {
+        init(emoji: String, name: String, visited: Bool) {
             self.emoji = emoji
             self.name = name
+            self.visited = visited
         }
     }
     
@@ -86,9 +88,10 @@ final class PinAnnotationView: MKAnnotationView {
     }
     
     func setUpWith(annotation: Annotation) {
+        self.annotation = annotation
         emojiLabel.text = annotation.emoji
         nameLabel.text = annotation.name
         
-        self.annotation = annotation
+        alpha = annotation.visited ? 0.5 : 1.0
     }
 }
