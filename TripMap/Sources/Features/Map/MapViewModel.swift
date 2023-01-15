@@ -115,4 +115,8 @@ final class MapViewModel {
     func setFilter(_ filter: MapFilterViewModel.Filter) {
         self.filter = filter
     }
+    
+    func didCreateNewPin(_ pin: Pin) {
+        pinObjects.append(pin)
+    }
 }

@@ -18,7 +18,7 @@ extension UIViewController {
     func showErrorMessage(
         title: String = "error_modal_title".localized,
         message: String,
-        okHandler: (() -> Void)?
+        okHandler: (() -> Void)? = nil
     ) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 

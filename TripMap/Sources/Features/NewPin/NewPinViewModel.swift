@@ -43,7 +43,7 @@ final class NewPinViewModel {
         allPinEmojis[index].setSelected(true)
     }
     
-    func savePin(name: String?, description: String?, error: @escaping (String) -> Void, completion: @escaping () -> Void) {
+    func savePin(name: String?, description: String?, error: @escaping (String) -> Void, completion: @escaping (Pin) -> Void) {
         guard name != nil else {
             error("fill_name".localized)
             return
@@ -68,10 +68,10 @@ final class NewPinViewModel {
 
         do {
             try managedContext.save()
-        } catch {
-            
+        } catch(_) {
+            error("generic_error".localized)
         }
         
-        completion()
+        completion(pin)
     }
 }

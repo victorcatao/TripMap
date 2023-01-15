@@ -7,7 +7,19 @@
 
 import UIKit
 
+// MARK: - NewPinViewControllerDelegate
+
+protocol NewPinViewControllerDelegate: AnyObject {
+    func didCreateNewPin(_ pin: Pin)
+}
+
+// MARK: - NewPinViewController
+
 final class NewPinViewController: UIViewController {
+    
+    // MARK: - Public Properties
+    
+    weak var delegate: NewPinViewControllerDelegate?
     
     // MARK: - Views
     
@@ -144,10 +156,12 @@ final class NewPinViewController: UIViewController {
     
     @objc
     private func didTapSave() {
-        viewModel.savePin(name: titleTextField.text, description: descriptionTextField.text) { error in
-            // show error
-        } completion: { [weak self] in
-            self?.dismiss(animated: true)
+        viewModel.savePin(name: titleTextField.text, description: descriptionTextField.text) { [weak self] error in
+            self?.showErrorMessage(message: error)
+        } completion: { [weak self] pin in
+            self?.dismiss(animated: true) {
+                self?.delegate?.didCreateNewPin(pin)
+            }
         }
     }
 }

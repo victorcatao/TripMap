@@ -157,6 +157,7 @@ final class MapViewController: UIViewController {
 
         let newPinViewModel = viewModel.createNewPinViewModel(coordinates: newCoordinates)
         let newPinViewController = NewPinViewController(viewModel: newPinViewModel)
+        newPinViewController.delegate = self
         present(UINavigationController(rootViewController: newPinViewController), animated: true)
     }
     
@@ -236,6 +237,15 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: MapFilterViewControllerDelegate {
     func didApplyFilter(_ filter: MapFilterViewModel.Filter) {
         viewModel.setFilter(filter)
+        reloadData()
+    }
+}
+
+// MARK: - NewPinViewControllerDelegate
+
+extension MapViewController: NewPinViewControllerDelegate {
+    func didCreateNewPin(_ pin: Pin) {
+        viewModel.didCreateNewPin(pin)
         reloadData()
     }
 }
