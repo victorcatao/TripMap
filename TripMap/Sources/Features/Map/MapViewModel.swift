@@ -15,6 +15,11 @@ final class MapViewModel {
     
     private(set) var pinObjects: [Pin] = []
     private let trip: Trip?
+    private var filter: MapFilterViewModel.Filter? {
+        didSet {
+            loadPins()
+        }
+    }
     private var managedContext: NSManagedObjectContext = {
         DataManager.shared.context
     }()
@@ -29,18 +34,40 @@ final class MapViewModel {
     // MARK: - Private Methods
     
     private func loadPins() {
+        var allPins: [Pin] = []
+        
+        defer {
+            pinObjects = allPins
+        }
+        
         let request = Pin.fetchRequest()
         if let trip = trip {
             request.predicate = NSPredicate(format: "trip = %@", trip)
         }
-
-        var fetechedPins: [Pin] = []
+        
         do {
-            fetechedPins = try managedContext.fetch(request)
+            allPins = try managedContext.fetch(request)
         } catch let error {
             print("Error fetching songs \(error)")
         }
-        pinObjects = fetechedPins
+
+        guard let filter = filter else { return }
+        
+        if filter.showVisited == false {
+            allPins.removeAll(where: { $0.visited == true })
+        }
+        
+        if filter.showNotVisited == false {
+            allPins.removeAll(where: { $0.visited == false })
+        }
+        
+        if filter.pins.isEmpty == false {
+            allPins.removeAll { fetchedPin in
+                filter.pins.first { filteredPin in
+                    fetchedPin.icon == filteredPin.emoji
+                } == nil
+            }
+        }
     }
     
     // MARK: - Public Methods
@@ -79,5 +106,13 @@ final class MapViewModel {
     
     func createNewPinViewModel(coordinates: CLLocationCoordinate2D) -> NewPinViewModel {
         return NewPinViewModel(trip: trip, latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
+    
+    func createMapFilterViewModel() -> MapFilterViewModel {
+        return MapFilterViewModel(filter: filter)
+    }
+    
+    func setFilter(_ filter: MapFilterViewModel.Filter) {
+        self.filter = filter
     }
 }

@@ -13,6 +13,11 @@ final class MapViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    private class MyPointAnnotation: MKPointAnnotation {
+        var pinTintColor: UIColor?
+        var pinIcon: String?
+    }
+    
     private let viewModel: MapViewModel
     private var didUpdateLocation = false
     private var didShowAnnotations = false
@@ -20,10 +25,18 @@ final class MapViewController: UIViewController {
     private lazy var mapView = MKMapView(frame: .zero)
     private lazy var fakeLoadingView = UIView()
     
-    private class MyPointAnnotation: MKPointAnnotation {
-        var pinTintColor: UIColor?
-        var pinIcon: String?
-    }
+    private lazy var filterButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.addTarget(self, action: #selector(didTapFilterButton), for: .touchUpInside)
+        button.setImage(UIImage(named: "filter")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.imageEdgeInsets = .init(top: 18, left: 18, bottom: 18, right: 18)
+        button.tintColor = .white
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 30
+        
+        return button
+    }()
+    
     
     // MARK: - LifeCycle
     
@@ -55,6 +68,14 @@ final class MapViewController: UIViewController {
     
     private func setupView() {
         setUpMapView()
+        
+        view.addSubview(filterButton)
+        filterButton
+            .pin(.trailing, to: view.trailingAnchor, constant: -16)
+            .pin(.bottom, to: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            .pin(.height, relation: .equalToConstant, constant: 60)
+            .pin(.width, relation: .equalToConstant, constant: 60)
+        
         setUpFakeLoadingView()
     }
     
@@ -109,17 +130,6 @@ final class MapViewController: UIViewController {
             .pin(.bottom, to: view.bottomAnchor)
     }
     
-    @objc private func didLongPress(_ gestureRecognizer: UIGestureRecognizer) {
-        guard gestureRecognizer.state == .began else { return }
-
-        let touchPoint = gestureRecognizer.location(in: mapView)
-        let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-
-        let newPinViewModel = viewModel.createNewPinViewModel(coordinates: newCoordinates)
-        let newPinViewController = NewPinViewController(viewModel: newPinViewModel)
-        present(UINavigationController(rootViewController: newPinViewController), animated: true)
-    }
-    
     private func reloadData() {
         setupPinMaps()
     }
@@ -132,7 +142,7 @@ final class MapViewController: UIViewController {
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
             annotation.title = pin.name
             annotation.subtitle = pin.pinDescription
-            annotation.pinTintColor = pin.visited ? .red : .white
+            annotation.pinTintColor = pin.visited ? .green : .white
             annotation.pinIcon = pin.icon
             mapView.addAnnotation(annotation)
         }
@@ -141,6 +151,27 @@ final class MapViewController: UIViewController {
             mapView.showAnnotations(mapView.annotations, animated: true)
             didShowAnnotations = true
         }
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func didLongPress(_ gestureRecognizer: UIGestureRecognizer) {
+        guard gestureRecognizer.state == .began else { return }
+
+        let touchPoint = gestureRecognizer.location(in: mapView)
+        let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+
+        let newPinViewModel = viewModel.createNewPinViewModel(coordinates: newCoordinates)
+        let newPinViewController = NewPinViewController(viewModel: newPinViewModel)
+        present(UINavigationController(rootViewController: newPinViewController), animated: true)
+    }
+    
+    @objc
+    func didTapFilterButton() {
+        let mapFilterViewController = MapFilterViewController(viewModel: viewModel.createMapFilterViewModel())
+        mapFilterViewController.delegate = self
+        present(UINavigationController(rootViewController: mapFilterViewController), animated: true)
     }
     
 }
@@ -213,5 +244,14 @@ extension MapViewController: MKMapViewDelegate {
         alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in }))
         
         self.present(alert, animated: true)
+    }
+}
+
+// MARK: - MapFilterViewControllerDelegate
+
+extension MapViewController: MapFilterViewControllerDelegate {
+    func didApplyFilter(_ filter: MapFilterViewModel.Filter) {
+        viewModel.setFilter(filter)
+        reloadData()
     }
 }

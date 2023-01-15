@@ -9,18 +9,6 @@ import UIKit
 
 final class TripIconCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Public Properties
-    
-    struct Model {
-        let emoji: String
-        let backgroundColor: String
-        var isSelected: Bool
-        
-        mutating func setSelected(_ selected: Bool) {
-            self.isSelected = selected
-        }
-    }
-    
     // MARK: - Views
 
     private lazy var label: UILabel = {
@@ -51,7 +39,7 @@ final class TripIconCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public Methods
 
-    func setupWith(model: Model) {
+    func setupWith(model: PinModel) {
         label.text = model.emoji
 
         contentView.backgroundColor = model.isSelected ? .white : .clear

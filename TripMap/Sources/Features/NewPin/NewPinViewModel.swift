@@ -15,26 +15,7 @@ final class NewPinViewModel {
     
     private let coordinate: (lat: Double, lng: Double)
     
-    private var allPinEmojis = [
-        TripIconCollectionViewCell.Model(emoji: "🏖", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🏜", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "⛰", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🌋", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🏕", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "⛺️", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🛖", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🏡", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🕍", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🕌", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "⛪️", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🎢", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🗽", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🗿", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "✈️", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🛟", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "⚽️", backgroundColor: "", isSelected: false),
-        TripIconCollectionViewCell.Model(emoji: "🍽", backgroundColor: "", isSelected: false),
-    ]
+    private var allPinEmojis = PinDatabase.allPinEmojis
     
     // MARK: - LifeCycle
 
@@ -51,7 +32,7 @@ final class NewPinViewModel {
     
     // MARK: - Public Methods
 
-    func getEmoji(at index: Int) -> TripIconCollectionViewCell.Model {
+    func getEmoji(at index: Int) -> PinModel {
         return allPinEmojis[index]
     }
     

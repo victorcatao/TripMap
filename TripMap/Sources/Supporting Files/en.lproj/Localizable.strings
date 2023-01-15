@@ -37,3 +37,6 @@
 "tour_eiffel_description_placeholder" = "Wrought-iron lattice tower on the Champ de Mars in Paris, France";
 "icon" = "Icon";
 "new_pin" = "New pin";
+"filter_title" = "Filter";
+"show_visited" = "Show visited";
+"show_not_visited" = "Show not visited";

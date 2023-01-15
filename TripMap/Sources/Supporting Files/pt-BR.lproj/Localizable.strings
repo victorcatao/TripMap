@@ -37,3 +37,5 @@
 "tour_eiffel_description_placeholder" = "Uma torre de treliça de ferro forjado no Champ de Mars";
 "icon" = "Ícone";
 "new_pin" = "Novo pin";
+"filter_title" = "Filtrar";
+"show_visited" = "Mostrar visitado";
