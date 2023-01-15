@@ -13,11 +13,6 @@ final class MapViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private class MyPointAnnotation: MKPointAnnotation {
-        var pinTintColor: UIColor?
-        var pinIcon: String?
-    }
-    
     private let viewModel: MapViewModel
     private var didUpdateLocation = false
     private var didShowAnnotations = false
@@ -95,6 +90,8 @@ final class MapViewController: UIViewController {
         longPress.minimumPressDuration = 1.0
         
         mapView.addGestureRecognizer(longPress)
+        
+        mapView.register(PinAnnotationView.self, forAnnotationViewWithReuseIdentifier: "PinAnnotationView")
     }
     
     private func setUpFakeLoadingView() {
@@ -138,12 +135,8 @@ final class MapViewController: UIViewController {
         mapView.removeAnnotations(mapView.annotations)
         
         for pin in viewModel.pinObjects {
-            let annotation = MyPointAnnotation()
+            let annotation = PinAnnotationView.Annotation(emoji: pin.icon ?? "", name: pin.name ?? "")
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
-            annotation.title = pin.name
-            annotation.subtitle = pin.pinDescription
-            annotation.pinTintColor = pin.visited ? .green : .white
-            annotation.pinIcon = pin.icon
             mapView.addAnnotation(annotation)
         }
         
@@ -188,28 +181,19 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation as? MyPointAnnotation != nil else { return nil }
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "myAnnotation") as? MKMarkerAnnotationView
+        guard let pinAnnotation = annotation as? PinAnnotationView.Annotation else { return nil }
         
-        if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "myAnnotation")
-        } else {
-            annotationView?.annotation = annotation
-        }
+        let annotationView = (mapView.dequeueReusableAnnotationView(withIdentifier: "PinAnnotationView") as? PinAnnotationView)
+            ?? PinAnnotationView(annotation: annotation, reuseIdentifier: "myAnnotation")
         
-        if let annotation = annotation as? MyPointAnnotation {
-            annotationView?.markerTintColor = annotation.pinTintColor
-            annotationView?.glyphText = annotation.pinIcon
-        }
+        annotationView.setUpWith(annotation: pinAnnotation)
         
-        annotationView?.canShowCallout = true
-
         return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let myAnnotation = view.annotation as? MyPointAnnotation else { return }
-        let alert = UIAlertController(title: myAnnotation.title, message: "select_an_option".localized, preferredStyle: .actionSheet)
+        guard let myAnnotation = view.annotation as? PinAnnotationView.Annotation else { return }
+        let alert = UIAlertController(title: myAnnotation.name, message: "select_an_option".localized, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "map_route".localized, style: .default, handler: { _ in
             guard let coordinate = view.annotation?.coordinate else { return }

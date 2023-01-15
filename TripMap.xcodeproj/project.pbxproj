@@ -23,6 +23,7 @@
 		FC23F8942974553200A451D9 /* MapFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8932974553200A451D9 /* MapFilterViewController.swift */; };
 		FC23F8962974553A00A451D9 /* MapFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8952974553A00A451D9 /* MapFilterViewModel.swift */; };
 		FC23F899297458B100A451D9 /* PinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F898297458B100A451D9 /* PinModel.swift */; };
+		FC23F89B29749F3F00A451D9 /* PinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F89A29749F3F00A451D9 /* PinAnnotationView.swift */; };
 		FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B629639AE400A16EE5 /* TripsListViewController.swift */; };
 		FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */; };
 		FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */; };
@@ -68,6 +69,7 @@
 		FC23F8932974553200A451D9 /* MapFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFilterViewController.swift; sourceTree = "<group>"; };
 		FC23F8952974553A00A451D9 /* MapFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFilterViewModel.swift; sourceTree = "<group>"; };
 		FC23F898297458B100A451D9 /* PinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinModel.swift; sourceTree = "<group>"; };
+		FC23F89A29749F3F00A451D9 /* PinAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotationView.swift; sourceTree = "<group>"; };
 		FC2423B629639AE400A16EE5 /* TripsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewController.swift; sourceTree = "<group>"; };
 		FC2423B829639B0400A16EE5 /* TripsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewModel.swift; sourceTree = "<group>"; };
 		FC2423BB29639CA000A16EE5 /* TripListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListTableViewCell.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 			children = (
 				FC90742228328E9200951CFA /* MapViewController.swift */,
 				FCEADF7C29636034003CD6AE /* MapViewModel.swift */,
+				FC23F89A29749F3F00A451D9 /* PinAnnotationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */,
 				FC2423D32964A69500A16EE5 /* NameNewTripViewModel.swift in Sources */,
 				FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */,
+				FC23F89B29749F3F00A451D9 /* PinAnnotationView.swift in Sources */,
 				FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */,
 				FC2423D52964A98500A16EE5 /* DataManager.swift in Sources */,
 				FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */,
