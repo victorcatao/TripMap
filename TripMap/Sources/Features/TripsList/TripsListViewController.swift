@@ -130,6 +130,15 @@ final class TripsListViewController: UIViewController {
         tableView.delegate = self
         
         tableView.register(TripListTableViewCell.self, forCellReuseIdentifier: "TripListTableViewCell")
+        
+        let searchBar = UISearchBar()
+        searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 70)
+        searchBar.delegate = self
+        searchBar.searchBarStyle = .default
+        searchBar.placeholder = "search".localized
+        searchBar.sizeToFit()
+
+        tableView.tableHeaderView = searchBar
     }
     
     @objc
@@ -224,5 +233,14 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
         let config = UISwipeActionsConfiguration(actions: [deleteAction, notesAction, finished])
         
         return config
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension TripsListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.setFilteredText(searchText)
+        tableView.reloadData()
     }
 }

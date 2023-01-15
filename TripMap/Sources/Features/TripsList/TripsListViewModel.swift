@@ -18,10 +18,10 @@ final class TripsListViewModel {
 
     // MARK: - Private Properties
     
-    
-    
     private var notFinishedTrips: [Trip] = []
     private var finishedTrips: [Trip] = []
+    private var filteredNotFinishedTrips: [Trip] = []
+    private var filteredFinishedTrips: [Trip] = []
     private var currentSelection: Selection = .notFinished
     private var managedContext: NSManagedObjectContext {
         DataManager.shared.context
@@ -50,18 +50,18 @@ final class TripsListViewModel {
     func getNumberOfRows(for section: Int) -> Int {
         switch currentSelection {
         case .notFinished:
-            return notFinishedTrips.count
+            return filteredNotFinishedTrips.count
         case .finished:
-            return finishedTrips.count
+            return filteredFinishedTrips.count
         }
     }
     
     func getTrip(at index: Int) -> Trip {
         switch currentSelection {
         case .notFinished:
-            return notFinishedTrips[index]
+            return filteredNotFinishedTrips[index]
         case .finished:
-            return finishedTrips[index]
+            return filteredFinishedTrips[index]
         }
     }
 
@@ -83,10 +83,32 @@ final class TripsListViewModel {
         fetchedTrips.forEach { trip in
             trip.finished ? finishedTrips.append(trip): notFinishedTrips.append(trip)
         }
+
+        filteredNotFinishedTrips = notFinishedTrips
+        filteredFinishedTrips = finishedTrips
     }
     
     func updateSelection(_ selection: Selection) {
         currentSelection = selection
+    }
+    
+    func setFilteredText(_ text: String) {
+        guard text.isEmpty == false else {
+            filteredNotFinishedTrips = notFinishedTrips
+            filteredFinishedTrips = finishedTrips
+            return
+        }
+
+        switch currentSelection {
+        case .finished:
+            filteredFinishedTrips = finishedTrips.filter({
+                $0.name?.localizedCaseInsensitiveContains(text) ?? false
+            })
+        case .notFinished:
+            filteredNotFinishedTrips = notFinishedTrips.filter({
+                $0.name?.localizedCaseInsensitiveContains(text) ?? false
+            })
+        }
     }
     
 }
