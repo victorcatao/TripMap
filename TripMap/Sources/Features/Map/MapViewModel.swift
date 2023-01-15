@@ -15,7 +15,6 @@ final class MapViewModel {
     
     private(set) var pinObjects: [Pin] = []
     private let trip: Trip?
-
     private var managedContext: NSManagedObjectContext = {
         DataManager.shared.context
     }()
@@ -46,29 +45,6 @@ final class MapViewModel {
     
     // MARK: - Public Methods
 
-    func savePin(
-        name: String,
-        latitude: Double,
-        longitude: Double
-    ) {
-        let pin = Pin(context: managedContext)
-        pin.name = name
-        pin.lng = longitude
-        pin.lat = latitude
-        
-        if let trip = trip {
-            trip.addToPins(pin)
-        }
-
-        do {
-            try managedContext.save()
-        } catch {
-            
-        }
-        
-        loadPins()
-    }
-    
     func updateStatus(for coordinate: CLLocationCoordinate2D) {
         let fetchRequest = Pin.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "lat == %lf AND lng == %lf", coordinate.latitude, coordinate.longitude)
@@ -99,5 +75,9 @@ final class MapViewModel {
         } catch {
             return nil
         }
+    }
+    
+    func createNewPinViewModel(coordinates: CLLocationCoordinate2D) -> NewPinViewModel {
+        return NewPinViewModel(trip: trip, latitude: coordinates.latitude, longitude: coordinates.longitude)
     }
 }

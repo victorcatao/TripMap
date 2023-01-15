@@ -30,3 +30,10 @@
 "note_title" = "Note title";
 "note" = "Note";
 "which_image_represents_your_trip" = "Which image best represents your trip?";
+"error_modal_title" = "Error";
+"fill_name" = "Fill the name field";
+"select_icon" = "Select the icon";
+"description_optional" = "Description (optional)";
+"tour_eiffel_description_placeholder" = "Wrought-iron lattice tower on the Champ de Mars in Paris, France";
+"icon" = "Icon";
+"new_pin" = "New pin";

@@ -2,7 +2,7 @@
 //  Trip+CoreDataProperties.swift
 //  TripMap
 //
-//  Created by Victor Catão on 09/01/23.
+//  Created by Victor Catão on 14/01/23.
 //
 //
 
@@ -16,9 +16,9 @@ extension Trip {
         return NSFetchRequest<Trip>(entityName: "Trip")
     }
 
+    @NSManaged public var finished: Bool
     @NSManaged public var imageName: String?
     @NSManaged public var name: String?
-    @NSManaged public var finished: Bool
     @NSManaged public var note: Note?
     @NSManaged public var pins: NSSet?
 

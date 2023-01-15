@@ -30,3 +30,10 @@
 "note_title" = "Título da sua nota";
 "note" = "Nota";
 "which_image_represents_your_trip" = "Qual imagem melhor representa essa sua viagem?";
+"error_modal_title" = "Erro";
+"fill_name" = "Preencha nome";
+"select_icon" = "Selecione o ícone";
+"description_optional" = "Descrição (opcional)";
+"tour_eiffel_description_placeholder" = "Uma torre de treliça de ferro forjado no Champ de Mars";
+"icon" = "Ícone";
+"new_pin" = "Novo pin";

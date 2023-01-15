@@ -22,6 +22,7 @@ final class MapViewController: UIViewController {
     
     private class MyPointAnnotation: MKPointAnnotation {
         var pinTintColor: UIColor?
+        var pinIcon: String?
     }
     
     // MARK: - LifeCycle
@@ -93,13 +94,12 @@ final class MapViewController: UIViewController {
             .pin(.trailing, to: fakeLoadingView.trailingAnchor, constant: -16)
             .pin(.height, relation: .equalToConstant, constant: 200)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
-            UIView.animate(withDuration: 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            UIView.animate(withDuration: 0.3) {
                 self?.fakeLoadingView.alpha = 0
             } completion: { complete in
                 if complete { self?.fakeLoadingView.removeFromSuperview() }
             }
-            
         }
         
         fakeLoadingView
@@ -111,31 +111,13 @@ final class MapViewController: UIViewController {
     
     @objc private func didLongPress(_ gestureRecognizer: UIGestureRecognizer) {
         guard gestureRecognizer.state == .began else { return }
+
         let touchPoint = gestureRecognizer.location(in: mapView)
         let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        
-        let alert = UIAlertController(title: "new_pin".localized, message: "what_name".localized, preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "save".localized, style: .default) { [weak self] _ in
-            guard let textField = alert.textFields!.first else { return }
-            self?.viewModel.savePin(
-                name: textField.text!,
-                latitude: newCoordinates.latitude,
-                longitude: newCoordinates.longitude
-            )
-            self?.reloadData()
-        }
-        
-        let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel)
-        
-        alert.addTextField { textField in
-            textField.placeholder = "tour_eiffel".localized
-        }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        self.present(alert, animated: true)
+
+        let newPinViewModel = viewModel.createNewPinViewModel(coordinates: newCoordinates)
+        let newPinViewController = NewPinViewController(viewModel: newPinViewModel)
+        present(UINavigationController(rootViewController: newPinViewController), animated: true)
     }
     
     private func reloadData() {
@@ -149,8 +131,9 @@ final class MapViewController: UIViewController {
             let annotation = MyPointAnnotation()
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
             annotation.title = pin.name
-            annotation.subtitle = pin.visited ? "visited".localized : "not_visited".localized
-            annotation.pinTintColor = pin.visited ? .lightGray : .red
+            annotation.subtitle = pin.pinDescription
+            annotation.pinTintColor = pin.visited ? .red : .white
+            annotation.pinIcon = pin.icon
             mapView.addAnnotation(annotation)
         }
         
@@ -185,10 +168,11 @@ extension MapViewController: MKMapViewDelegate {
         
         if let annotation = annotation as? MyPointAnnotation {
             annotationView?.markerTintColor = annotation.pinTintColor
+            annotationView?.glyphText = annotation.pinIcon
         }
         
-        annotationView?.canShowCallout = false
-        
+        annotationView?.canShowCallout = true
+
         return annotationView
     }
     

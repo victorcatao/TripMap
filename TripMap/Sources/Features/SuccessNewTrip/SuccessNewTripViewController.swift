@@ -100,6 +100,7 @@ final class SuccessNewTripViewController: UIViewController {
         let animation = LottieAnimation.named("trip-lottie-animation")
         lottieAnimationView.animation = animation
         lottieAnimationView.loopMode = .loop
+        lottieAnimationView.animationSpeed = 1.5
         lottieAnimationView.play()
     }
     

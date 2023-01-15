@@ -5,9 +5,11 @@
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Pin" representedClassName="Pin" syncable="YES">
+        <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lng" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pinDescription" optional="YES" attributeType="String"/>
         <attribute name="visited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="note" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Note"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="pins" inverseEntity="Trip"/>
