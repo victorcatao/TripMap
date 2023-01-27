@@ -62,15 +62,27 @@ final class MapViewController: UIViewController {
     }
     
     private func setupView() {
+        self.navigationItem.setHidesBackButton(true, animated:false)
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 22
+
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 24, height: 24))
+        
+        if let imgBackArrow = UIImage(systemName: "arrowshape.backward.fill") {
+            imageView.image = imgBackArrow
+        }
+        view.addSubview(imageView)
+        
+        let backTap = UITapGestureRecognizer(target: self, action: #selector(didTapBack))
+        view.addGestureRecognizer(backTap)
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: view)
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
         setUpMapView()
-        
-        view.addSubview(filterButton)
-        filterButton
-            .pin(.trailing, to: view.trailingAnchor, constant: -16)
-            .pin(.bottom, to: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
-            .pin(.height, relation: .equalToConstant, constant: 60)
-            .pin(.width, relation: .equalToConstant, constant: 60)
-        
+        setUpFilterView()
         setUpFakeLoadingView()
     }
     
@@ -92,6 +104,15 @@ final class MapViewController: UIViewController {
         mapView.addGestureRecognizer(longPress)
         
         mapView.register(PinAnnotationView.self, forAnnotationViewWithReuseIdentifier: "PinAnnotationView")
+    }
+    
+    private func setUpFilterView() {
+        view.addSubview(filterButton)
+        filterButton
+            .pin(.trailing, to: view.trailingAnchor, constant: -16)
+            .pin(.bottom, to: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            .pin(.height, relation: .equalToConstant, constant: 60)
+            .pin(.width, relation: .equalToConstant, constant: 60)
     }
     
     private func setUpFakeLoadingView() {
@@ -166,6 +187,11 @@ final class MapViewController: UIViewController {
         let mapFilterViewController = MapFilterViewController(viewModel: viewModel.createMapFilterViewModel())
         mapFilterViewController.delegate = self
         present(UINavigationController(rootViewController: mapFilterViewController), animated: true)
+    }
+    
+    @objc
+    func didTapBack() {
+        navigationController?.popViewController(animated: true)
     }
     
 }
