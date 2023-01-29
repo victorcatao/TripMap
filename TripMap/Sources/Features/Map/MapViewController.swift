@@ -224,8 +224,7 @@ extension MapViewController: MKMapViewDelegate {
         
         alert.addAction(UIAlertAction(title: "map_route".localized, style: .default, handler: { _ in
             guard let coordinate = view.annotation?.coordinate else { return }
-            let urlStr = "waze://?ll=\(coordinate.latitude),\(coordinate.longitude)&navigate=yes"
-            UIApplication.shared.open(URL(string: urlStr)!)
+            self.openRouteOptions(latitude: coordinate.latitude, longitude: coordinate.longitude)
         }))
         
         alert.addAction(UIAlertAction(title: "see_note".localized, style: .default, handler: { [weak self] _ in
@@ -254,8 +253,36 @@ extension MapViewController: MKMapViewDelegate {
         
         alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in }))
         
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
+    
+    private func openRouteOptions(latitude: Double, longitude: Double) {
+        let alert = UIAlertController(title: "map_route".localized, message: "select_an_option".localized, preferredStyle: .actionSheet)
+        
+        if let wazeURL = URL(string: "waze://"), UIApplication.shared.canOpenURL(wazeURL) {
+            alert.addAction(UIAlertAction(title: "Waze", style: .default, handler: { _ in
+                let urlStr = "waze://?ll=\(latitude),\(longitude)&navigate=yes"
+                UIApplication.shared.open(URL(string: urlStr)!)
+            }))
+        }
+        
+        if let googleMapsURL = URL(string: "comgooglemaps://"), UIApplication.shared.canOpenURL(googleMapsURL) {
+            alert.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { _ in
+                let urlStr = "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving"
+                UIApplication.shared.open(URL(string: urlStr)!)
+            }))
+        }
+        
+        if let appleMapsURL = URL(string: "maps://"), UIApplication.shared.canOpenURL(appleMapsURL) {
+            alert.addAction(UIAlertAction(title: "Apple Maps", style: .default, handler: { _ in
+                let urlStr = "maps://?ll=\(latitude),\(longitude)"
+                UIApplication.shared.open(URL(string: urlStr)!)
+            }))
+        }
+        
+        present(alert, animated: true)
+    }
+    
 }
 
 // MARK: - MapFilterViewControllerDelegate
