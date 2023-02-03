@@ -233,8 +233,10 @@ extension MapViewController: MKMapViewDelegate {
                   let longitude = view.annotation?.coordinate.longitude,
                   let pin = self.viewModel.getPinWith(latitude: latitude, longitude: longitude) else { return }
             
-            let viewController = NoteViewController(viewModel: NoteViewModel(pin: pin))
-            self.present(UINavigationController(rootViewController: viewController), animated: true)
+//            let viewController = NoteViewController(viewModel: NoteViewModel(pin: pin))
+//            self.present(UINavigationController(rootViewController: viewController), animated: true)
+            let viewController = NotesListViewController(viewModel: NotesListViewModel(pin: pin))
+            self.navigationController?.pushViewController(viewController, animated: true)
         }))
         
         alert.addAction(UIAlertAction(title: "change_visited".localized, style: .default, handler: { _ in

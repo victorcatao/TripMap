@@ -2,7 +2,7 @@
 //  Trip+CoreDataProperties.swift
 //  TripMap
 //
-//  Created by Victor Catão on 14/01/23.
+//  Created by Victor Catão on 29/01/23.
 //
 //
 
@@ -19,8 +19,25 @@ extension Trip {
     @NSManaged public var finished: Bool
     @NSManaged public var imageName: String?
     @NSManaged public var name: String?
-    @NSManaged public var note: Note?
+    @NSManaged public var note: NSSet?
     @NSManaged public var pins: NSSet?
+
+}
+
+// MARK: Generated accessors for note
+extension Trip {
+
+    @objc(addNoteObject:)
+    @NSManaged public func addToNote(_ value: Note)
+
+    @objc(removeNoteObject:)
+    @NSManaged public func removeFromNote(_ value: Note)
+
+    @objc(addNote:)
+    @NSManaged public func addToNote(_ values: NSSet)
+
+    @objc(removeNote:)
+    @NSManaged public func removeFromNote(_ values: NSSet)
 
 }
 

@@ -164,7 +164,7 @@ final class TripsListViewController: UIViewController {
     
     private func didTapNotesforTrip(at indexPath: IndexPath) {
         let trip = viewModel.getTrip(at: indexPath.row)
-        let viewController = NoteViewController(viewModel: NoteViewModel(trip: trip))
+        let viewController = NotesListViewController(viewModel: NotesListViewModel(trip: trip))
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
     

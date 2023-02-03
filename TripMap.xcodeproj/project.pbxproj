@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC03C37C29871AA700F9BE34 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C37B29871AA700F9BE34 /* NotesListViewController.swift */; };
+		FC03C37E29871AD700F9BE34 /* NotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C37D29871AD700F9BE34 /* NotesListViewModel.swift */; };
+		FC03C3852987206C00F9BE34 /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C37F2987206C00F9BE34 /* Pin+CoreDataClass.swift */; };
+		FC03C3862987206C00F9BE34 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3802987206C00F9BE34 /* Pin+CoreDataProperties.swift */; };
+		FC03C3872987206C00F9BE34 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3812987206C00F9BE34 /* Trip+CoreDataClass.swift */; };
+		FC03C3882987206C00F9BE34 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3822987206C00F9BE34 /* Trip+CoreDataProperties.swift */; };
+		FC03C3892987206C00F9BE34 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3832987206C00F9BE34 /* Note+CoreDataClass.swift */; };
+		FC03C38A2987206C00F9BE34 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3842987206C00F9BE34 /* Note+CoreDataProperties.swift */; };
 		FC23F8682973323A00A451D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC23F86A2973323A00A451D9 /* Localizable.strings */; };
 		FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F86C2973336F00A451D9 /* String+Extensions.swift */; };
 		FC23F86F29733E9000A451D9 /* loading-pins.json in Resources */ = {isa = PBXBuildFile; fileRef = FC23F86E29733E9000A451D9 /* loading-pins.json */; };
 		FC23F87229734F4900A451D9 /* NewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F87129734F4900A451D9 /* NewPinViewController.swift */; };
 		FC23F87429734F9B00A451D9 /* NewPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F87329734F9B00A451D9 /* NewPinViewModel.swift */; };
 		FC23F8772973508F00A451D9 /* TripIconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8762973508F00A451D9 /* TripIconCollectionViewCell.swift */; };
-		FC23F88A2973617B00A451D9 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8842973617B00A451D9 /* Note+CoreDataClass.swift */; };
-		FC23F88B2973617B00A451D9 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8852973617B00A451D9 /* Note+CoreDataProperties.swift */; };
-		FC23F88C2973617B00A451D9 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8862973617B00A451D9 /* Trip+CoreDataClass.swift */; };
-		FC23F88D2973617B00A451D9 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8872973617B00A451D9 /* Trip+CoreDataProperties.swift */; };
-		FC23F88E2973617B00A451D9 /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8882973617B00A451D9 /* Pin+CoreDataClass.swift */; };
-		FC23F88F2973617B00A451D9 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8892973617B00A451D9 /* Pin+CoreDataProperties.swift */; };
 		FC23F89129744BF000A451D9 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F89029744BF000A451D9 /* UIViewController+Extensions.swift */; };
 		FC23F8942974553200A451D9 /* MapFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8932974553200A451D9 /* MapFilterViewController.swift */; };
 		FC23F8962974553A00A451D9 /* MapFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F8952974553A00A451D9 /* MapFilterViewModel.swift */; };
@@ -52,6 +54,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC03C37B29871AA700F9BE34 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
+		FC03C37D29871AD700F9BE34 /* NotesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewModel.swift; sourceTree = "<group>"; };
+		FC03C37F2987206C00F9BE34 /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC03C3802987206C00F9BE34 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FC03C3812987206C00F9BE34 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC03C3822987206C00F9BE34 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FC03C3832987206C00F9BE34 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC03C3842987206C00F9BE34 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FC23F8692973323A00A451D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FC23F86B2973325800A451D9 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC23F86C2973336F00A451D9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -59,12 +69,6 @@
 		FC23F87129734F4900A451D9 /* NewPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPinViewController.swift; sourceTree = "<group>"; };
 		FC23F87329734F9B00A451D9 /* NewPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPinViewModel.swift; sourceTree = "<group>"; };
 		FC23F8762973508F00A451D9 /* TripIconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripIconCollectionViewCell.swift; sourceTree = "<group>"; };
-		FC23F8842973617B00A451D9 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FC23F8852973617B00A451D9 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FC23F8862973617B00A451D9 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FC23F8872973617B00A451D9 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FC23F8882973617B00A451D9 /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FC23F8892973617B00A451D9 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FC23F89029744BF000A451D9 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		FC23F8932974553200A451D9 /* MapFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFilterViewController.swift; sourceTree = "<group>"; };
 		FC23F8952974553A00A451D9 /* MapFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFilterViewModel.swift; sourceTree = "<group>"; };
@@ -110,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC03C37A29871A9C00F9BE34 /* NotesList */ = {
+			isa = PBXGroup;
+			children = (
+				FC03C37B29871AA700F9BE34 /* NotesListViewController.swift */,
+				FC03C37D29871AD700F9BE34 /* NotesListViewModel.swift */,
+			);
+			path = NotesList;
+			sourceTree = "<group>";
+		};
 		FC23F87029734F3C00A451D9 /* NewPin */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,12 +263,12 @@
 		FC7E48FE29660AA50088131A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FC23F8842973617B00A451D9 /* Note+CoreDataClass.swift */,
-				FC23F8852973617B00A451D9 /* Note+CoreDataProperties.swift */,
-				FC23F8862973617B00A451D9 /* Trip+CoreDataClass.swift */,
-				FC23F8872973617B00A451D9 /* Trip+CoreDataProperties.swift */,
-				FC23F8882973617B00A451D9 /* Pin+CoreDataClass.swift */,
-				FC23F8892973617B00A451D9 /* Pin+CoreDataProperties.swift */,
+				FC03C37F2987206C00F9BE34 /* Pin+CoreDataClass.swift */,
+				FC03C3802987206C00F9BE34 /* Pin+CoreDataProperties.swift */,
+				FC03C3812987206C00F9BE34 /* Trip+CoreDataClass.swift */,
+				FC03C3822987206C00F9BE34 /* Trip+CoreDataProperties.swift */,
+				FC03C3832987206C00F9BE34 /* Note+CoreDataClass.swift */,
+				FC03C3842987206C00F9BE34 /* Note+CoreDataProperties.swift */,
 				FC2423D42964A98500A16EE5 /* DataManager.swift */,
 			);
 			path = CoreData;
@@ -264,6 +277,7 @@
 		FC7E490029660B320088131A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				FC03C37A29871A9C00F9BE34 /* NotesList */,
 				FC23F8922974552400A451D9 /* Filter */,
 				FC23F87029734F3C00A451D9 /* NewPin */,
 				FC5AA7122968D7DA0068CDD5 /* Note */,
@@ -415,20 +429,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC03C3882987206C00F9BE34 /* Trip+CoreDataProperties.swift in Sources */,
 				FC23F899297458B100A451D9 /* PinModel.swift in Sources */,
 				FC2423E22964D10D00A16EE5 /* SuccessNewTripViewModel.swift in Sources */,
 				FC2423D82964B09B00A16EE5 /* ImageNewTripViewController.swift in Sources */,
 				FC90742328328E9200951CFA /* MapViewController.swift in Sources */,
 				FC2423D12964A65F00A16EE5 /* NameNewTripViewController.swift in Sources */,
+				FC03C3892987206C00F9BE34 /* Note+CoreDataClass.swift in Sources */,
 				FC2423CE2964860B00A16EE5 /* OutlinedLabel.swift in Sources */,
 				FC23F87229734F4900A451D9 /* NewPinViewController.swift in Sources */,
 				FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */,
+				FC03C37E29871AD700F9BE34 /* NotesListViewModel.swift in Sources */,
 				FC23F8942974553200A451D9 /* MapFilterViewController.swift in Sources */,
-				FC23F88A2973617B00A451D9 /* Note+CoreDataClass.swift in Sources */,
-				FC23F88B2973617B00A451D9 /* Note+CoreDataProperties.swift in Sources */,
 				FC23F8772973508F00A451D9 /* TripIconCollectionViewCell.swift in Sources */,
 				FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */,
 				FC2423D32964A69500A16EE5 /* NameNewTripViewModel.swift in Sources */,
+				FC03C3852987206C00F9BE34 /* Pin+CoreDataClass.swift in Sources */,
+				FC03C37C29871AA700F9BE34 /* NotesListViewController.swift in Sources */,
 				FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */,
 				FC23F89B29749F3F00A451D9 /* PinAnnotationView.swift in Sources */,
 				FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */,
@@ -438,14 +455,13 @@
 				FC5AA7162968D8EB0068CDD5 /* NoteViewModel.swift in Sources */,
 				FC5AA7142968D8A30068CDD5 /* NoteViewController.swift in Sources */,
 				FC23F87429734F9B00A451D9 /* NewPinViewModel.swift in Sources */,
-				FC23F88F2973617B00A451D9 /* Pin+CoreDataProperties.swift in Sources */,
 				FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */,
-				FC23F88E2973617B00A451D9 /* Pin+CoreDataClass.swift in Sources */,
 				FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */,
-				FC23F88C2973617B00A451D9 /* Trip+CoreDataClass.swift in Sources */,
+				FC03C3872987206C00F9BE34 /* Trip+CoreDataClass.swift in Sources */,
+				FC03C38A2987206C00F9BE34 /* Note+CoreDataProperties.swift in Sources */,
 				FC2423DA2964B0A400A16EE5 /* ImageNewTripViewModel.swift in Sources */,
 				FC7E48FA2965C7EA0088131A /* TripView.swift in Sources */,
-				FC23F88D2973617B00A451D9 /* Trip+CoreDataProperties.swift in Sources */,
+				FC03C3862987206C00F9BE34 /* Pin+CoreDataProperties.swift in Sources */,
 				FC23F8962974553A00A451D9 /* MapFilterViewModel.swift in Sources */,
 				FC23F89129744BF000A451D9 /* UIViewController+Extensions.swift in Sources */,
 				FC2423DD2964C89C00A16EE5 /* ImageNewTripCollectionViewCell.swift in Sources */,

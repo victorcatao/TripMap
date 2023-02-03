@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol NoteViewControllerDelegate: AnyObject {
+    func didCloseNoteViewController()
+}
+
 final class NoteViewController: UIViewController {
+    
+    // MARK: - Public Properties
+
+    weak var delegate: NoteViewControllerDelegate?
     
     // MARK: - Views
     
@@ -110,6 +118,8 @@ final class NoteViewController: UIViewController {
     private func didTapSave() {
         guard let title = titleTextField.text else { return }
         viewModel.saveNote(title: title, text: noteTextView.text)
-        self.dismiss(animated: true)
+        self.dismiss(animated: true) { [weak self] in
+            self?.delegate?.didCloseNoteViewController()
+        }
     }
 }
