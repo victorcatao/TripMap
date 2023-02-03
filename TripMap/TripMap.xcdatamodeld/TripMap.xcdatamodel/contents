@@ -11,14 +11,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="pinDescription" optional="YES" attributeType="String"/>
         <attribute name="visited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="note" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="pins" inverseEntity="Trip"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES">
         <attribute name="finished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="note" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note"/>
         <relationship name="pins" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Pin" inverseName="trip" inverseEntity="Pin"/>
     </entity>
 </model>

@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		FC03C37C29871AA700F9BE34 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C37B29871AA700F9BE34 /* NotesListViewController.swift */; };
 		FC03C37E29871AD700F9BE34 /* NotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C37D29871AD700F9BE34 /* NotesListViewModel.swift */; };
-		FC03C3852987206C00F9BE34 /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C37F2987206C00F9BE34 /* Pin+CoreDataClass.swift */; };
-		FC03C3862987206C00F9BE34 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3802987206C00F9BE34 /* Pin+CoreDataProperties.swift */; };
-		FC03C3872987206C00F9BE34 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3812987206C00F9BE34 /* Trip+CoreDataClass.swift */; };
-		FC03C3882987206C00F9BE34 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3822987206C00F9BE34 /* Trip+CoreDataProperties.swift */; };
-		FC03C3892987206C00F9BE34 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3832987206C00F9BE34 /* Note+CoreDataClass.swift */; };
-		FC03C38A2987206C00F9BE34 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC03C3842987206C00F9BE34 /* Note+CoreDataProperties.swift */; };
 		FC23F8682973323A00A451D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC23F86A2973323A00A451D9 /* Localizable.strings */; };
 		FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23F86C2973336F00A451D9 /* String+Extensions.swift */; };
 		FC23F86F29733E9000A451D9 /* loading-pins.json in Resources */ = {isa = PBXBuildFile; fileRef = FC23F86E29733E9000A451D9 /* loading-pins.json */; };
@@ -49,6 +43,12 @@
 		FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC90742C28328E9700951CFA /* LaunchScreen.storyboard */; };
 		FC9089CA296B52AD005EF42C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FC9089C9296B52AD005EF42C /* Lottie */; };
 		FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */; };
+		FCE7E7FB298DCC35008D4739 /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F5298DCC35008D4739 /* Pin+CoreDataClass.swift */; };
+		FCE7E7FC298DCC35008D4739 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F6298DCC35008D4739 /* Pin+CoreDataProperties.swift */; };
+		FCE7E7FD298DCC35008D4739 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F7298DCC35008D4739 /* Note+CoreDataClass.swift */; };
+		FCE7E7FE298DCC35008D4739 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */; };
+		FCE7E7FF298DCC35008D4739 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */; };
+		FCE7E800298DCC35008D4739 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */; };
 		FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7C29636034003CD6AE /* MapViewModel.swift */; };
 		FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */; };
 /* End PBXBuildFile section */
@@ -56,12 +56,6 @@
 /* Begin PBXFileReference section */
 		FC03C37B29871AA700F9BE34 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
 		FC03C37D29871AD700F9BE34 /* NotesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewModel.swift; sourceTree = "<group>"; };
-		FC03C37F2987206C00F9BE34 /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FC03C3802987206C00F9BE34 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FC03C3812987206C00F9BE34 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FC03C3822987206C00F9BE34 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FC03C3832987206C00F9BE34 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FC03C3842987206C00F9BE34 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FC23F8692973323A00A451D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FC23F86B2973325800A451D9 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC23F86C2973336F00A451D9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -98,6 +92,12 @@
 		FC90742D28328E9700951CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC90742F28328E9700951CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "trip-lottie-animation.json"; sourceTree = "<group>"; };
+		FCE7E7F5298DCC35008D4739 /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FCE7E7F6298DCC35008D4739 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FCE7E7F7298DCC35008D4739 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FCEADF7C29636034003CD6AE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -263,12 +263,12 @@
 		FC7E48FE29660AA50088131A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FC03C37F2987206C00F9BE34 /* Pin+CoreDataClass.swift */,
-				FC03C3802987206C00F9BE34 /* Pin+CoreDataProperties.swift */,
-				FC03C3812987206C00F9BE34 /* Trip+CoreDataClass.swift */,
-				FC03C3822987206C00F9BE34 /* Trip+CoreDataProperties.swift */,
-				FC03C3832987206C00F9BE34 /* Note+CoreDataClass.swift */,
-				FC03C3842987206C00F9BE34 /* Note+CoreDataProperties.swift */,
+				FCE7E7F5298DCC35008D4739 /* Pin+CoreDataClass.swift */,
+				FCE7E7F6298DCC35008D4739 /* Pin+CoreDataProperties.swift */,
+				FCE7E7F7298DCC35008D4739 /* Note+CoreDataClass.swift */,
+				FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */,
+				FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */,
+				FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */,
 				FC2423D42964A98500A16EE5 /* DataManager.swift */,
 			);
 			path = CoreData;
@@ -429,14 +429,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC03C3882987206C00F9BE34 /* Trip+CoreDataProperties.swift in Sources */,
 				FC23F899297458B100A451D9 /* PinModel.swift in Sources */,
 				FC2423E22964D10D00A16EE5 /* SuccessNewTripViewModel.swift in Sources */,
 				FC2423D82964B09B00A16EE5 /* ImageNewTripViewController.swift in Sources */,
 				FC90742328328E9200951CFA /* MapViewController.swift in Sources */,
 				FC2423D12964A65F00A16EE5 /* NameNewTripViewController.swift in Sources */,
-				FC03C3892987206C00F9BE34 /* Note+CoreDataClass.swift in Sources */,
 				FC2423CE2964860B00A16EE5 /* OutlinedLabel.swift in Sources */,
+				FCE7E7FF298DCC35008D4739 /* Trip+CoreDataClass.swift in Sources */,
 				FC23F87229734F4900A451D9 /* NewPinViewController.swift in Sources */,
 				FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */,
 				FC03C37E29871AD700F9BE34 /* NotesListViewModel.swift in Sources */,
@@ -444,24 +443,25 @@
 				FC23F8772973508F00A451D9 /* TripIconCollectionViewCell.swift in Sources */,
 				FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */,
 				FC2423D32964A69500A16EE5 /* NameNewTripViewModel.swift in Sources */,
-				FC03C3852987206C00F9BE34 /* Pin+CoreDataClass.swift in Sources */,
 				FC03C37C29871AA700F9BE34 /* NotesListViewController.swift in Sources */,
 				FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */,
 				FC23F89B29749F3F00A451D9 /* PinAnnotationView.swift in Sources */,
 				FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */,
+				FCE7E800298DCC35008D4739 /* Trip+CoreDataProperties.swift in Sources */,
+				FCE7E7FE298DCC35008D4739 /* Note+CoreDataProperties.swift in Sources */,
 				FC2423D52964A98500A16EE5 /* DataManager.swift in Sources */,
 				FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */,
 				FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */,
 				FC5AA7162968D8EB0068CDD5 /* NoteViewModel.swift in Sources */,
 				FC5AA7142968D8A30068CDD5 /* NoteViewController.swift in Sources */,
+				FCE7E7FD298DCC35008D4739 /* Note+CoreDataClass.swift in Sources */,
 				FC23F87429734F9B00A451D9 /* NewPinViewModel.swift in Sources */,
+				FCE7E7FC298DCC35008D4739 /* Pin+CoreDataProperties.swift in Sources */,
 				FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */,
+				FCE7E7FB298DCC35008D4739 /* Pin+CoreDataClass.swift in Sources */,
 				FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */,
-				FC03C3872987206C00F9BE34 /* Trip+CoreDataClass.swift in Sources */,
-				FC03C38A2987206C00F9BE34 /* Note+CoreDataProperties.swift in Sources */,
 				FC2423DA2964B0A400A16EE5 /* ImageNewTripViewModel.swift in Sources */,
 				FC7E48FA2965C7EA0088131A /* TripView.swift in Sources */,
-				FC03C3862987206C00F9BE34 /* Pin+CoreDataProperties.swift in Sources */,
 				FC23F8962974553A00A451D9 /* MapFilterViewModel.swift in Sources */,
 				FC23F89129744BF000A451D9 /* UIViewController+Extensions.swift in Sources */,
 				FC2423DD2964C89C00A16EE5 /* ImageNewTripCollectionViewCell.swift in Sources */,

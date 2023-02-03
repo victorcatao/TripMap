@@ -48,7 +48,7 @@ final class NoteViewModel {
                 let note = Note(context: DataManager.shared.context)
                 note.title = title
                 note.text = text
-                trip?.addToNote(note)
+                trip?.addToNotes(note)
             }
         case .pin:
             if let note = note { // update note
@@ -58,7 +58,7 @@ final class NoteViewModel {
                 let note = Note(context: DataManager.shared.context)
                 note.title = title
                 note.text = text
-                pin?.addToNote(note)
+                pin?.addToNotes(note)
             }
         }
         

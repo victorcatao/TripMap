@@ -27,14 +27,14 @@ final class NotesListViewModel {
     init(trip: Trip) {
         self.trip = trip
         self.pin = nil
-        self.notes = trip.note?.allObjects as? [Note] ?? []
+        self.notes = trip.notes?.allObjects as? [Note] ?? []
         self.notes = notes.reversed()
     }
     
     init(pin: Pin) {
         self.pin = pin
         self.trip = nil
-        self.notes = pin.note?.allObjects as? [Note] ?? []
+        self.notes = pin.notes?.allObjects as? [Note] ?? []
     }
     
     func getNumberOfRows() -> Int {
@@ -51,7 +51,7 @@ final class NotesListViewModel {
             guard let objectId = pin?.objectID else { return }
             do {
                 pin = try DataManager.shared.context.existingObject(with: objectId) as? Pin
-                notes = pin?.note?.allObjects as? [Note] ?? []
+                notes = pin?.notes?.allObjects as? [Note] ?? []
                 notes = notes.reversed()
             } catch let error {
                 print("Error fetching songs \(error)")
@@ -60,7 +60,7 @@ final class NotesListViewModel {
             guard let objectId = trip?.objectID else { return }
             do {
                 trip = try DataManager.shared.context.existingObject(with: objectId) as? Trip
-                notes = trip?.note?.allObjects as? [Note] ?? []
+                notes = trip?.notes?.allObjects as? [Note] ?? []
                 notes = notes.reversed()
             } catch let error {
                 print("Error fetching songs \(error)")
