@@ -32,6 +32,20 @@ final class MapViewController: UIViewController {
         return button
     }()
     
+    private lazy var locationButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.addTarget(self, action: #selector(didTapLocationButton), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "location.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = .orange
+        button.layer.cornerRadius = 30
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = .init(top: 10, left: 8, bottom: 15, right: 15)
+        
+        return button
+    }()
+    
     
     // MARK: - LifeCycle
     
@@ -62,6 +76,7 @@ final class MapViewController: UIViewController {
     }
     
     private func setupView() {
+        // Back Button
         self.navigationItem.setHidesBackButton(true, animated:false)
 
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
@@ -83,6 +98,7 @@ final class MapViewController: UIViewController {
         
         setUpMapView()
         setUpFilterView()
+        setUpLocationView()
         setUpFakeLoadingView()
     }
     
@@ -111,6 +127,16 @@ final class MapViewController: UIViewController {
         filterButton
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
             .pin(.bottom, to: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            .pin(.height, relation: .equalToConstant, constant: 60)
+            .pin(.width, relation: .equalToConstant, constant: 60)
+    }
+    
+    
+    private func setUpLocationView() {
+        view.addSubview(locationButton)
+        locationButton
+            .pin(.trailing, to: view.trailingAnchor, constant: -16)
+            .pin(.bottom, to: filterButton.topAnchor, constant: -8)
             .pin(.height, relation: .equalToConstant, constant: 60)
             .pin(.width, relation: .equalToConstant, constant: 60)
     }
@@ -187,6 +213,17 @@ final class MapViewController: UIViewController {
         let mapFilterViewController = MapFilterViewController(viewModel: viewModel.createMapFilterViewModel())
         mapFilterViewController.delegate = self
         present(UINavigationController(rootViewController: mapFilterViewController), animated: true)
+    }
+    
+    @objc
+    func didTapLocationButton() {
+        guard mapView.userLocation.coordinate.longitude != 0 else { return }
+        
+        let userLatitude = mapView.userLocation.coordinate.latitude
+        let userLongitude = mapView.userLocation.coordinate.longitude
+        let span = MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04)
+        let center = CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude)
+        mapView.setRegion(MKCoordinateRegion(center: center, span: span), animated: true)
     }
     
     @objc
