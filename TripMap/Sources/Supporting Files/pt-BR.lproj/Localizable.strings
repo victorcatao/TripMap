@@ -39,5 +39,10 @@
 "new_pin" = "Novo pin";
 "filter_title" = "Filtrar";
 "show_visited" = "Mostrar visitado";
+"show_not_visited" = "Mostrar não visitado";
 "generic_error" = "Algo deu errado.";
 "search" = "Pesquisar...";
+"close" = "Fechar";
+"tutorial_pin_label" = "Pressione e segure no mapa para criar um novo Pin";
+"tutorial_location_label" = "Pressione o botão de localização para mover para a sua localização";
+"tutorial_filter_label" = "Pressione o botão de filtro para filtrar os seus pins";

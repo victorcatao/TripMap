@@ -66,6 +66,12 @@ final class MapViewController: UIViewController {
         reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showTutorialIfNeeded()
+    }
+    
     // MARK: - Private Methods
     
     private func setupLocationManager() {
@@ -270,8 +276,6 @@ extension MapViewController: MKMapViewDelegate {
                   let longitude = view.annotation?.coordinate.longitude,
                   let pin = self.viewModel.getPinWith(latitude: latitude, longitude: longitude) else { return }
             
-//            let viewController = NoteViewController(viewModel: NoteViewModel(pin: pin))
-//            self.present(UINavigationController(rootViewController: viewController), animated: true)
             let viewController = NotesListViewController(viewModel: NotesListViewModel(pin: pin))
             self.navigationController?.pushViewController(viewController, animated: true)
         }))
@@ -320,6 +324,14 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         present(alert, animated: true)
+    }
+    
+    private func showTutorialIfNeeded() {
+        guard UserDefaults.standard.bool(forKey: "userDidSeeMapTutorial") == false else { return }
+
+        let tutorialViewcontroller = MapTutorialViewController()
+        tutorialViewcontroller.modalPresentationStyle = .overFullScreen
+        present(tutorialViewcontroller, animated: true)
     }
     
 }

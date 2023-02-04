@@ -42,3 +42,7 @@
 "show_not_visited" = "Show not visited";
 "generic_error" = "Something went wrong.";
 "search" = "Search...";
+"close" = "Close";
+"tutorial_pin_label" = "Tap and hold on map to create a new Pin";
+"tutorial_location_label" = "Tap on location button to show your location";
+"tutorial_filter_label" = "Tap on filter button to filter your pins";

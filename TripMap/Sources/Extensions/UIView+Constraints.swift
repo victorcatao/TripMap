@@ -15,6 +15,36 @@ extension UIView {
             case equal, greaterThanOrEqual, lessThanOrEqual, greaterThanOrEqualToConstant, equalToConstant, lessThanOrEqualToConstant
         }
     }
+    
+    @discardableResult
+    func pinToSuperview(
+        _ anchor: Anchor,
+        relation: Anchor.Relation = .equal,
+        constant: CGFloat = 0,
+        priority: UILayoutPriority = UILayoutPriority.required,
+        multiplier: CGFloat = 1.0
+    ) -> UIView {
+        guard let superview else { return self }
+        
+        switch anchor {
+        case .leading:
+            return pin(anchor, relation: relation, to: superview.leadingAnchor, constant: constant, priority: priority)
+        case .top:
+            return pin(anchor, relation: relation, to: superview.topAnchor, constant: constant, priority: priority)
+        case .trailing:
+            return pin(anchor, relation: relation, to: superview.trailingAnchor, constant: constant, priority: priority)
+        case .bottom:
+            return pin(anchor, relation: relation, to: superview.bottomAnchor, constant: constant, priority: priority)
+        case .width:
+            return pin(anchor, relation: relation, to: superview.widthAnchor, constant: constant, priority: priority, multiplier: multiplier)
+        case .height:
+            return pin(anchor, relation: relation, to: superview.heightAnchor, constant: constant, priority: priority, multiplier: multiplier)
+        case .centerX:
+            return pin(anchor, relation: relation, to: superview.centerXAnchor, constant: constant, priority: priority)
+        case .centerY:
+            return pin(anchor, relation: relation, to: superview.centerYAnchor, constant: constant, priority: priority)
+        }
+    }
 
     @discardableResult
     func pin(

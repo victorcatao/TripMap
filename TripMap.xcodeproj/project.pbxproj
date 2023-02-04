@@ -49,6 +49,11 @@
 		FCE7E7FE298DCC35008D4739 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */; };
 		FCE7E7FF298DCC35008D4739 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */; };
 		FCE7E800298DCC35008D4739 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */; };
+		FCE7E803298E9542008D4739 /* MapTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E802298E9542008D4739 /* MapTutorialViewController.swift */; };
+		FCE7E807298E9B96008D4739 /* filter.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E804298E9B95008D4739 /* filter.json */; };
+		FCE7E808298E9B96008D4739 /* locate-gps.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E805298E9B95008D4739 /* locate-gps.json */; };
+		FCE7E809298E9B96008D4739 /* tap-hold.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E806298E9B96008D4739 /* tap-hold.json */; };
+		FCE7E80B298E9BCE008D4739 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E80A298E9BCE008D4739 /* UIView+Extensions.swift */; };
 		FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7C29636034003CD6AE /* MapViewModel.swift */; };
 		FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +103,11 @@
 		FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FCE7E802298E9542008D4739 /* MapTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTutorialViewController.swift; sourceTree = "<group>"; };
+		FCE7E804298E9B95008D4739 /* filter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = filter.json; sourceTree = "<group>"; };
+		FCE7E805298E9B95008D4739 /* locate-gps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locate-gps.json"; sourceTree = "<group>"; };
+		FCE7E806298E9B96008D4739 /* tap-hold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tap-hold.json"; sourceTree = "<group>"; };
+		FCE7E80A298E9BCE008D4739 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		FCEADF7C29636034003CD6AE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +174,7 @@
 				FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */,
 				FC23F86C2973336F00A451D9 /* String+Extensions.swift */,
 				FC23F89029744BF000A451D9 /* UIViewController+Extensions.swift */,
+				FCE7E80A298E9BCE008D4739 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -234,6 +245,9 @@
 		FC7E48FB29660A5C0088131A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCE7E804298E9B95008D4739 /* filter.json */,
+				FCE7E805298E9B95008D4739 /* locate-gps.json */,
+				FCE7E806298E9B96008D4739 /* tap-hold.json */,
 				FC23F86E29733E9000A451D9 /* loading-pins.json */,
 				FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */,
 				FC90742A28328E9700951CFA /* Assets.xcassets */,
@@ -277,6 +291,7 @@
 		FC7E490029660B320088131A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				FCE7E801298E9538008D4739 /* MapTutorial */,
 				FC03C37A29871A9C00F9BE34 /* NotesList */,
 				FC23F8922974552400A451D9 /* Filter */,
 				FC23F87029734F3C00A451D9 /* NewPin */,
@@ -322,6 +337,14 @@
 				FCEADF8029639A0B003CD6AE /* Sources */,
 			);
 			path = TripMap;
+			sourceTree = "<group>";
+		};
+		FCE7E801298E9538008D4739 /* MapTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				FCE7E802298E9542008D4739 /* MapTutorialViewController.swift */,
+			);
+			path = MapTutorial;
 			sourceTree = "<group>";
 		};
 		FCEADF8029639A0B003CD6AE /* Sources */ = {
@@ -415,9 +438,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC23F86F29733E9000A451D9 /* loading-pins.json in Resources */,
+				FCE7E807298E9B96008D4739 /* filter.json in Resources */,
+				FCE7E808298E9B96008D4739 /* locate-gps.json in Resources */,
 				FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */,
 				FC23F8682973323A00A451D9 /* Localizable.strings in Resources */,
 				FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */,
+				FCE7E809298E9B96008D4739 /* tap-hold.json in Resources */,
 				FC90742B28328E9700951CFA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,8 +474,10 @@
 				FC23F89B29749F3F00A451D9 /* PinAnnotationView.swift in Sources */,
 				FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */,
 				FCE7E800298DCC35008D4739 /* Trip+CoreDataProperties.swift in Sources */,
+				FCE7E803298E9542008D4739 /* MapTutorialViewController.swift in Sources */,
 				FCE7E7FE298DCC35008D4739 /* Note+CoreDataProperties.swift in Sources */,
 				FC2423D52964A98500A16EE5 /* DataManager.swift in Sources */,
+				FCE7E80B298E9BCE008D4739 /* UIView+Extensions.swift in Sources */,
 				FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */,
 				FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */,
 				FC5AA7162968D8EB0068CDD5 /* NoteViewModel.swift in Sources */,
