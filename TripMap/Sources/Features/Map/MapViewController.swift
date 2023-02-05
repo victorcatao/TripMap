@@ -290,13 +290,29 @@ extension MapViewController: MKMapViewDelegate {
             guard let self,
                   let latitude = view.annotation?.coordinate.latitude,
                   let longitude = view.annotation?.coordinate.longitude else { return }
-            self.viewModel.deletePin(latitude: latitude, longitude: longitude)
-            self.reloadData()
+            self.deletePin(name: myAnnotation.name, latitude: latitude, longitude: longitude)
         }))
         
         alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in }))
         
         present(alert, animated: true)
+    }
+    
+    private func deletePin(name: String, latitude: Double, longitude: Double) {
+        let alertController = UIAlertController(title: name,
+                                                message: "confirmation_delete_pin".localized,
+                                                preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "cancel".localized, style: .cancel))
+
+        alertController.addAction(
+            UIAlertAction.init(title: "yes".localized, style: .default, handler: { _ in
+                self.viewModel.deletePin(latitude: latitude, longitude: longitude)
+                self.reloadData()
+            })
+        )
+
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func openRouteOptions(latitude: Double, longitude: Double) {

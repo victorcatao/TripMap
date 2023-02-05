@@ -28,6 +28,7 @@ final class TripsListViewController: UIViewController {
         let tableView = UITableView()
         tableView.allowsMultipleSelection = false
         tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
     
@@ -198,11 +199,28 @@ final class TripsListViewController: UIViewController {
     }
     
     private func didTapDeleteTrip(at indexPath: IndexPath) {
-        viewModel.deleteTrip(at: indexPath.row)
-        UIView.transition(with: tableView,
-                          duration: 0.5,
-                          options: .transitionCrossDissolve,
-                          animations: { self.reloadData() })
+        let trip = viewModel.getTrip(at: indexPath.row)
+        let alertController = UIAlertController(title: trip.name ?? "",
+                                                message: "confirmation_delete_trip".localized,
+                                                preferredStyle: .alert)
+        
+        alertController.addAction(
+            UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
+            })
+        )
+
+        alertController.addAction(
+            UIAlertAction.init(title: "yes".localized, style: .default, handler: { _ in
+                self.viewModel.deleteTrip(at: indexPath.row)
+                UIView.transition(with: self.tableView,
+                                  duration: 0.5,
+                                  options: .transitionCrossDissolve,
+                                  animations: { self.reloadData() })
+            })
+        )
+
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func didTapNotesforTrip(at indexPath: IndexPath) {
@@ -290,5 +308,9 @@ extension TripsListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.setFilteredText(searchText)
         reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
