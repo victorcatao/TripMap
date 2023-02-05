@@ -26,6 +26,20 @@ final class PinAnnotationView: MKAnnotationView {
     
     // MARK: - Views
     
+    private lazy var contentEmojiImageView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 25
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    private lazy var emojiImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private lazy var emojiLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30)
@@ -72,8 +86,20 @@ final class PinAnnotationView: MKAnnotationView {
     private func setupUI() {
         backgroundColor = .clear
 
-        addSubview(emojiLabel)
-        addSubview(nameLabel)
+        contentEmojiImageView.addSubview(emojiImageView)
+        addSubviews(contentEmojiImageView, emojiLabel, nameLabel)
+        
+        contentEmojiImageView
+            .pinToSuperview(.top)
+            .pinToSuperview(.centerX)
+            .pin(.height, relation: .equalToConstant, constant: 50)
+            .pin(.width, relation: .equalToConstant, constant: 50)
+        
+        emojiImageView
+            .pinToSuperview(.centerX)
+            .pinToSuperview(.centerY)
+            .pin(.height, relation: .equalToConstant, constant: 30)
+            .pin(.width, relation: .equalToConstant, constant: 30)
         
         emojiLabel
             .pin(.leading, to: leadingAnchor)
@@ -92,6 +118,36 @@ final class PinAnnotationView: MKAnnotationView {
         emojiLabel.text = annotation.emoji
         nameLabel.text = annotation.name
         
-        alpha = annotation.visited ? 0.5 : 1.0
+        emojiLabel.isHidden = annotation.visited
+        contentEmojiImageView.isHidden = !emojiLabel.isHidden
+        
+        if annotation.visited, let emojiImage = annotation.emoji.image() {
+            emojiImageView.image = convertToGrayScale(image: emojiImage)
+        }
     }
+    
+    private func convertToGrayScale(image: UIImage) -> UIImage {
+        // Create image rectangle with current image width/height
+        let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+
+        // Grayscale color space
+        let colorSpace = CGColorSpaceCreateDeviceGray()
+        let width = image.size.width
+        let height = image.size.height
+
+        // Create bitmap content with current image size and grayscale colorspace
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
+
+        // Draw image into current context, with specified rectangle
+        // using previously defined context (with grayscale colorspace)
+        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
+        context?.draw(image.cgImage!, in: imageRect)
+        let imageRef = context!.makeImage()
+
+        // Create a new UIImage object
+        let newImage = UIImage(cgImage: imageRef!)
+
+        return newImage
+    }
+    
 }
