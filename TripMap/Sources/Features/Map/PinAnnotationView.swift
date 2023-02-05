@@ -72,7 +72,7 @@ final class PinAnnotationView: MKAnnotationView {
         frame = CGRect(x: 0, y: 0, width: 50, height: 70)
         centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
 
-        canShowCallout = true
+        canShowCallout = false
         setupUI()
     }
 

@@ -190,6 +190,7 @@ final class MapViewController: UIViewController {
         for pin in viewModel.pinObjects {
             let annotation = PinAnnotationView.Annotation(emoji: pin.icon ?? "", name: pin.name ?? "", visited: pin.visited)
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
+            annotation.title = pin.name
             mapView.addAnnotation(annotation)
         }
         
@@ -262,6 +263,8 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapView.deselectAnnotation(view.annotation, animated: false)
+        
         guard let myAnnotation = view.annotation as? PinAnnotationView.Annotation else { return }
         let alert = UIAlertController(title: myAnnotation.name, message: "select_an_option".localized, preferredStyle: .actionSheet)
         
@@ -293,7 +296,7 @@ extension MapViewController: MKMapViewDelegate {
             self.deletePin(name: myAnnotation.name, latitude: latitude, longitude: longitude)
         }))
         
-        alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in }))
+        alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel))
         
         present(alert, animated: true)
     }
