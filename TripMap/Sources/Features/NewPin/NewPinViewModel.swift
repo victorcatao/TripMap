@@ -12,19 +12,33 @@ final class NewPinViewModel {
     // MARK: - Private Properties
 
     private let trip: Trip?
-    
     private let coordinate: (lat: Double, lng: Double)
-    
     private var allPinEmojis = PinDatabase.allPinEmojis
+    private var pinToEdit: Pin?
     
     // MARK: - LifeCycle
 
-    init(trip: Trip?, latitude: Double, longitude: Double) {
+    init(trip: Trip?,
+         pinToEdit: Pin? = nil,
+         latitude: Double,
+         longitude: Double) {
         self.trip = trip
         self.coordinate = (lat: latitude, lng: longitude)
+        self.pinToEdit = pinToEdit
+        if pinToEdit != nil, let index = allPinEmojis.firstIndex(where: { $0.emoji == pinToEdit?.icon }) {
+            allPinEmojis[index].setSelected(true)
+        }
     }
     
     // MARK: - Public Properties
+    
+    var prefilledName: String? {
+        return pinToEdit?.name
+    }
+    
+    var prefilledDescription: String? {
+        return pinToEdit?.pinDescription
+    }
     
     var numberOfEmojis: Int {
         return allPinEmojis.count
@@ -55,23 +69,35 @@ final class NewPinViewModel {
         
         let managedContext = DataManager.shared.context
         
-        let pin = Pin(context: managedContext)
-        pin.name = name
-        pin.pinDescription = description
-        pin.lat = coordinate.lat
-        pin.lng = coordinate.lng
-        pin.icon = selectedPin.emoji
-        
-        if let trip = trip {
-            trip.addToPins(pin)
+        if let pin = pinToEdit {
+            pin.name = name
+            pin.pinDescription = description
+            pin.icon = selectedPin.emoji
+            
+            do {
+                try managedContext.save()
+            } catch(_) {
+                error("generic_error".localized)
+            }
+            completion(pin)
+        } else {
+            let pin = Pin(context: managedContext)
+            pin.name = name
+            pin.pinDescription = description
+            pin.lat = coordinate.lat
+            pin.lng = coordinate.lng
+            pin.icon = selectedPin.emoji
+            
+            if let trip = trip {
+                trip.addToPins(pin)
+            }
+            
+            do {
+                try managedContext.save()
+            } catch(_) {
+                error("generic_error".localized)
+            }
+            completion(pin)
         }
-
-        do {
-            try managedContext.save()
-        } catch(_) {
-            error("generic_error".localized)
-        }
-        
-        completion(pin)
     }
 }

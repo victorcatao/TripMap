@@ -23,7 +23,6 @@
 "map_route" = "Map route";
 "see_note" = "Check note";
 "change_visited" = "Change visited";
-"cancel" = "Cancel";
 "where_are_you_going" = "Where are you going?";
 "success_trip_creation" = "Trip created successfully!";
 "title" = "Title";
@@ -52,4 +51,7 @@
 "confirmation_delete_pin" = "Are you sure you want to delete this pin?";
 "confirmation_delete_note" = "Are you sure you want to delete this note?";
 "yes" = "Yes";
-"cancel" = "Cancel";
+"edit_pin" = "Edit pin";
+"edit_trip" = "Edit trip";
+"placeholder_enter_trip_name" = "Trip name";
+"edit" = "Edit";

@@ -22,4 +22,8 @@ final class SuccessNewTripViewModel {
     var tripImage: String? {
         trip.imageName
     }
+    
+    func getTrip() -> Trip {
+        return trip
+    }
 }

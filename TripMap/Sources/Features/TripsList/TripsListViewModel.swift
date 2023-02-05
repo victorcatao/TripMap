@@ -111,4 +111,15 @@ final class TripsListViewModel {
         }
     }
     
+    func updateTripName(_ name: String, at index: Int) {
+        let trip = getTrip(at: index)
+        trip.name = name
+   
+        do {
+            try DataManager.shared.context.save()
+        } catch(_) {
+            
+        }
+    }
+    
 }

@@ -31,11 +31,12 @@ final class NewPinViewController: UIViewController {
         return label
     }()
     
-    private lazy var titleTextField: UITextField = {
+    private lazy var nameTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         textField.placeholder = "tour_eiffel".localized
         textField.borderStyle = .roundedRect
         textField.delegate = self
+        textField.text = viewModel.prefilledName
         return textField
     }()
     
@@ -52,6 +53,7 @@ final class NewPinViewController: UIViewController {
         textField.placeholder = "tour_eiffel_description_placeholder".localized
         textField.borderStyle = .roundedRect
         textField.delegate = self
+        textField.text = viewModel.prefilledDescription
         return textField
     }()
     
@@ -116,7 +118,7 @@ final class NewPinViewController: UIViewController {
         navigationItem.rightBarButtonItem = saveButton
         
         view.addSubview(titleLabel)
-        view.addSubview(titleTextField)
+        view.addSubview(nameTextField)
         view.addSubview(descriptionLabel)
         view.addSubview(descriptionTextField)
         view.addSubview(iconLabel)
@@ -127,14 +129,14 @@ final class NewPinViewController: UIViewController {
             .pin(.top, to: view.safeAreaLayoutGuide.topAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
         
-        titleTextField
+        nameTextField
             .pin(.leading, to: view.leadingAnchor, constant: 16)
             .pin(.top, to: titleLabel.bottomAnchor, constant: 8)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
         
         descriptionLabel
             .pin(.leading, to: view.leadingAnchor, constant: 16)
-            .pin(.top, to: titleTextField.bottomAnchor, constant: 16)
+            .pin(.top, to: nameTextField.bottomAnchor, constant: 16)
             .pin(.trailing, to: view.trailingAnchor, constant: -16)
         
         descriptionTextField
@@ -156,7 +158,7 @@ final class NewPinViewController: UIViewController {
     
     @objc
     private func didTapSave() {
-        viewModel.savePin(name: titleTextField.text, description: descriptionTextField.text) { [weak self] error in
+        viewModel.savePin(name: nameTextField.text, description: descriptionTextField.text) { [weak self] error in
             self?.showErrorMessage(message: error)
         } completion: { [weak self] pin in
             self?.dismiss(animated: true) {
@@ -191,7 +193,7 @@ extension NewPinViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension NewPinViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == titleTextField {
+        if textField == nameTextField {
             descriptionTextField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()

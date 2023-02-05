@@ -9,6 +9,10 @@ import UIKit
 
 final class ImageNewTripViewController: UIViewController {
     
+    // MARK: - Public Properties
+    
+    weak var successDelegate: SuccessNewTripViewControllerDelegate?
+
     // MARK: - Views
     
     private lazy var questionLabel: UILabel = {
@@ -116,6 +120,7 @@ extension ImageNewTripViewController: UICollectionViewDelegate, UICollectionView
             if let trip = trip {
                 let viewModel = SuccessNewTripViewModel(trip: trip)
                 let vc = SuccessNewTripViewController(viewModel: viewModel)
+                vc.delegate = self?.successDelegate
                 self?.navigationController?.pushViewController(vc, animated: true)
             } else {
                 //error

@@ -246,6 +246,16 @@
 			path = Note;
 			sourceTree = "<group>";
 		};
+		FC78B9CD29900C610058BA45 /* NewTrip */ = {
+			isa = PBXGroup;
+			children = (
+				FC2423DE2964CFEA00A16EE5 /* SuccessNewTrip */,
+				FC2423D62964B08400A16EE5 /* ImageNewTrip */,
+				FC2423CF2964A65500A16EE5 /* NameNewTrip */,
+			);
+			path = NewTrip;
+			sourceTree = "<group>";
+		};
 		FC7E48FB29660A5C0088131A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,14 +307,12 @@
 		FC7E490029660B320088131A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				FC78B9CD29900C610058BA45 /* NewTrip */,
 				FCE7E801298E9538008D4739 /* MapTutorial */,
 				FC03C37A29871A9C00F9BE34 /* NotesList */,
 				FC23F8922974552400A451D9 /* Filter */,
 				FC23F87029734F3C00A451D9 /* NewPin */,
 				FC5AA7122968D7DA0068CDD5 /* Note */,
-				FC2423DE2964CFEA00A16EE5 /* SuccessNewTrip */,
-				FC2423D62964B08400A16EE5 /* ImageNewTrip */,
-				FC2423CF2964A65500A16EE5 /* NameNewTrip */,
 				FC2423B529639AAF00A16EE5 /* TripsList */,
 				FCEADF8129639A23003CD6AE /* Map */,
 			);

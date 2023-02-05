@@ -188,6 +188,7 @@ final class TripsListViewController: UIViewController {
     @objc
     private func didTapAddTripButton() {
         let newTripViewController = NameNewTripViewController(viewModel: NameNewTripViewModel())
+        newTripViewController.successDelegate = self
         let navigation = UINavigationController(rootViewController: newTripViewController)
         present(navigation, animated: true)
     }
@@ -248,6 +249,30 @@ final class TripsListViewController: UIViewController {
         tableView.reloadData()
         emptyView.isHidden = viewModel.getNumberOfRows() > 0
     }
+    
+    private func didTapEditTrip(at indexPath: IndexPath) {
+        let trip = viewModel.getTrip(at: indexPath.row)
+        
+        let alertController = UIAlertController(title: "edit_trip".localized, message: "", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "placeholder_enter_trip_name".localized
+            textField.text = trip.name
+        }
+        
+        let saveAction = UIAlertAction(title: "save".localized, style: .default, handler: { _ in
+            guard let firstTextField = alertController.textFields?.first as? UITextField,
+               let name = firstTextField.text else { return }
+            self.viewModel.updateTripName(name, at: indexPath.row)
+            self.reloadData()
+        })
+        
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel)
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+    }
 
 }
 
@@ -269,8 +294,7 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let trip = viewModel.getTrip(at: indexPath.row)
-        let mapViewController = MapViewController(viewModel: MapViewModel(trip: trip))
-        navigationController?.pushViewController(mapViewController, animated: true)
+        openNewTrip(trip)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -284,11 +308,17 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
         deleteAction.backgroundColor = .red
         deleteAction.image = .init(systemName: "trash")
 
+        let editAction = UIContextualAction(style: .normal, title: "edit".localized) { [weak self] _, _, _ in
+            self?.didTapEditTrip(at: indexPath)
+        }
+        editAction.backgroundColor = .darkGray
+        editAction.image = .init(systemName: "pencil")
+        
         let notesAction = UIContextualAction(style: .normal, title: "notes".localized) { [weak self] _, _, _ in
             self?.didTapNotesforTrip(at: indexPath)
         }
         notesAction.backgroundColor = .systemOrange
-        notesAction.image = .init(systemName: "pencil")
+        notesAction.image = .init(systemName: "list.clipboard")
         
         let finished = UIContextualAction(style: .normal, title: "finish".localized) { [weak self] _, _, _ in
             self?.didTapFinishTrip(at: indexPath)
@@ -296,7 +326,7 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
         finished.backgroundColor = .systemBlue
         finished.image = .init(systemName: "folder")
         
-        let config = UISwipeActionsConfiguration(actions: [deleteAction, notesAction, finished])
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, editAction, notesAction, finished])
         
         return config
     }
@@ -312,5 +342,14 @@ extension TripsListViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+}
+
+// MARK: - SuccessNewTripViewControllerDelegate
+
+extension TripsListViewController: SuccessNewTripViewControllerDelegate {
+    func openNewTrip(_ trip: Trip) {
+        let mapViewController = MapViewController(viewModel: MapViewModel(trip: trip))
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
 }

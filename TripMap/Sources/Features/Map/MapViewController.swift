@@ -188,7 +188,7 @@ final class MapViewController: UIViewController {
         mapView.removeAnnotations(mapView.annotations)
         
         for pin in viewModel.pinObjects {
-            let annotation = PinAnnotationView.Annotation(emoji: pin.icon ?? "", name: pin.name ?? "", visited: pin.visited)
+            let annotation = PinAnnotationView.Annotation(emoji: pin.icon ?? "", name: pin.name ?? "", pinDescription: pin.pinDescription, visited: pin.visited)
             annotation.coordinate = .init(latitude: pin.lat, longitude: pin.lng)
             annotation.title = pin.name
             mapView.addAnnotation(annotation)
@@ -266,7 +266,7 @@ extension MapViewController: MKMapViewDelegate {
         mapView.deselectAnnotation(view.annotation, animated: false)
         
         guard let myAnnotation = view.annotation as? PinAnnotationView.Annotation else { return }
-        let alert = UIAlertController(title: myAnnotation.name, message: "select_an_option".localized, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: myAnnotation.name, message: myAnnotation.pinDescription, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "map_route".localized, style: .default, handler: { _ in
             guard let coordinate = view.annotation?.coordinate else { return }
@@ -287,6 +287,13 @@ extension MapViewController: MKMapViewDelegate {
             guard let coordinate = view.annotation?.coordinate else { return }
             self.viewModel.updateStatus(for: coordinate)
             self.reloadData()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "edit_pin", style: .default, handler: { [weak self] _ in
+            guard let self,
+                  let latitude = view.annotation?.coordinate.latitude,
+                  let longitude = view.annotation?.coordinate.longitude else { return }
+            self.editPin(latitude: latitude, longitude: longitude)
         }))
         
         alert.addAction(UIAlertAction(title: "delete".localized, style: .destructive, handler: { [weak self] _ in
@@ -316,6 +323,13 @@ extension MapViewController: MKMapViewDelegate {
         )
 
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func editPin(latitude: Double, longitude: Double) {
+        let newPinViewModel = viewModel.createEditPinViewModel(coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+        let newPinViewController = NewPinViewController(viewModel: newPinViewModel)
+        newPinViewController.delegate = self
+        present(UINavigationController(rootViewController: newPinViewController), animated: true)
     }
     
     private func openRouteOptions(latitude: Double, longitude: Double) {

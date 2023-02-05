@@ -9,6 +9,10 @@ import UIKit
 
 final class NameNewTripViewController: UIViewController {
     
+    // MARK: - Public Properties
+    
+    weak var successDelegate: SuccessNewTripViewControllerDelegate?
+    
     // MARK: - Views
     
     private lazy var questionLabel: UILabel = {
@@ -115,6 +119,7 @@ final class NameNewTripViewController: UIViewController {
         guard let tripName = textField.text, !tripName.isEmpty else { return }
         
         let viewController = ImageNewTripViewController(viewModel: ImageNewTripViewModel(tripName: tripName))
+        viewController.successDelegate = successDelegate
         navigationController?.pushViewController(viewController, animated: true)
     }
     

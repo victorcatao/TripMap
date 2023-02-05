@@ -108,6 +108,14 @@ final class MapViewModel {
         return NewPinViewModel(trip: trip, latitude: coordinates.latitude, longitude: coordinates.longitude)
     }
     
+    func createEditPinViewModel(coordinates: CLLocationCoordinate2D) -> NewPinViewModel {
+        guard let pin = getPinWith(latitude: coordinates.latitude, longitude: coordinates.longitude) else {
+            return createNewPinViewModel(coordinates: coordinates)
+        }
+        
+        return NewPinViewModel(trip: trip, pinToEdit: pin, latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
+    
     func createMapFilterViewModel() -> MapFilterViewModel {
         return MapFilterViewModel(filter: filter)
     }

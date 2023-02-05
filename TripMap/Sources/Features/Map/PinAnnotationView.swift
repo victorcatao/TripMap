@@ -15,11 +15,13 @@ final class PinAnnotationView: MKAnnotationView {
     class Annotation: MKPointAnnotation {
         let emoji: String
         let name: String
+        let pinDescription: String?
         let visited: Bool
         
-        init(emoji: String, name: String, visited: Bool) {
+        init(emoji: String, name: String, pinDescription: String?, visited: Bool) {
             self.emoji = emoji
             self.name = name
+            self.pinDescription = pinDescription
             self.visited = visited
         }
     }

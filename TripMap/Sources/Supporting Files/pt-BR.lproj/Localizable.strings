@@ -23,7 +23,6 @@
 "map_route" = "Traçar rota";
 "see_note" = "Ver nota";
 "change_visited" = "Alterar visitado";
-"cancel" = "Cancelar";
 "where_are_you_going" = "Para onde você vai?";
 "success_trip_creation" = "Viagem criada com sucesso!";
 "title" = "Título";
@@ -52,4 +51,7 @@
 "confirmation_delete_pin" = "Tem certeza que deseja deletar este pin?";
 "confirmation_delete_note" = "Tem certeza que deseja deletar esta nota?";
 "yes" = "Sim";
-"cancel" = "Cancelar";
+"edit_pin" = "Editar pin";
+"edit_trip" = "Editar viagem";
+"placeholder_enter_trip_name" = "Nome da viagem";
+"edit" = "Editar";

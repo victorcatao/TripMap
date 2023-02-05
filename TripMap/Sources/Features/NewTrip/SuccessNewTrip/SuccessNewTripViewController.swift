@@ -8,7 +8,15 @@
 import UIKit
 import Lottie
 
+protocol SuccessNewTripViewControllerDelegate: AnyObject {
+    func openNewTrip(_ trip: Trip)
+}
+
 final class SuccessNewTripViewController: UIViewController {
+    
+    // MARK: - Public Properties
+    
+    weak var delegate: SuccessNewTripViewControllerDelegate?
     
     // MARK: - Views
     
@@ -92,8 +100,10 @@ final class SuccessNewTripViewController: UIViewController {
     
     @objc
     private func didTapFinishButton() {
-        presentingViewController?.viewWillAppear(true)
-        dismiss(animated: true)
+        dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
+            self.delegate?.openNewTrip(self.viewModel.getTrip())
+        }
     }
     
     private func startLottieAnimation() {
