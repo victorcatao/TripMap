@@ -46,3 +46,5 @@
 "tutorial_pin_label" = "Tap and hold on map to create a new Pin";
 "tutorial_location_label" = "Tap on location button to show your location";
 "tutorial_filter_label" = "Tap on filter button to filter your pins";
+"empty_list_trips" = "You haven't created any trips yet. Click on \"+\" button to create a new trip.";
+"empty_list_notes" = "You haven't created any notes yet. Click on \"+\" button to create a new note.";

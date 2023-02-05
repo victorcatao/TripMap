@@ -126,6 +126,8 @@ final class PinAnnotationView: MKAnnotationView {
         }
     }
     
+    // MARK: - Helpers
+
     private func convertToGrayScale(image: UIImage) -> UIImage {
         // Create image rectangle with current image width/height
         let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)

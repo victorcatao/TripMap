@@ -46,3 +46,5 @@
 "tutorial_pin_label" = "Pressione e segure no mapa para criar um novo Pin";
 "tutorial_location_label" = "Pressione o botão de localização para mover para a sua localização";
 "tutorial_filter_label" = "Pressione o botão de filtro para filtrar os seus pins";
+"empty_list_trips" = "Você ainda não criou nenhuma viagem. Clique no botão \"+\" para criar uma nova viagem.";
+"empty_list_notes" = "Você ainda não criou nenhuma nota. Clique no botão \"+\" para criar uma nova nota.";

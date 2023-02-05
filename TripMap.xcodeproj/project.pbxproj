@@ -54,6 +54,8 @@
 		FCE7E808298E9B96008D4739 /* locate-gps.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E805298E9B95008D4739 /* locate-gps.json */; };
 		FCE7E809298E9B96008D4739 /* tap-hold.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E806298E9B96008D4739 /* tap-hold.json */; };
 		FCE7E80B298E9BCE008D4739 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E80A298E9BCE008D4739 /* UIView+Extensions.swift */; };
+		FCE7E80F298F31E6008D4739 /* vacation.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E80E298F31E6008D4739 /* vacation.json */; };
+		FCE7E811298F352F008D4739 /* notes.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E810298F352F008D4739 /* notes.json */; };
 		FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7C29636034003CD6AE /* MapViewModel.swift */; };
 		FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */; };
 /* End PBXBuildFile section */
@@ -108,6 +110,8 @@
 		FCE7E805298E9B95008D4739 /* locate-gps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locate-gps.json"; sourceTree = "<group>"; };
 		FCE7E806298E9B96008D4739 /* tap-hold.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tap-hold.json"; sourceTree = "<group>"; };
 		FCE7E80A298E9BCE008D4739 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		FCE7E80E298F31E6008D4739 /* vacation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vacation.json; sourceTree = "<group>"; };
+		FCE7E810298F352F008D4739 /* notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes.json; sourceTree = "<group>"; };
 		FCEADF7C29636034003CD6AE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +249,8 @@
 		FC7E48FB29660A5C0088131A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCE7E810298F352F008D4739 /* notes.json */,
+				FCE7E80E298F31E6008D4739 /* vacation.json */,
 				FCE7E804298E9B95008D4739 /* filter.json */,
 				FCE7E805298E9B95008D4739 /* locate-gps.json */,
 				FCE7E806298E9B96008D4739 /* tap-hold.json */,
@@ -438,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC23F86F29733E9000A451D9 /* loading-pins.json in Resources */,
+				FCE7E811298F352F008D4739 /* notes.json in Resources */,
 				FCE7E807298E9B96008D4739 /* filter.json in Resources */,
 				FCE7E808298E9B96008D4739 /* locate-gps.json in Resources */,
 				FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */,
@@ -445,6 +452,7 @@
 				FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */,
 				FCE7E809298E9B96008D4739 /* tap-hold.json in Resources */,
 				FC90742B28328E9700951CFA /* Assets.xcassets in Resources */,
+				FCE7E80F298F31E6008D4739 /* vacation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

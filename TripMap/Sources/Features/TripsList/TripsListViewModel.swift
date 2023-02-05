@@ -47,7 +47,7 @@ final class TripsListViewModel {
         reloadTrips()
     }
     
-    func getNumberOfRows(for section: Int) -> Int {
+    func getNumberOfRows() -> Int {
         switch currentSelection {
         case .notFinished:
             return filteredNotFinishedTrips.count

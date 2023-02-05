@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 final class TripsListViewController: UIViewController {
     
@@ -65,6 +66,39 @@ final class TripsListViewController: UIViewController {
         return button
     }()
     
+    private lazy var emptyView: UIView = {
+        let view = UIView()
+        
+        let animationView = LottieAnimationView()
+        animationView.animation = LottieAnimation.named("vacation")
+        animationView.loopMode = .loop
+        animationView.play()
+        
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 15)
+        label.text = "empty_list_trips".localized
+        
+        view.addSubviews(animationView, label)
+        
+        animationView
+            .pinToSuperview(.leading)
+            .pinToSuperview(.top)
+            .pinToSuperview(.trailing)
+            .pin(.width, relation: .equal, to: view.widthAnchor)
+            .pin(.height, relation: .equalToConstant, constant: 170)
+        
+        label
+            .pinToSuperview(.leading, constant: 16)
+            .pin(.top, to: animationView.bottomAnchor, constant: 20)
+            .pinToSuperview(.trailing, constant: -16)
+            .pinToSuperview(.bottom)
+        
+        return view
+    }()
+    
     // MARK: - Private Properties
     
     private let viewModel = TripsListViewModel()
@@ -81,7 +115,7 @@ final class TripsListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         viewModel.viewWillAppear()
-        tableView.reloadData()
+        reloadData()
     }
     
     // MARK: - Private Methods
@@ -96,10 +130,19 @@ final class TripsListViewController: UIViewController {
     private func buildView() {
         view.backgroundColor = .white
 
-        view.addSubview(segmentedControl)
-        view.addSubview(tableView)
-        view.addSubview(newTripButton)
-        view.addSubview(allTripsButton)
+        view.addSubviews(
+            segmentedControl,
+            tableView,
+            newTripButton,
+            allTripsButton,
+            emptyView
+        )
+        
+        emptyView
+            .pinToSuperview(.centerX)
+            .pinToSuperview(.centerY)
+            .pinToSuperview(.leading)
+            .pinToSuperview(.trailing)
         
         segmentedControl
             .pin(.leading, to: view.leadingAnchor, constant: 16)
@@ -159,7 +202,7 @@ final class TripsListViewController: UIViewController {
         UIView.transition(with: tableView,
                           duration: 0.5,
                           options: .transitionCrossDissolve,
-                          animations: { self.tableView.reloadData() })
+                          animations: { self.reloadData() })
     }
     
     private func didTapNotesforTrip(at indexPath: IndexPath) {
@@ -170,17 +213,22 @@ final class TripsListViewController: UIViewController {
     
     private func didTapFinishTrip(at indexPath: IndexPath) {
         viewModel.finishTrip(index: indexPath.row, section: indexPath.section)
-        tableView.reloadData()
+        reloadData()
     }
     
     private func didTapNextTrips(){
         viewModel.updateSelection(.notFinished)
-        tableView.reloadData()
+        reloadData()
     }
     
     private func didTapFinishedTrips(){
         viewModel.updateSelection(.finished)
+        reloadData()
+    }
+    
+    private func reloadData() {
         tableView.reloadData()
+        emptyView.isHidden = viewModel.getNumberOfRows() > 0
     }
 
 }
@@ -190,7 +238,7 @@ final class TripsListViewController: UIViewController {
 extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getNumberOfRows(for: section)
+        return viewModel.getNumberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -241,6 +289,6 @@ extension TripsListViewController: UITableViewDelegate, UITableViewDataSource {
 extension TripsListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.setFilteredText(searchText)
-        tableView.reloadData()
+        reloadData()
     }
 }
