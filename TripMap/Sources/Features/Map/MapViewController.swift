@@ -289,7 +289,7 @@ extension MapViewController: MKMapViewDelegate {
             self.reloadData()
         }))
         
-        alert.addAction(UIAlertAction(title: "edit_pin", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "edit_pin".localized, style: .default, handler: { [weak self] _ in
             guard let self,
                   let latitude = view.annotation?.coordinate.latitude,
                   let longitude = view.annotation?.coordinate.longitude else { return }
@@ -360,7 +360,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     private func showTutorialIfNeeded() {
-        guard UserDefaults.standard.bool(forKey: "userDidSeeMapTutorial") == false else { return }
+        guard UserDefaults.standard.bool(forKey: "didSeeMapTutorial") == false else { return }
 
         let tutorialViewcontroller = MapTutorialViewController()
         tutorialViewcontroller.modalPresentationStyle = .overFullScreen

@@ -162,7 +162,7 @@ final class MapTutorialViewController: UIViewController {
     
     @objc
     private func didTapClose() {
-        UserDefaults.standard.setValue(true, forKey: "userDidSeeMapTutorial")
+        UserDefaults.standard.setValue(true, forKey: "didSeeMapTutorial")
         
         UIView.animate(withDuration: 0.3, delay: 0) {
             self.view.backgroundColor = .black.withAlphaComponent(0)

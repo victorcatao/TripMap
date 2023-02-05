@@ -68,20 +68,14 @@ final class NewPinViewModel {
         }
         
         let managedContext = DataManager.shared.context
-        
-        if let pin = pinToEdit {
+        var pin: Pin
+        if let pinEdit = pinToEdit {
+            pin = pinEdit
             pin.name = name
             pin.pinDescription = description
             pin.icon = selectedPin.emoji
-            
-            do {
-                try managedContext.save()
-            } catch(_) {
-                error("generic_error".localized)
-            }
-            completion(pin)
         } else {
-            let pin = Pin(context: managedContext)
+            pin = Pin(context: managedContext)
             pin.name = name
             pin.pinDescription = description
             pin.lat = coordinate.lat
@@ -91,13 +85,13 @@ final class NewPinViewModel {
             if let trip = trip {
                 trip.addToPins(pin)
             }
-            
-            do {
-                try managedContext.save()
-            } catch(_) {
-                error("generic_error".localized)
-            }
-            completion(pin)
         }
+        
+        do {
+            try managedContext.save()
+        } catch(_) {
+            error("generic_error".localized)
+        }
+        completion(pin)
     }
 }
