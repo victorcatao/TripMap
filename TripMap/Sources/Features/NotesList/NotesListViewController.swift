@@ -113,6 +113,27 @@ final class NotesListViewController: UIViewController {
         emptyView.isHidden = viewModel.getNumberOfRows() > 0
     }
     
+    private func didTapDeleteNote(at indexPath: IndexPath) {
+        let alertController = UIAlertController(title: viewModel.getNote(at: indexPath.row)?.title,
+                                                message: "confirmation_delete_note".localized,
+                                                preferredStyle: .alert)
+        
+        alertController.addAction(
+            UIAlertAction(title: "cancel".localized, style: .cancel, handler: { _ in
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
+            })
+        )
+
+        alertController.addAction(
+            UIAlertAction.init(title: "yes".localized, style: .default, handler: { _ in
+                self.viewModel.deleteNote(at: indexPath.row)
+                self.reloadData()
+            })
+        )
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -137,6 +158,22 @@ extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let viewController = viewModel.createViewControllerForNote(at: indexPath.row) else { return }
         viewController.delegate = self
         present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "delete".localized) { [weak self] _, _, _ in
+            self?.didTapDeleteNote(at: indexPath)
+        }
+        deleteAction.backgroundColor = .red
+        deleteAction.image = .init(systemName: "trash")
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        return config
     }
 }
 

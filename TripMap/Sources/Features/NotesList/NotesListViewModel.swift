@@ -37,6 +37,8 @@ final class NotesListViewModel {
         self.notes = pin.notes?.allObjects as? [Note] ?? []
     }
     
+    // MARK: - Public Methods
+
     func getNumberOfRows() -> Int {
         return notes.count
     }
@@ -101,6 +103,15 @@ final class NotesListViewModel {
         }
     }
     
+    func deleteNote(at index: Int) {
+        guard let note = getNote(at: index) else { return }
+        DataManager.shared.context.delete(note)
+        DataManager.shared.save()
+        reloadData()
+    }
+    
+    // MARK: - Private Methods
+
     private func sortNotes() {
         notes.sort(by: { $0.creationDate ?? Date() > $1.creationDate ?? Date() })
     }

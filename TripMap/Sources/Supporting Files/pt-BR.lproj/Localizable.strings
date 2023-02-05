@@ -50,5 +50,6 @@
 "empty_list_notes" = "Você ainda não criou nenhuma nota. Clique no botão \"+\" para criar uma nova nota.";
 "confirmation_delete_trip" = "Tem certeza que deseja deletar esta viagem?";
 "confirmation_delete_pin" = "Tem certeza que deseja deletar este pin?";
+"confirmation_delete_note" = "Tem certeza que deseja deletar esta nota?";
 "yes" = "Sim";
 "cancel" = "Cancelar";
