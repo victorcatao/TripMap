@@ -2,7 +2,7 @@
 //  Pin+CoreDataProperties.swift
 //  TripMap
 //
-//  Created by Victor Catão on 03/02/23.
+//  Created by Victor Catão on 05/02/23.
 //
 //
 
@@ -22,6 +22,7 @@ extension Pin {
     @NSManaged public var name: String?
     @NSManaged public var pinDescription: String?
     @NSManaged public var visited: Bool
+    @NSManaged public var creationDate: Date?
     @NSManaged public var notes: NSSet?
     @NSManaged public var trip: Trip?
 

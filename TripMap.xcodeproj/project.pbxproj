@@ -34,6 +34,12 @@
 		FC2423E22964D10D00A16EE5 /* SuccessNewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423E12964D10D00A16EE5 /* SuccessNewTripViewModel.swift */; };
 		FC5AA7142968D8A30068CDD5 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AA7132968D8A30068CDD5 /* NoteViewController.swift */; };
 		FC5AA7162968D8EB0068CDD5 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AA7152968D8EB0068CDD5 /* NoteViewModel.swift */; };
+		FC78B9C62990027C0058BA45 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78B9C02990027C0058BA45 /* Note+CoreDataClass.swift */; };
+		FC78B9C72990027C0058BA45 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78B9C12990027C0058BA45 /* Note+CoreDataProperties.swift */; };
+		FC78B9C82990027C0058BA45 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78B9C22990027C0058BA45 /* Trip+CoreDataClass.swift */; };
+		FC78B9C92990027C0058BA45 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78B9C32990027C0058BA45 /* Trip+CoreDataProperties.swift */; };
+		FC78B9CA2990027C0058BA45 /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78B9C42990027C0058BA45 /* Pin+CoreDataClass.swift */; };
+		FC78B9CB2990027C0058BA45 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78B9C52990027C0058BA45 /* Pin+CoreDataProperties.swift */; };
 		FC7E48FA2965C7EA0088131A /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E48F92965C7EA0088131A /* TripView.swift */; };
 		FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90741E28328E9200951CFA /* AppDelegate.swift */; };
 		FC90742128328E9200951CFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC90742028328E9200951CFA /* SceneDelegate.swift */; };
@@ -43,12 +49,6 @@
 		FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC90742C28328E9700951CFA /* LaunchScreen.storyboard */; };
 		FC9089CA296B52AD005EF42C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FC9089C9296B52AD005EF42C /* Lottie */; };
 		FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */; };
-		FCE7E7FB298DCC35008D4739 /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F5298DCC35008D4739 /* Pin+CoreDataClass.swift */; };
-		FCE7E7FC298DCC35008D4739 /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F6298DCC35008D4739 /* Pin+CoreDataProperties.swift */; };
-		FCE7E7FD298DCC35008D4739 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F7298DCC35008D4739 /* Note+CoreDataClass.swift */; };
-		FCE7E7FE298DCC35008D4739 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */; };
-		FCE7E7FF298DCC35008D4739 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */; };
-		FCE7E800298DCC35008D4739 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */; };
 		FCE7E803298E9542008D4739 /* MapTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E802298E9542008D4739 /* MapTutorialViewController.swift */; };
 		FCE7E807298E9B96008D4739 /* filter.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E804298E9B95008D4739 /* filter.json */; };
 		FCE7E808298E9B96008D4739 /* locate-gps.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E805298E9B95008D4739 /* locate-gps.json */; };
@@ -89,6 +89,12 @@
 		FC2423E12964D10D00A16EE5 /* SuccessNewTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessNewTripViewModel.swift; sourceTree = "<group>"; };
 		FC5AA7132968D8A30068CDD5 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		FC5AA7152968D8EB0068CDD5 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+		FC78B9C02990027C0058BA45 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC78B9C12990027C0058BA45 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FC78B9C22990027C0058BA45 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC78B9C32990027C0058BA45 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FC78B9C42990027C0058BA45 /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC78B9C52990027C0058BA45 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FC7E48F92965C7EA0088131A /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		FC90741B28328E9200951CFA /* TripMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC90741E28328E9200951CFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,12 +105,6 @@
 		FC90742D28328E9700951CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC90742F28328E9700951CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "trip-lottie-animation.json"; sourceTree = "<group>"; };
-		FCE7E7F5298DCC35008D4739 /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FCE7E7F6298DCC35008D4739 /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FCE7E7F7298DCC35008D4739 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
-		FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FCE7E802298E9542008D4739 /* MapTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTutorialViewController.swift; sourceTree = "<group>"; };
 		FCE7E804298E9B95008D4739 /* filter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = filter.json; sourceTree = "<group>"; };
 		FCE7E805298E9B95008D4739 /* locate-gps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locate-gps.json"; sourceTree = "<group>"; };
@@ -283,12 +283,12 @@
 		FC7E48FE29660AA50088131A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FCE7E7F5298DCC35008D4739 /* Pin+CoreDataClass.swift */,
-				FCE7E7F6298DCC35008D4739 /* Pin+CoreDataProperties.swift */,
-				FCE7E7F7298DCC35008D4739 /* Note+CoreDataClass.swift */,
-				FCE7E7F8298DCC35008D4739 /* Note+CoreDataProperties.swift */,
-				FCE7E7F9298DCC35008D4739 /* Trip+CoreDataClass.swift */,
-				FCE7E7FA298DCC35008D4739 /* Trip+CoreDataProperties.swift */,
+				FC78B9C02990027C0058BA45 /* Note+CoreDataClass.swift */,
+				FC78B9C12990027C0058BA45 /* Note+CoreDataProperties.swift */,
+				FC78B9C22990027C0058BA45 /* Trip+CoreDataClass.swift */,
+				FC78B9C32990027C0058BA45 /* Trip+CoreDataProperties.swift */,
+				FC78B9C42990027C0058BA45 /* Pin+CoreDataClass.swift */,
+				FC78B9C52990027C0058BA45 /* Pin+CoreDataProperties.swift */,
 				FC2423D42964A98500A16EE5 /* DataManager.swift */,
 			);
 			path = CoreData;
@@ -469,7 +469,7 @@
 				FC90742328328E9200951CFA /* MapViewController.swift in Sources */,
 				FC2423D12964A65F00A16EE5 /* NameNewTripViewController.swift in Sources */,
 				FC2423CE2964860B00A16EE5 /* OutlinedLabel.swift in Sources */,
-				FCE7E7FF298DCC35008D4739 /* Trip+CoreDataClass.swift in Sources */,
+				FC78B9C82990027C0058BA45 /* Trip+CoreDataClass.swift in Sources */,
 				FC23F87229734F4900A451D9 /* NewPinViewController.swift in Sources */,
 				FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */,
 				FC03C37E29871AD700F9BE34 /* NotesListViewModel.swift in Sources */,
@@ -478,25 +478,25 @@
 				FC23F86D2973336F00A451D9 /* String+Extensions.swift in Sources */,
 				FC2423D32964A69500A16EE5 /* NameNewTripViewModel.swift in Sources */,
 				FC03C37C29871AA700F9BE34 /* NotesListViewController.swift in Sources */,
+				FC78B9CA2990027C0058BA45 /* Pin+CoreDataClass.swift in Sources */,
 				FC90742928328E9200951CFA /* TripMap.xcdatamodeld in Sources */,
 				FC23F89B29749F3F00A451D9 /* PinAnnotationView.swift in Sources */,
 				FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */,
-				FCE7E800298DCC35008D4739 /* Trip+CoreDataProperties.swift in Sources */,
+				FC78B9C92990027C0058BA45 /* Trip+CoreDataProperties.swift in Sources */,
+				FC78B9C72990027C0058BA45 /* Note+CoreDataProperties.swift in Sources */,
 				FCE7E803298E9542008D4739 /* MapTutorialViewController.swift in Sources */,
-				FCE7E7FE298DCC35008D4739 /* Note+CoreDataProperties.swift in Sources */,
 				FC2423D52964A98500A16EE5 /* DataManager.swift in Sources */,
 				FCE7E80B298E9BCE008D4739 /* UIView+Extensions.swift in Sources */,
 				FC2423B729639AE400A16EE5 /* TripsListViewController.swift in Sources */,
 				FC2423B929639B0400A16EE5 /* TripsListViewModel.swift in Sources */,
+				FC78B9C62990027C0058BA45 /* Note+CoreDataClass.swift in Sources */,
 				FC5AA7162968D8EB0068CDD5 /* NoteViewModel.swift in Sources */,
 				FC5AA7142968D8A30068CDD5 /* NoteViewController.swift in Sources */,
-				FCE7E7FD298DCC35008D4739 /* Note+CoreDataClass.swift in Sources */,
 				FC23F87429734F9B00A451D9 /* NewPinViewModel.swift in Sources */,
-				FCE7E7FC298DCC35008D4739 /* Pin+CoreDataProperties.swift in Sources */,
 				FC90741F28328E9200951CFA /* AppDelegate.swift in Sources */,
-				FCE7E7FB298DCC35008D4739 /* Pin+CoreDataClass.swift in Sources */,
 				FC2423BC29639CA000A16EE5 /* TripListTableViewCell.swift in Sources */,
 				FC2423DA2964B0A400A16EE5 /* ImageNewTripViewModel.swift in Sources */,
+				FC78B9CB2990027C0058BA45 /* Pin+CoreDataProperties.swift in Sources */,
 				FC7E48FA2965C7EA0088131A /* TripView.swift in Sources */,
 				FC23F8962974553A00A451D9 /* MapFilterViewModel.swift in Sources */,
 				FC23F89129744BF000A451D9 /* UIViewController+Extensions.swift in Sources */,

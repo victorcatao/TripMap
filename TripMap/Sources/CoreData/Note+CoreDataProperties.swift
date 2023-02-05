@@ -2,7 +2,7 @@
 //  Note+CoreDataProperties.swift
 //  TripMap
 //
-//  Created by Victor Catão on 03/02/23.
+//  Created by Victor Catão on 05/02/23.
 //
 //
 
@@ -18,6 +18,7 @@ extension Note {
 
     @NSManaged public var text: String?
     @NSManaged public var title: String?
+    @NSManaged public var creationDate: Date?
 
 }
 

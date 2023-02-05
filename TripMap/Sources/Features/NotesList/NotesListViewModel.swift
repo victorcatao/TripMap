@@ -28,7 +28,7 @@ final class NotesListViewModel {
         self.trip = trip
         self.pin = nil
         self.notes = trip.notes?.allObjects as? [Note] ?? []
-        self.notes = notes.reversed()
+        sortNotes()
     }
     
     init(pin: Pin) {
@@ -52,7 +52,7 @@ final class NotesListViewModel {
             do {
                 pin = try DataManager.shared.context.existingObject(with: objectId) as? Pin
                 notes = pin?.notes?.allObjects as? [Note] ?? []
-                notes = notes.reversed()
+                sortNotes()
             } catch let error {
                 print("Error fetching songs \(error)")
             }
@@ -61,7 +61,7 @@ final class NotesListViewModel {
             do {
                 trip = try DataManager.shared.context.existingObject(with: objectId) as? Trip
                 notes = trip?.notes?.allObjects as? [Note] ?? []
-                notes = notes.reversed()
+                sortNotes()
             } catch let error {
                 print("Error fetching songs \(error)")
             }
@@ -99,6 +99,10 @@ final class NotesListViewModel {
             guard let pin = pin else { return nil }
             return NoteViewController(viewModel: NoteViewModel(pin: pin, note: note))
         }
+    }
+    
+    private func sortNotes() {
+        notes.sort(by: { $0.creationDate ?? Date() > $1.creationDate ?? Date() })
     }
     
 }
