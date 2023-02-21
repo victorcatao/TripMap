@@ -32,6 +32,8 @@
 		FC2423DD2964C89C00A16EE5 /* ImageNewTripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423DC2964C89C00A16EE5 /* ImageNewTripCollectionViewCell.swift */; };
 		FC2423E02964CFF400A16EE5 /* SuccessNewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423DF2964CFF400A16EE5 /* SuccessNewTripViewController.swift */; };
 		FC2423E22964D10D00A16EE5 /* SuccessNewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2423E12964D10D00A16EE5 /* SuccessNewTripViewModel.swift */; };
+		FC28680F29A2652800585E34 /* TripMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28680E29A2652800585E34 /* TripMapTests.swift */; };
+		FC28681629A267F400585E34 /* MapViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28681529A267F400585E34 /* MapViewModelTests.swift */; };
 		FC5AA7142968D8A30068CDD5 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AA7132968D8A30068CDD5 /* NoteViewController.swift */; };
 		FC5AA7162968D8EB0068CDD5 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AA7152968D8EB0068CDD5 /* NoteViewModel.swift */; };
 		FC78B9C62990027C0058BA45 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78B9C02990027C0058BA45 /* Note+CoreDataClass.swift */; };
@@ -49,6 +51,9 @@
 		FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC90742C28328E9700951CFA /* LaunchScreen.storyboard */; };
 		FC9089CA296B52AD005EF42C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FC9089C9296B52AD005EF42C /* Lottie */; };
 		FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */; };
+		FC983DC529A2AC5F0081B949 /* TripsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC983DC429A2AC5F0081B949 /* TripsListViewModelTests.swift */; };
+		FC983DC729A2B01C0081B949 /* NoteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC983DC629A2B01C0081B949 /* NoteViewModelTests.swift */; };
+		FC983DC929A2B6580081B949 /* NewPinViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC983DC829A2B6580081B949 /* NewPinViewModelTests.swift */; };
 		FCE7E803298E9542008D4739 /* MapTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE7E802298E9542008D4739 /* MapTutorialViewController.swift */; };
 		FCE7E807298E9B96008D4739 /* filter.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E804298E9B95008D4739 /* filter.json */; };
 		FCE7E808298E9B96008D4739 /* locate-gps.json in Resources */ = {isa = PBXBuildFile; fileRef = FCE7E805298E9B95008D4739 /* locate-gps.json */; };
@@ -59,6 +64,16 @@
 		FCEADF7D29636035003CD6AE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7C29636034003CD6AE /* MapViewModel.swift */; };
 		FCEADF7F29637073003CD6AE /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEADF7E29637073003CD6AE /* UIView+Constraints.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC28681029A2652800585E34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC90741328328E9100951CFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC90741A28328E9100951CFA;
+			remoteInfo = TripMap;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FC03C37B29871AA700F9BE34 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +102,9 @@
 		FC2423DC2964C89C00A16EE5 /* ImageNewTripCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNewTripCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC2423DF2964CFF400A16EE5 /* SuccessNewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessNewTripViewController.swift; sourceTree = "<group>"; };
 		FC2423E12964D10D00A16EE5 /* SuccessNewTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessNewTripViewModel.swift; sourceTree = "<group>"; };
+		FC28680C29A2652800585E34 /* TripMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC28680E29A2652800585E34 /* TripMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapTests.swift; sourceTree = "<group>"; };
+		FC28681529A267F400585E34 /* MapViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelTests.swift; sourceTree = "<group>"; };
 		FC5AA7132968D8A30068CDD5 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		FC5AA7152968D8EB0068CDD5 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		FC78B9C02990027C0058BA45 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -105,6 +123,9 @@
 		FC90742D28328E9700951CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC90742F28328E9700951CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "trip-lottie-animation.json"; sourceTree = "<group>"; };
+		FC983DC429A2AC5F0081B949 /* TripsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewModelTests.swift; sourceTree = "<group>"; };
+		FC983DC629A2B01C0081B949 /* NoteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModelTests.swift; sourceTree = "<group>"; };
+		FC983DC829A2B6580081B949 /* NewPinViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPinViewModelTests.swift; sourceTree = "<group>"; };
 		FCE7E802298E9542008D4739 /* MapTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTutorialViewController.swift; sourceTree = "<group>"; };
 		FCE7E804298E9B95008D4739 /* filter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = filter.json; sourceTree = "<group>"; };
 		FCE7E805298E9B95008D4739 /* locate-gps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locate-gps.json"; sourceTree = "<group>"; };
@@ -117,6 +138,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FC28680929A2652800585E34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC90741828328E9100951CFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +265,18 @@
 			path = SuccessNewTrip;
 			sourceTree = "<group>";
 		};
+		FC28680D29A2652800585E34 /* TripMapTests */ = {
+			isa = PBXGroup;
+			children = (
+				FC28680E29A2652800585E34 /* TripMapTests.swift */,
+				FC28681529A267F400585E34 /* MapViewModelTests.swift */,
+				FC983DC429A2AC5F0081B949 /* TripsListViewModelTests.swift */,
+				FC983DC629A2B01C0081B949 /* NoteViewModelTests.swift */,
+				FC983DC829A2B6580081B949 /* NewPinViewModelTests.swift */,
+			);
+			path = TripMapTests;
+			sourceTree = "<group>";
+		};
 		FC5AA7122968D7DA0068CDD5 /* Note */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				FC90741D28328E9200951CFA /* TripMap */,
+				FC28680D29A2652800585E34 /* TripMapTests */,
 				FC90741C28328E9200951CFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -340,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				FC90741B28328E9200951CFA /* TripMap.app */,
+				FC28680C29A2652800585E34 /* TripMapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -389,6 +431,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FC28680B29A2652800585E34 /* TripMapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC28681429A2652800585E34 /* Build configuration list for PBXNativeTarget "TripMapTests" */;
+			buildPhases = (
+				FC28680829A2652800585E34 /* Sources */,
+				FC28680929A2652800585E34 /* Frameworks */,
+				FC28680A29A2652800585E34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC28681129A2652800585E34 /* PBXTargetDependency */,
+			);
+			name = TripMapTests;
+			productName = TripMapTests;
+			productReference = FC28680C29A2652800585E34 /* TripMapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FC90741A28328E9100951CFA /* TripMap */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC90743228328E9700951CFA /* Build configuration list for PBXNativeTarget "TripMap" */;
@@ -416,9 +476,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					FC28680B29A2652800585E34 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = FC90741A28328E9100951CFA;
+					};
 					FC90741A28328E9100951CFA = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -442,11 +506,19 @@
 			projectRoot = "";
 			targets = (
 				FC90741A28328E9100951CFA /* TripMap */,
+				FC28680B29A2652800585E34 /* TripMapTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FC28680A29A2652800585E34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC90741928328E9100951CFA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,6 +539,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FC28680829A2652800585E34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC983DC729A2B01C0081B949 /* NoteViewModelTests.swift in Sources */,
+				FC983DC929A2B6580081B949 /* NewPinViewModelTests.swift in Sources */,
+				FC28680F29A2652800585E34 /* TripMapTests.swift in Sources */,
+				FC28681629A267F400585E34 /* MapViewModelTests.swift in Sources */,
+				FC983DC529A2AC5F0081B949 /* TripsListViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC90741728328E9100951CFA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,6 +600,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FC28681129A2652800585E34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC90741A28328E9100951CFA /* TripMap */;
+			targetProxy = FC28681029A2652800585E34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		FC23F86A2973323A00A451D9 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -537,6 +629,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FC28681229A2652800585E34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.victorcatao.TripMapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripMap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TripMap";
+			};
+			name = Debug;
+		};
+		FC28681329A2652800585E34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.victorcatao.TripMapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripMap.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TripMap";
+			};
+			name = Release;
+		};
 		FC90743028328E9700951CFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -710,6 +840,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FC28681429A2652800585E34 /* Build configuration list for PBXNativeTarget "TripMapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC28681229A2652800585E34 /* Debug */,
+				FC28681329A2652800585E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FC90741628328E9100951CFA /* Build configuration list for PBXProject "TripMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

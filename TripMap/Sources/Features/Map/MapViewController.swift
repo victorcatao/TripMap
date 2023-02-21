@@ -13,7 +13,7 @@ final class MapViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private let viewModel: MapViewModel
+    private let viewModel: MapViewModelProtocol
     private var didUpdateLocation = false
     private var didShowAnnotations = false
     private lazy var locationManager = CLLocationManager()
@@ -49,7 +49,7 @@ final class MapViewController: UIViewController {
     
     // MARK: - LifeCycle
     
-    init(viewModel: MapViewModel) {
+    init(viewModel: MapViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

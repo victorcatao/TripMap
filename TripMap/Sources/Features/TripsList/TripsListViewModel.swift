@@ -8,13 +8,28 @@
 import UIKit
 import CoreData
 
-final class TripsListViewModel {
-    
-    // MARK: - Public Properties
+// MARK: - TripsListSelection
 
-    enum Selection: Int {
-        case notFinished, finished
-    }
+enum TripsListSelection: Int {
+    case notFinished, finished
+}
+
+// MARK: - TripsListViewModelProtocol
+
+protocol TripsListViewModelProtocol: AnyObject {
+    func viewWillAppear()
+    func deleteTrip(at index: Int)
+    func finishTrip(index: Int, section: Int)
+    func getNumberOfRows() -> Int
+    func getTrip(at index: Int) -> Trip
+    func updateSelection(_ selection: TripsListSelection)
+    func setFilteredText(_ text: String)
+    func updateTripName(_ name: String, at index: Int)
+}
+
+// MARK: - TripsListViewModel
+
+final class TripsListViewModel: TripsListViewModelProtocol {
 
     // MARK: - Private Properties
     
@@ -22,7 +37,7 @@ final class TripsListViewModel {
     private var finishedTrips: [Trip] = []
     private var filteredNotFinishedTrips: [Trip] = []
     private var filteredFinishedTrips: [Trip] = []
-    private var currentSelection: Selection = .notFinished
+    private var currentSelection: TripsListSelection = .notFinished
     private var managedContext: NSManagedObjectContext {
         DataManager.shared.context
     }
@@ -64,31 +79,8 @@ final class TripsListViewModel {
             return filteredFinishedTrips[index]
         }
     }
-
-    // MARK: - Private Methods
     
-    private func reloadTrips() {
-        finishedTrips = []
-        notFinishedTrips = []
-        
-        let requestTrips: NSFetchRequest<Trip> = Trip.fetchRequest()
-        var fetchedTrips: [Trip] = []
-        do {
-            fetchedTrips = try managedContext.fetch(requestTrips)
-            fetchedTrips.reverse()
-        } catch let error {
-            print("Error fetching trips \(error)")
-        }
-
-        fetchedTrips.forEach { trip in
-            trip.finished ? finishedTrips.append(trip): notFinishedTrips.append(trip)
-        }
-
-        filteredNotFinishedTrips = notFinishedTrips
-        filteredFinishedTrips = finishedTrips
-    }
-    
-    func updateSelection(_ selection: Selection) {
+    func updateSelection(_ selection: TripsListSelection) {
         currentSelection = selection
     }
     
@@ -120,6 +112,29 @@ final class TripsListViewModel {
         } catch(_) {
             
         }
+    }
+
+    // MARK: - Private Methods
+    
+    private func reloadTrips() {
+        finishedTrips = []
+        notFinishedTrips = []
+        
+        let requestTrips: NSFetchRequest<Trip> = Trip.fetchRequest()
+        var fetchedTrips: [Trip] = []
+        do {
+            fetchedTrips = try managedContext.fetch(requestTrips)
+            fetchedTrips.reverse()
+        } catch let error {
+            print("Error fetching trips \(error)")
+        }
+
+        fetchedTrips.forEach { trip in
+            trip.finished ? finishedTrips.append(trip): notFinishedTrips.append(trip)
+        }
+
+        filteredNotFinishedTrips = notFinishedTrips
+        filteredFinishedTrips = finishedTrips
     }
     
 }

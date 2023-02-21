@@ -7,7 +7,16 @@
 
 import Foundation
 
-final class NoteViewModel {
+// MARK: - NoteViewModelProtocol
+
+protocol NoteViewModelProtocol: AnyObject {
+    func saveNote(title: String, text: String)
+    func getTitleAndText() -> (String?, String?)
+}
+
+// MARK: - NoteViewModel
+
+final class NoteViewModel: NoteViewModelProtocol {
     
     // MARK: - Private Properties
 

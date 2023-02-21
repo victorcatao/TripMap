@@ -9,7 +9,24 @@ import Foundation
 import CoreLocation
 import CoreData
 
-final class MapViewModel {
+// MARK: - MapViewModelProtocol
+
+protocol MapViewModelProtocol: AnyObject {
+    var pinObjects: [Pin] { get }
+
+    func updateStatus(for coordinate: CLLocationCoordinate2D)
+    func deletePin(latitude: Double, longitude: Double)
+    func getPinWith(latitude: Double, longitude: Double) -> Pin?
+    func createNewPinViewModel(coordinates: CLLocationCoordinate2D) -> NewPinViewModel
+    func createEditPinViewModel(coordinates: CLLocationCoordinate2D) -> NewPinViewModel
+    func createMapFilterViewModel() -> MapFilterViewModel
+    func setFilter(_ filter: MapFilterViewModel.Filter)
+    func didCreateNewPin(_ pin: Pin)
+}
+
+// MARK: - MapViewModel
+
+final class MapViewModel: MapViewModelProtocol {
     
     // MARK: - Private Properties
     

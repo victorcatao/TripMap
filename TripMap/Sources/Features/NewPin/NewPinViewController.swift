@@ -86,11 +86,11 @@ final class NewPinViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private let viewModel: NewPinViewModel
+    private let viewModel: NewPinViewModelProtocol
     
     // MARK: - LifeCycle
     
-    init(viewModel: NewPinViewModel) {
+    init(viewModel: NewPinViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

@@ -54,11 +54,11 @@ final class NoteViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private let viewModel: NoteViewModel
+    private let viewModel: NoteViewModelProtocol
     
     // MARK: - LifeCycle
     
-    init(viewModel: NoteViewModel) {
+    init(viewModel: NoteViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

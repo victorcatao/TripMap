@@ -7,17 +7,31 @@
 
 import Foundation
 
-final class NewPinViewModel {
+// MARK: - NewPinViewModelProtocol
 
+protocol NewPinViewModelProtocol: AnyObject {
+    var prefilledName: String? { get }
+    var prefilledDescription: String? { get }
+    var numberOfEmojis: Int { get }
+    
+    func getEmoji(at index: Int) -> PinModel
+    func didSelectPin(at index: Int)
+    func savePin(name: String?, description: String?, error: @escaping (String) -> Void, completion: @escaping (Pin) -> Void)
+}
+
+// MARK: - NewPinViewModel
+
+final class NewPinViewModel: NewPinViewModelProtocol {
+    
     // MARK: - Private Properties
-
+    
     private let trip: Trip?
     private let coordinate: (lat: Double, lng: Double)
     private var allPinEmojis = PinDatabase.allPinEmojis
     private var pinToEdit: Pin?
     
     // MARK: - LifeCycle
-
+    
     init(trip: Trip?,
          pinToEdit: Pin? = nil,
          latitude: Double,
@@ -45,7 +59,7 @@ final class NewPinViewModel {
     }
     
     // MARK: - Public Methods
-
+    
     func getEmoji(at index: Int) -> PinModel {
         return allPinEmojis[index]
     }
