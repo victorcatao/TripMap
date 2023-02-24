@@ -21,16 +21,12 @@ final class DataManagerTests: XCTestCase {
         super.setUp()
         
         // Create a trip to use on tests
-        sut.createTrip(name: "Test Trip", image: "anyImage") { trip in
-            self.tripHelper = trip!
-            
-            // Create a pin to use on tests
-            self.sut.createPin(name: "Test Pin", description: "Desc", emoji: "🏖", trip: self.tripHelper, coordinate: (latitude: 10, longitude: 10)) { error, pin in
-                self.pinHelper = pin!
-            }
-            
-            self.noteHelper = self.sut.createNote(trip: self.tripHelper, title: "Test", text: "text")
-        }
+        tripHelper = sut.createTrip(name: "Test Trip", image: "anyImage")!
+        
+        // Create a pin to use on tests
+        pinHelper = sut.createPin(name: "Test Pin", description: "Desc", emoji: "🏖", trip: self.tripHelper, coordinate: (latitude: 10, longitude: 10))
+        
+        noteHelper = sut.createNote(trip: self.tripHelper, title: "Test", text: "text")
     }
     
     override func tearDown() {
@@ -42,12 +38,11 @@ final class DataManagerTests: XCTestCase {
     // MARK: - Trips
     
     func test_createTrip() {
-        sut.createTrip(name: "Test \(#function)", image: "anyImage") { trip in
-            if let trip {
-                self.sut.deleteTrip(trip)
-            } else {
-                XCTFail("Trip not created")
-            }
+        let trip = sut.createTrip(name: "Test \(#function)", image: "anyImage")
+        if let trip {
+            sut.deleteTrip(trip)
+        } else {
+            XCTFail("Trip not created")
         }
     }
     
@@ -83,12 +78,13 @@ final class DataManagerTests: XCTestCase {
     }
     
     func test_createPin() {
-        sut.createPin(name: "Test Pin", description: "Desc", emoji: "🏖", trip: self.tripHelper, coordinate: (latitude: 10, longitude: 10)) { error, pin in
-            defer {
-                self.sut.deletePin(latitude: pin!.lat, longitude: pin!.lng)
-            }
-            XCTAssertNotNil(pin)
+        let pin = sut.createPin(name: "Test Pin", description: "Desc", emoji: "🏖", trip: self.tripHelper, coordinate: (latitude: 10, longitude: 10))
+        
+        defer {
+            sut.deletePin(latitude: pin!.lat, longitude: pin!.lng)
         }
+        
+        XCTAssertNotNil(pin)
     }
     
     func test_updatePin() {

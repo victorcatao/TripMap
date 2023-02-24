@@ -40,7 +40,8 @@ final class DataManager {
     
     // MARK: - Trips
     
-    func createTrip(name: String, image: String, completion: @escaping (Trip?) -> Void) {
+    @discardableResult
+    func createTrip(name: String, image: String) -> Trip? {
         let managedContext = context
 
         let trip = Trip(context: managedContext)
@@ -50,9 +51,9 @@ final class DataManager {
 
         do {
             try managedContext.save()
-            completion(trip)
+            return trip
         } catch {
-            completion(nil)
+            return nil
         }
     }
     
@@ -98,14 +99,14 @@ final class DataManager {
         return try? context.existingObject(with: objectID) as? Pin
     }
     
+    @discardableResult
     func createPin(
         name: String,
         description: String?,
         emoji: String,
         trip: Trip?,
-        coordinate: Coordinate,
-        completion: @escaping (String?, Pin?) -> Void
-    ) {
+        coordinate: Coordinate
+    ) -> Pin? {
         let pin = Pin(context: context)
         pin.name = name
         pin.pinDescription = description
@@ -119,10 +120,10 @@ final class DataManager {
         
         do {
             try context.save()
-        } catch(_) {
-            completion("generic_error".localized, nil)
+            return pin
+        } catch {
+            return nil
         }
-        completion(nil, pin)
     }
     
     func updatePin(_ pin: Pin, name: String, description: String?, icon: String) {

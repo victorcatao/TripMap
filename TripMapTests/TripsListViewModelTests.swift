@@ -24,10 +24,9 @@ final class TripsListViewModelTests: XCTestCase {
         
         // It comes from local DB (CoreData). Sometimes it's empty, so we will need to add something there just to test purposes
         if sut.getNumberOfRows() == 0 {
-            DataManager.shared.createTrip(name: "Trip test", image: "") { trip in
-                DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip!, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude)) { _, _ in }
-                DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip!, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude)) { _, _ in }
-            }
+            let trip = DataManager.shared.createTrip(name: "Trip test", image: "")!
+            DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude))
+            DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude))
         }
     }
     

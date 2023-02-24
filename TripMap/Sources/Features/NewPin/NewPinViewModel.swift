@@ -85,18 +85,18 @@ final class NewPinViewModel: NewPinViewModelProtocol {
             DataManager.shared.updatePin(pinEdit, name: name, description: description, icon: selectedPin.emoji)
             completion(pinEdit)
         } else {
-            DataManager.shared.createPin(
+            let pin = DataManager.shared.createPin(
                 name: name,
                 description: description,
                 emoji: selectedPin.emoji,
                 trip: trip,
-                coordinate: coordinate) { errorMsg, pin in
-                    if let errorMsg {
-                        error(errorMsg)
-                    } else if let pin {
-                        completion(pin)
-                    }
-                }
+                coordinate: coordinate)
+            
+            if let pin {
+                completion(pin)
+            } else {
+                error("generic_error".localized)
+            }
         }
     }
 }

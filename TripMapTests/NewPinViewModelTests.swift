@@ -21,17 +21,12 @@ final class NewPinViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        DataManager.shared.createTrip(name: "Trip test", image: "") { trip in
-            self.tripHelper = trip
-            
-            DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip!, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude)) { _, pinA in
-                self.pinAHelper = pinA!
-            }
-            
-            DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip!, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude)) { _, pinB in
-                self.pinBHelper = pinB!
-            }
-        }
+        let trip = DataManager.shared.createTrip(name: "Trip test", image: "")
+        tripHelper = trip
+        
+        pinAHelper = DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip!, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude))
+        
+        pinBHelper = DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip!, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude))
     }
     
     override func tearDown() {

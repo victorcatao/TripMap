@@ -38,8 +38,7 @@ final class ImageNewTripViewModel {
     // MARK: - Private Methods
 
     private func createTrip(image: String, completion: @escaping (Trip?) -> Void) {
-        DataManager.shared.createTrip(name: tripName, image: image) { trip in
-            completion(trip)
-        }
+        let trip = DataManager.shared.createTrip(name: tripName, image: image)
+        completion(trip)
     }
 }

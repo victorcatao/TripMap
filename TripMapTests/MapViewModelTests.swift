@@ -18,23 +18,14 @@ final class MapViewModelTests: XCTestCase {
     private var tripHelper: Trip!
     private var pinAHelper: Pin!
     private var pinBHelper: Pin!
-
+    
     override func setUp() {
         super.setUp()
         
-        DataManager.shared.createTrip(name: "Trip test", image: "") { trip in
-            self.tripHelper = trip
-            
-            DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip!, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude)) { _, pinA in
-                self.pinAHelper = pinA!
-            }
-            
-            DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip!, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude)) { _, pinB in
-                self.pinBHelper = pinB!
-            }
-            
-            self.sut = MapViewModel(trip: trip)
-        }
+        tripHelper = DataManager.shared.createTrip(name: "Trip test", image: "")
+        pinAHelper = DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: tripHelper, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude))
+        pinBHelper = DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: tripHelper, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude))
+        sut = MapViewModel(trip: tripHelper)
     }
     
     override func tearDown() {
