@@ -8,7 +8,7 @@
 import Foundation
 
 final class NotesListViewModel {
-    
+
     // MARK: - Private Properties
 
     private enum NoteType {
@@ -51,22 +51,14 @@ final class NotesListViewModel {
         switch noteType {
         case .pin:
             guard let objectId = pin?.objectID else { return }
-            do {
-                pin = try DataManager.shared.context.existingObject(with: objectId) as? Pin
-                notes = pin?.notes?.allObjects as? [Note] ?? []
-                sortNotes()
-            } catch let error {
-                print("Error fetching songs \(error)")
-            }
+            pin = DataManager.shared.getPin(objectID: objectId)
+            notes = (pin?.notes?.allObjects as? [Note])?.filter({$0.title != nil}) ?? []
+            sortNotes()
         case .trip:
             guard let objectId = trip?.objectID else { return }
-            do {
-                trip = try DataManager.shared.context.existingObject(with: objectId) as? Trip
-                notes = trip?.notes?.allObjects as? [Note] ?? []
-                sortNotes()
-            } catch let error {
-                print("Error fetching songs \(error)")
-            }
+            trip = DataManager.shared.getTrip(objectID: objectId)
+            notes = (trip?.notes?.allObjects as? [Note])?.filter({$0.title != nil}) ?? []
+            sortNotes()
         }
     }
     
@@ -105,8 +97,7 @@ final class NotesListViewModel {
     
     func deleteNote(at index: Int) {
         guard let note = getNote(at: index) else { return }
-        DataManager.shared.context.delete(note)
-        DataManager.shared.save()
+        DataManager.shared.deleteNote(note: note)
         reloadData()
     }
     

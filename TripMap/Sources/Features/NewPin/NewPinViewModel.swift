@@ -26,7 +26,7 @@ final class NewPinViewModel: NewPinViewModelProtocol {
     // MARK: - Private Properties
     
     private let trip: Trip?
-    private let coordinate: (lat: Double, lng: Double)
+    private let coordinate: (latitude: Double, longitude: Double)
     private var allPinEmojis = PinDatabase.allPinEmojis
     private var pinToEdit: Pin?
     
@@ -37,7 +37,7 @@ final class NewPinViewModel: NewPinViewModelProtocol {
          latitude: Double,
          longitude: Double) {
         self.trip = trip
-        self.coordinate = (lat: latitude, lng: longitude)
+        self.coordinate = (latitude: latitude, longitude: longitude)
         self.pinToEdit = pinToEdit
         if pinToEdit != nil, let index = allPinEmojis.firstIndex(where: { $0.emoji == pinToEdit?.icon }) {
             allPinEmojis[index].setSelected(true)
@@ -72,7 +72,7 @@ final class NewPinViewModel: NewPinViewModelProtocol {
     }
     
     func savePin(name: String?, description: String?, error: @escaping (String) -> Void, completion: @escaping (Pin) -> Void) {
-        guard name != nil else {
+        guard let name else {
             error("fill_name".localized)
             return
         }
@@ -81,31 +81,22 @@ final class NewPinViewModel: NewPinViewModelProtocol {
             return
         }
         
-        let managedContext = DataManager.shared.context
-        var pin: Pin
         if let pinEdit = pinToEdit {
-            pin = pinEdit
-            pin.name = name
-            pin.pinDescription = description
-            pin.icon = selectedPin.emoji
+            DataManager.shared.updatePin(pinEdit, name: name, description: description, icon: selectedPin.emoji)
+            completion(pinEdit)
         } else {
-            pin = Pin(context: managedContext)
-            pin.name = name
-            pin.pinDescription = description
-            pin.lat = coordinate.lat
-            pin.lng = coordinate.lng
-            pin.icon = selectedPin.emoji
-            
-            if let trip = trip {
-                trip.addToPins(pin)
-            }
+            DataManager.shared.createPin(
+                name: name,
+                description: description,
+                emoji: selectedPin.emoji,
+                trip: trip,
+                coordinate: coordinate) { errorMsg, pin in
+                    if let errorMsg {
+                        error(errorMsg)
+                    } else if let pin {
+                        completion(pin)
+                    }
+                }
         }
-        
-        do {
-            try managedContext.save()
-        } catch(_) {
-            error("generic_error".localized)
-        }
-        completion(pin)
     }
 }

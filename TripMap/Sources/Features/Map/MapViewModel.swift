@@ -37,9 +37,6 @@ final class MapViewModel: MapViewModelProtocol {
             loadPins()
         }
     }
-    private var managedContext: NSManagedObjectContext = {
-        DataManager.shared.context
-    }()
     
     // MARK: - LifeCycle
 
@@ -51,21 +48,10 @@ final class MapViewModel: MapViewModelProtocol {
     // MARK: - Private Methods
     
     private func loadPins() {
-        var allPins: [Pin] = []
-        
+        var allPins = DataManager.shared.getAllPins(trip: trip)
+
         defer {
             pinObjects = allPins
-        }
-        
-        let request = Pin.fetchRequest()
-        if let trip = trip {
-            request.predicate = NSPredicate(format: "trip = %@", trip)
-        }
-        
-        do {
-            allPins = try managedContext.fetch(request)
-        } catch let error {
-            print("Error fetching songs \(error)")
         }
 
         guard let filter = filter else { return }
@@ -90,35 +76,15 @@ final class MapViewModel: MapViewModelProtocol {
     // MARK: - Public Methods
 
     func updateStatus(for coordinate: CLLocationCoordinate2D) {
-        let fetchRequest = Pin.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "lat == %lf AND lng == %lf", coordinate.latitude, coordinate.longitude)
-        
-        do {
-            let fetchResponse = try managedContext.fetch(fetchRequest)
-            guard let pin = fetchResponse.first else { return }
-            pin.setValue(!pin.visited, forKey: "visited")
-            DataManager.shared.save()
-        } catch {
-
-        }
+        DataManager.shared.updatePinStatus(at: (coordinate.latitude, coordinate.longitude))
     }
     
     func deletePin(latitude: Double, longitude: Double) {
-        guard let pin = getPinWith(latitude: latitude, longitude: longitude) else { return }
-        managedContext.delete(pin)
-        DataManager.shared.save()
+        DataManager.shared.deletePin(latitude: latitude, longitude: longitude)
     }
     
     func getPinWith(latitude: Double, longitude: Double) -> Pin? {
-        let fetchRequest = Pin.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "lat == %lf AND lng == %lf", latitude, longitude)
-        
-        do {
-            let fetchResponse = try managedContext.fetch(fetchRequest)
-            return fetchResponse.first
-        } catch {
-            return nil
-        }
+        return DataManager.shared.getPinWith(latitude: latitude, longitude: longitude)
     }
     
     func createNewPinViewModel(coordinates: CLLocationCoordinate2D) -> NewPinViewModel {

@@ -7,6 +7,7 @@
 
 import XCTest
 import CoreLocation
+import CoreData.NSManagedObjectContext
 @testable import TripMap
 
 final class MapViewModelTests: XCTestCase {
@@ -14,30 +15,36 @@ final class MapViewModelTests: XCTestCase {
     private var sut: MapViewModel!
     private let coordinateA = CLLocationCoordinate2DMake(20, 20)
     private let coordinateB = CLLocationCoordinate2DMake(30, 30)
-    
+    private var tripHelper: Trip!
+    private var pinAHelper: Pin!
+    private var pinBHelper: Pin!
+
     override func setUp() {
         super.setUp()
         
-        let trip = Trip(context: DataManager.shared.context)
-        trip.name = "trip"
+        DataManager.shared.createTrip(name: "Trip test", image: "") { trip in
+            self.tripHelper = trip
+            
+            DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip!, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude)) { _, pinA in
+                self.pinAHelper = pinA!
+            }
+            
+            DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip!, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude)) { _, pinB in
+                self.pinBHelper = pinB!
+            }
+            
+            self.sut = MapViewModel(trip: trip)
+        }
+    }
+    
+    override func tearDown() {
+        super.tearDown()
         
-        let pinA = Pin(context: DataManager.shared.context)
-        pinA.name = "Pin A"
-        pinA.pinDescription = "Desc Pin A"
-        pinA.visited = true
-        pinA.lat = coordinateA.latitude
-        pinA.lng = coordinateA.longitude
+        DataManager.shared.deleteTrip(tripHelper)
         
-        let pinB = Pin(context: DataManager.shared.context)
-        pinB.name = "Pin B"
-        pinB.pinDescription = "Desc Pin B"
-        pinB.visited = false
-        pinB.lat = coordinateB.latitude
-        pinB.lng = coordinateB.longitude
-        
-        trip.pins = NSSet(array: [pinA, pinB])
-        
-        sut = MapViewModel(trip: trip)
+        tripHelper = nil
+        pinAHelper = nil
+        pinBHelper = nil
     }
     
     func test_pinObjects() {
@@ -47,12 +54,13 @@ final class MapViewModelTests: XCTestCase {
     func test_updateStatus() {
         // Given
         let pin = sut.getPinWith(latitude: coordinateA.latitude, longitude: coordinateA.longitude)!
+        let expectedStatus = !pin.visited
         
         // When
         sut.updateStatus(for: .init(latitude: coordinateA.latitude, longitude: coordinateA.longitude))
         
         // Then
-        XCTAssertFalse(pin.visited)
+        XCTAssertEqual(pin.visited, expectedStatus)
     }
     
     func test_getPinWith() {

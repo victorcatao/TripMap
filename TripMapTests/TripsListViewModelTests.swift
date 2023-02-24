@@ -24,26 +24,10 @@ final class TripsListViewModelTests: XCTestCase {
         
         // It comes from local DB (CoreData). Sometimes it's empty, so we will need to add something there just to test purposes
         if sut.getNumberOfRows() == 0 {
-            let trip = Trip(context: DataManager.shared.context)
-            trip.name = "trip"
-            
-            let pinA = Pin(context: DataManager.shared.context)
-            pinA.name = "Pin A"
-            pinA.pinDescription = "Desc Pin A"
-            pinA.visited = true
-            pinA.lat = coordinateA.latitude
-            pinA.lng = coordinateA.longitude
-            
-            let pinB = Pin(context: DataManager.shared.context)
-            pinB.name = "Pin B"
-            pinB.pinDescription = "Desc Pin B"
-            pinB.visited = false
-            pinB.lat = coordinateB.latitude
-            pinB.lng = coordinateB.longitude
-            
-            trip.pins = NSSet(array: [pinA, pinB])
-            
-            try! DataManager.shared.context.save()
+            DataManager.shared.createTrip(name: "Trip test", image: "") { trip in
+                DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip!, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude)) { _, _ in }
+                DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip!, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude)) { _, _ in }
+            }
         }
     }
     

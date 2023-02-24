@@ -48,30 +48,16 @@ final class NoteViewModel: NoteViewModelProtocol {
     // MARK: - Public Methods
 
     func saveNote(title: String, text: String) {
-        switch noteType {
-        case .trip:
-            if let note = note { // update note
-                note.title = title
-                note.text = text
-            } else { // new note
-                let note = Note(context: DataManager.shared.context)
-                note.title = title
-                note.text = text
-                trip?.addToNotes(note)
-            }
-        case .pin:
-            if let note = note { // update note
-                note.title = title
-                note.text = text
-            } else { // new note
-                let note = Note(context: DataManager.shared.context)
-                note.title = title
-                note.text = text
-                pin?.addToNotes(note)
+        if let note = note {
+            DataManager.shared.updateNote(note: note, title: title, text: text)
+        } else {
+            switch noteType {
+            case .trip:
+                DataManager.shared.createNote(trip: trip, title: title, text: text)
+            case .pin:
+                DataManager.shared.createNote(pin: pin, title: title, text: text)
             }
         }
-        
-        DataManager.shared.save()
     }
     
     func getTitleAndText() -> (String?, String?) {

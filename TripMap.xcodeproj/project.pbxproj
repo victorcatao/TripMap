@@ -51,6 +51,7 @@
 		FC90742E28328E9700951CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC90742C28328E9700951CFA /* LaunchScreen.storyboard */; };
 		FC9089CA296B52AD005EF42C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FC9089C9296B52AD005EF42C /* Lottie */; };
 		FC9089CC296B53EC005EF42C /* trip-lottie-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */; };
+		FC96260B29A7EA2D003E8050 /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC96260A29A7EA2D003E8050 /* DataManagerTests.swift */; };
 		FC983DC529A2AC5F0081B949 /* TripsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC983DC429A2AC5F0081B949 /* TripsListViewModelTests.swift */; };
 		FC983DC729A2B01C0081B949 /* NoteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC983DC629A2B01C0081B949 /* NoteViewModelTests.swift */; };
 		FC983DC929A2B6580081B949 /* NewPinViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC983DC829A2B6580081B949 /* NewPinViewModelTests.swift */; };
@@ -123,6 +124,7 @@
 		FC90742D28328E9700951CFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC90742F28328E9700951CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9089CB296B53EC005EF42C /* trip-lottie-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "trip-lottie-animation.json"; sourceTree = "<group>"; };
+		FC96260A29A7EA2D003E8050 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
 		FC983DC429A2AC5F0081B949 /* TripsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListViewModelTests.swift; sourceTree = "<group>"; };
 		FC983DC629A2B01C0081B949 /* NoteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModelTests.swift; sourceTree = "<group>"; };
 		FC983DC829A2B6580081B949 /* NewPinViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPinViewModelTests.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				FC983DC429A2AC5F0081B949 /* TripsListViewModelTests.swift */,
 				FC983DC629A2B01C0081B949 /* NoteViewModelTests.swift */,
 				FC983DC829A2B6580081B949 /* NewPinViewModelTests.swift */,
+				FC96260A29A7EA2D003E8050 /* DataManagerTests.swift */,
 			);
 			path = TripMapTests;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC983DC729A2B01C0081B949 /* NoteViewModelTests.swift in Sources */,
+				FC96260B29A7EA2D003E8050 /* DataManagerTests.swift in Sources */,
 				FC983DC929A2B6580081B949 /* NewPinViewModelTests.swift in Sources */,
 				FC28680F29A2652800585E34 /* TripMapTests.swift in Sources */,
 				FC28681629A267F400585E34 /* MapViewModelTests.swift in Sources */,

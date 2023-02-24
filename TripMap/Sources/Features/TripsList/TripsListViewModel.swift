@@ -38,9 +38,6 @@ final class TripsListViewModel: TripsListViewModelProtocol {
     private var filteredNotFinishedTrips: [Trip] = []
     private var filteredFinishedTrips: [Trip] = []
     private var currentSelection: TripsListSelection = .notFinished
-    private var managedContext: NSManagedObjectContext {
-        DataManager.shared.context
-    }
 
     // MARK: - Public Methods
     
@@ -49,16 +46,12 @@ final class TripsListViewModel: TripsListViewModelProtocol {
     }
     
     func deleteTrip(at index: Int) {
-        let trip = getTrip(at: index)
-        DataManager.shared.context.delete(trip)
-        DataManager.shared.save()
+        DataManager.shared.deleteTrip(getTrip(at: index))
         reloadTrips()
     }
     
     func finishTrip(index: Int, section: Int) {
-        let trip = getTrip(at: index)
-        trip.finished = !trip.finished
-        DataManager.shared.save()
+        DataManager.shared.finishTrip(getTrip(at: index))
         reloadTrips()
     }
     
@@ -105,13 +98,7 @@ final class TripsListViewModel: TripsListViewModelProtocol {
     
     func updateTripName(_ name: String, at index: Int) {
         let trip = getTrip(at: index)
-        trip.name = name
-   
-        do {
-            try DataManager.shared.context.save()
-        } catch(_) {
-            
-        }
+        DataManager.shared.updateTripName(trip: trip, name: name)
     }
 
     // MARK: - Private Methods
@@ -120,14 +107,7 @@ final class TripsListViewModel: TripsListViewModelProtocol {
         finishedTrips = []
         notFinishedTrips = []
         
-        let requestTrips: NSFetchRequest<Trip> = Trip.fetchRequest()
-        var fetchedTrips: [Trip] = []
-        do {
-            fetchedTrips = try managedContext.fetch(requestTrips)
-            fetchedTrips.reverse()
-        } catch let error {
-            print("Error fetching trips \(error)")
-        }
+        let fetchedTrips = DataManager.shared.getAllTrips().reversed()
 
         fetchedTrips.forEach { trip in
             trip.finished ? finishedTrips.append(trip): notFinishedTrips.append(trip)

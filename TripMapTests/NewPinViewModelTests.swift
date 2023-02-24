@@ -14,69 +14,55 @@ final class NewPinViewModelTests: XCTestCase {
     private var sut: NewPinViewModelProtocol!
     private let coordinateA = CLLocationCoordinate2DMake(20, 20)
     private let coordinateB = CLLocationCoordinate2DMake(30, 30)
+    private var tripHelper: Trip!
+    private var pinAHelper: Pin!
+    private var pinBHelper: Pin!
     
     override func setUp() {
         super.setUp()
         
-        let trip = Trip(context: DataManager.shared.context)
-        trip.name = "trip"
+        DataManager.shared.createTrip(name: "Trip test", image: "") { trip in
+            self.tripHelper = trip
+            
+            DataManager.shared.createPin(name: "Pin A", description: "Desc Pin A", emoji: "🏕", trip: trip!, coordinate: (self.coordinateA.latitude, self.coordinateA.longitude)) { _, pinA in
+                self.pinAHelper = pinA!
+            }
+            
+            DataManager.shared.createPin(name: "Pin B", description: "Desc Pin B", emoji: "🏡", trip: trip!, coordinate: (self.coordinateB.latitude, self.coordinateB.longitude)) { _, pinB in
+                self.pinBHelper = pinB!
+            }
+        }
+    }
+    
+    override func tearDown() {
+        super.tearDown()
         
-        let pinA = Pin(context: DataManager.shared.context)
-        pinA.name = "Pin A"
-        pinA.pinDescription = "Desc Pin A"
-        pinA.visited = true
-        pinA.lat = coordinateA.latitude
-        pinA.lng = coordinateA.longitude
+        DataManager.shared.deleteTrip(tripHelper)
         
-        trip.pins = NSSet(array: [pinA])
-        
-        sut = NewPinViewModel(trip: trip, latitude: coordinateB.latitude, longitude: coordinateB.longitude)
+        tripHelper = nil
+        pinAHelper = nil
+        pinBHelper = nil
     }
     
     func test_prefilledName() {
-        // Given
-        let pinA = Pin(context: DataManager.shared.context)
-        pinA.name = "Pin A"
-        pinA.pinDescription = "Desc Pin A"
-        pinA.visited = true
-        pinA.lat = coordinateA.latitude
-        pinA.lng = coordinateA.longitude
+        sut = NewPinViewModel(trip: nil, pinToEdit: pinAHelper, latitude: coordinateA.latitude, longitude: coordinateA.longitude)
         
-        // When
-        sut = NewPinViewModel(trip: nil, pinToEdit: pinA, latitude: coordinateA.latitude, longitude: coordinateA.longitude)
-        
-        // Then
-        XCTAssertEqual(sut.prefilledName, pinA.name)
+        XCTAssertEqual(sut.prefilledName, pinAHelper.name)
     }
     
     func test_prefilledDescription() {
-        // Given
-        let pinA = Pin(context: DataManager.shared.context)
-        pinA.name = "Pin A"
-        pinA.pinDescription = "Desc Pin A"
-        pinA.visited = true
-        pinA.lat = coordinateA.latitude
-        pinA.lng = coordinateA.longitude
-        
-        // When
         sut = NewPinViewModel(trip: nil,
-                              pinToEdit: pinA,
+                              pinToEdit: pinAHelper,
                               latitude: coordinateA.latitude,
                               longitude: coordinateA.longitude)
         
-        // Then
-        XCTAssertEqual(sut.prefilledDescription, pinA.pinDescription)
+        XCTAssertEqual(sut.prefilledDescription, pinAHelper.pinDescription)
     }
     
     func test_savePin() {
-        // Given
-        let trip = Trip(context: DataManager.shared.context)
-        trip.name = "trip"
-        
-        sut = NewPinViewModel(trip: trip, latitude: 0, longitude: 0)
+        sut = NewPinViewModel(trip: tripHelper, latitude: 0, longitude: 0)
         sut.didSelectPin(at: 0)
         
-        // When
         sut.savePin(
             name: "Pin Test",
             description: "Description Test",
@@ -89,12 +75,3 @@ final class NewPinViewModelTests: XCTestCase {
     }
     
 }
-
-
-//var prefilledName: String? { get }
-//var prefilledDescription: String? { get }
-//var numberOfEmojis: Int { get }
-//
-//func getEmoji(at index: Int) -> PinModel
-//func didSelectPin(at index: Int)
-//func savePin(name: String?, description: String?, error: @escaping (String) -> Void, completion: @escaping (Pin) -> Void)
