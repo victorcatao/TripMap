@@ -11,7 +11,7 @@ final class ImageNewTripViewModel {
     
     // MARK: - Private Properties
 
-    private let images: [String] = (1...13).map { String($0) }
+    private let images: [String] = (1...14).map { String($0) }
     
     private let tripName: String
 

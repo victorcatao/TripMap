@@ -195,7 +195,8 @@ final class MapViewController: UIViewController {
         }
         
         if didShowAnnotations == false {
-            mapView.showAnnotations(mapView.annotations, animated: true)
+            let annotationsToShow = mapView.annotations.count > 1 ? mapView.annotations.filter { ($0 is MKUserLocation) == false } : mapView.annotations
+            mapView.showAnnotations(annotationsToShow, animated: true)
             didShowAnnotations = true
         }
     }
