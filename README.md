@@ -35,4 +35,6 @@ Contributions are always welcome! Feel free to open PRs or fork the project.
   xed .
 ```
 
+## License
+MIT.
 
